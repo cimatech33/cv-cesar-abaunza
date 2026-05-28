@@ -1,1472 +1,1212 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="César Iván Abaunza Martínez — Ingeniero Civil, Project Manager y especialista en IA e ingenieria">
-    <title>Ing. César Abaunza — IA & Administracion</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="CÃ©sar IvÃ¡n Abaunza MartÃ­nez â Ingeniero Civil, Project Manager, especialista en Geotecnia, IA y GestiÃ³n Comercial para infraestructura">
+<title>CÃ©sar Abaunza Â· IngenierÃ­a Â· IA Â· GestiÃ³n Comercial</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --surface-3: #eef2f9;
+  --text: #0c1628;
+  --text-soft: #3d4f6b;
+  --text-muted: #6b7a95;
+  --accent: #1a56db;
+  --accent-2: #3b73f5;
+  --border: #e4e9f2;
+  --radius-card: 20px;
+  --radius-sm: 8px;
+  --transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+body.dark {
+  --bg: #0d1424;
+  --surface: #0d1424;
+  --surface-2: #131e34;
+  --surface-3: #1a2640;
+  --text: #e8edf6;
+  --text-soft: #a9b8d4;
+  --text-muted: #697b99;
+  --accent: #4d7df5;
+  --accent-2: #6b94ff;
+  --border: #1e2d48;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+/* ââ SCROLL PROGRESS ââ */
+#scrollBar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: var(--accent); z-index: 2000;
+  transition: width 0.1s linear;
+}
 
-    <style>
-    :root {
-        --ink:        #0c1628;
-        --ink-soft:   #3d4f6b;
-        --ink-muted:  #6b7a95;
-        --accent:     #1a56db;
-        --accent-2:   #3b73f5;
-        --surface:    #ffffff;
-        --surface-2:  #f7f9fc;
-        --surface-3:  #eef2f9;
-        --border:     #e4e9f2;
-        --radius-lg:  20px;
-        --radius-md:  14px;
-        --radius-sm:  8px;
-    }
-    body.dark {
-        --ink:        #e8edf6;
-        --ink-soft:   #a9b8d4;
-        --ink-muted:  #697b99;
-        --accent:     #4d7df5;
-        --accent-2:   #6b94ff;
-        --surface:    #0d1424;
-        --surface-2:  #131e34;
-        --surface-3:  #1a2640;
-        --border:     #1e2d48;
-    }
+/* ââ NAVBAR ââ */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+body.dark .navbar { background: rgba(13,20,36,0.94); }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--text);
+  display: flex; align-items: baseline; gap: 6px;
+}
+.logo-prefix { color: var(--accent); }
+.logo-suffix { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 1.8rem; }
+.nav-links a {
+  text-decoration: none; font-size: 0.75rem; font-weight: 600;
+  color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;
+  position: relative; transition: color 0.2s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--accent); transition: width 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a.active { color: var(--accent); }
+.nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+.nav-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-muted);
+  font-size: 0.7rem; cursor: pointer; padding: 5px 12px; border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: 0.04em;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-btn:hover { color: var(--accent); border-color: var(--accent); }
+.menu-icon { display: none; }
+@media (max-width: 900px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--surface); padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); z-index: 999; }
+  .nav-links.open { display: flex; }
+  .menu-icon { display: block; }
+}
 
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
+/* ââ LAYOUT ââ */
+main { max-width: 1200px; margin: 0 auto; padding: 80px 2rem 2rem; }
+section { margin-bottom: 5rem; }
 
-    body {
-        font-family:'DM Sans',sans-serif;
-        background:var(--surface);
-        color:var(--ink);
-        line-height:1.65;
-        -webkit-font-smoothing:antialiased;
-        transition:background .3s,color .3s;
-    }
+/* ââ TYPOGRAPHY ââ */
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem; margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+h2 em { font-style: italic; color: var(--accent); }
+h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
+p { color: var(--text-soft); }
+.label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem;
+}
+.label::before { content: ''; width: 24px; height: 2px; background: var(--accent); display: block; }
 
-    /* ── NAVBAR ── */
-    .navbar {
-        position:fixed;top:0;width:100%;z-index:1000;
-        background:rgba(255,255,255,.92);
-        backdrop-filter:blur(20px);
-        border-bottom:1px solid var(--border);
-        transition:background .3s,border-color .3s;
-    }
-    body.dark .navbar{background:rgba(13,20,36,.92);}
-    .nav-inner {
-        max-width:1200px;margin:0 auto;padding:0 2rem;
-        height:62px;display:flex;align-items:center;justify-content:space-between;
-    }
-    .logo {
-        font-family:'DM Serif Display',serif;
-        font-size:1.05rem;color:var(--ink);
-        display:flex;align-items:baseline;gap:6px;
-        white-space:nowrap;
-    }
-    .logo-prefix{color:var(--accent);font-style:normal;}
-    .logo-suffix{color:var(--ink-muted);font-size:.85rem;font-family:'DM Sans',sans-serif;font-weight:500;}
-    .nav-links{display:flex;align-items:center;gap:1.8rem;}
-    .nav-links a {
-        text-decoration:none;font-size:.8rem;font-weight:600;
-        color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;
-        position:relative;transition:color .2s;
-    }
-    .nav-links a::after {
-        content:'';position:absolute;bottom:-4px;left:0;
-        width:0;height:2px;background:var(--accent);transition:width .2s;
-    }
-    .nav-links a:hover{color:var(--accent);}
-    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
-    .nav-links a.active{color:var(--accent);}
-    .nav-controls{display:flex;align-items:center;gap:.4rem;}
-    .nav-btn {
-        background:none;border:1px solid var(--border);color:var(--ink-muted);
-        font-size:.75rem;cursor:pointer;padding:5px 12px;border-radius:6px;
-        transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:.04em;
-    }
-    .nav-btn:hover{color:var(--accent);border-color:var(--accent);}
-    .menu-icon{display:none;}
+/* ââ HERO ââ */
+.hero {
+  display: grid; grid-template-columns: auto 1fr 300px; gap: 2.5rem;
+  align-items: center; margin-bottom: 2rem;
+}
+.hero-avatar {
+  width: 350px; height: 350px; border-radius: 50%;
+  overflow: hidden; border: 4px solid var(--accent);
+  background: var(--surface-3); flex-shrink: 0;
+  box-shadow: 0 8px 32px rgba(26,86,219,0.18);
+}
+.hero-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.2rem; line-height: 1.1; margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(26,86,219,0.08); border: 1px solid rgba(26,86,219,0.2);
+  border-radius: 40px; padding: 4px 14px;
+  font-size: 0.7rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem;
+}
+.typed-wrap { min-height: 2rem; margin-bottom: 1rem; }
+.typed-line { font-size: 1.05rem; color: var(--text-soft); }
+.cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+.hero-desc { color: var(--text-soft); margin-bottom: 1.5rem; max-width: 520px; font-size: 0.95rem; line-height: 1.75; }
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0.6rem 1.4rem; border-radius: var(--radius-sm);
+  font-weight: 600; text-decoration: none; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif; font-size: 0.875rem; cursor: pointer;
+  border: none;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,86,219,0.28); }
+.btn-outline { border: 1px solid var(--border); color: var(--text-soft); background: transparent; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.stats { display: flex; flex-direction: column; gap: 1rem; }
+.stat-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.2rem 1.5rem;
+  transition: var(--transition), transform 0.2s;
+}
+.stat-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.stat-number { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+.stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-top: 0.25rem; }
 
-    @media(max-width:900px){
-        .nav-links{
-            display:none;flex-direction:column;position:absolute;
-            top:62px;left:0;right:0;background:var(--surface);
-            border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1rem;align-items:flex-start;
-        }
-        .nav-links.open{display:flex;}
-        .menu-icon{display:block;}
-    }
+/* ââ TRUST BAR ââ */
+.trust-bar {
+  display: flex; align-items: center; gap: 0; overflow-x: auto;
+  padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem;
+  scrollbar-width: none;
+}
+.trust-bar::-webkit-scrollbar { display: none; }
+.trust-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; margin-right: 1.5rem; }
+.trust-sep { width: 1px; height: 16px; background: var(--border); margin: 0 1.2rem; flex-shrink: 0; }
+.trust-item { font-size: 0.8rem; font-weight: 600; color: var(--text-soft); white-space: nowrap; opacity: 0.8; }
 
-    /* ── LAYOUT ── */
-    main{max-width:1200px;margin:0 auto;padding:62px 2rem 0;}
-    section{padding:5.5rem 0;border-bottom:1px solid var(--border);}
-    section:last-of-type{border-bottom:none;}
+/* ââ ABOUT ââ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.highlight-box {
+  background: var(--surface-2); border-left: 3px solid var(--accent);
+  padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; margin-top: 1rem;
+  transition: var(--transition);
+}
+.focus-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.focus-item {
+  display: flex; gap: 1rem; background: var(--surface-2);
+  padding: 1rem 1.1rem; border-radius: 14px; border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s, var(--transition);
+}
+.focus-item:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(26,86,219,0.07); }
+.focus-icon {
+  width: 38px; height: 38px; min-width: 38px; background: rgba(26,86,219,0.08);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 0.95rem;
+}
+.focus-item strong { font-size: 0.875rem; color: var(--text); }
+.focus-item span { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* ── TYPE SYSTEM ── */
-    .label {
-        display:inline-flex;align-items:center;gap:.6rem;
-        font-size:.68rem;font-weight:700;letter-spacing:.14em;
-        text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;
-    }
-    .label::before{content:'';display:block;width:24px;height:2px;background:var(--accent);}
-    h2 {
-        font-family:'DM Serif Display',serif;
-        font-size:clamp(1.9rem,3.5vw,2.8rem);
-        color:var(--ink);line-height:1.15;letter-spacing:-.03em;margin-bottom:1.2rem;
-    }
-    h2 em{font-style:italic;color:var(--accent);}
-    h3{font-size:.95rem;font-weight:600;color:var(--ink);}
-    p{color:var(--ink-soft);margin-bottom:.9rem;font-size:.95rem;}
-    p:last-child{margin-bottom:0;}
+/* ââ PROJECTS ââ */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 1.5rem;
+}
+.project-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, var(--transition);
+  position: relative; overflow: hidden;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 10px 32px rgba(26,86,219,0.1); }
+.project-card:hover::before { transform: scaleX(1); }
+.project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.project-icon {
+  width: 44px; height: 44px; background: rgba(26,86,219,0.08);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1.1rem;
+}
+.status-live { background: rgba(34,197,94,0.12); color: #16a34a; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
+.status-dev { background: rgba(99,102,241,0.12); color: #6366f1; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
+body.dark .status-live { background: rgba(34,197,94,0.15); color: #4ade80; }
+body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+.project-card h3 { margin-bottom: 0.5rem; }
+.project-card p { font-size: 0.85rem; line-height: 1.65; margin-top: 0.4rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.tag { background: var(--surface-3); border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
 
-    /* ── BUTTONS ── */
-    .btn {
-        display:inline-flex;align-items:center;gap:8px;
-        padding:.65rem 1.5rem;border-radius:var(--radius-sm);
-        font-size:.85rem;font-weight:600;text-decoration:none;
-        transition:all .2s;cursor:pointer;border:none;
-        font-family:'DM Sans',sans-serif;letter-spacing:.01em;
-    }
-    .btn-primary{background:var(--accent);color:#fff;}
-    .btn-primary:hover{background:var(--accent-2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(26,86,219,.28);}
-    .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border);}
-    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+/* ââ EXPERIENCE ââ */
+.exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 1px; background: var(--border);
+}
+.tl-item { position: relative; padding-bottom: 2rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute; left: -1.5rem; top: 6px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--border);
+  transition: var(--transition);
+}
+.tl-item.featured::before { border-color: var(--accent); background: var(--accent); }
+.tl-meta { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; }
+.tl-company { font-size: 0.82rem; color: var(--accent); font-weight: 700; margin: 0.25rem 0 0.15rem; }
+.tl-role { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.2rem; }
+.func-list { list-style: none; margin-top: 0.5rem; }
+.func-list li {
+  font-size: 0.8rem; color: var(--text-soft); margin-bottom: 0.35rem;
+  display: flex; gap: 0.5rem; line-height: 1.55;
+}
+.func-list li i { color: var(--accent); font-size: 0.68rem; margin-top: 0.25rem; flex-shrink: 0; }
+.badge-license {
+  background: rgba(26,86,219,0.1); color: var(--accent);
+  font-size: 0.6rem; padding: 2px 8px; border-radius: 20px; margin-left: 0.5rem;
+  font-weight: 700; letter-spacing: 0.04em;
+}
 
-    /* ── HERO ── */
-    #home {
-        padding-top:7rem;padding-bottom:6rem;
-        display:grid;grid-template-columns:1fr 340px;gap:5rem;align-items:center;
-    }
-    .hero-tag {
-        display:inline-flex;align-items:center;gap:.5rem;
-        background:rgba(26,86,219,.07);border:1px solid rgba(26,86,219,.18);
-        border-radius:40px;padding:5px 14px;
-        font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-        color:var(--accent);margin-bottom:1.5rem;
-    }
-    .hero-name {
-        font-family:'DM Serif Display',serif;
-        font-size:clamp(2.6rem,5.5vw,4.2rem);
-        color:var(--ink);line-height:1.08;letter-spacing:-.04em;margin-bottom:1.8rem;
-    }
-    .typed-wrap{min-height:1.6rem;margin-bottom:1.6rem;}
-    .typed-line{font-size:1rem;color:var(--ink-muted);font-weight:400;}
-    .cursor{display:inline-block;width:2px;height:.95em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s step-end infinite;}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .hero-desc{max-width:520px;font-size:.95rem;line-height:1.8;color:var(--ink-soft);margin-bottom:2.2rem;}
-    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+/* ââ EDUCATION ââ */
+.edu-card {
+  display: flex; gap: 1rem; background: var(--surface-2); padding: 1rem 1.1rem;
+  border-radius: 14px; margin-bottom: 0.9rem; border: 1px solid var(--border);
+  align-items: flex-start; transition: var(--transition), border-color 0.2s;
+}
+.edu-card:hover { border-color: var(--accent); }
+.edu-card > i { color: var(--accent); margin-top: 2px; width: 16px; text-align: center; flex-shrink: 0; }
+.edu-card strong { font-size: 0.88rem; color: var(--text); }
+.edu-card span { font-size: 0.8rem; color: var(--text-muted); }
 
-    .hero-aside{display:flex;flex-direction:column;gap:1rem;}
-    .stat-card {
-        background:var(--surface-2);border:1px solid var(--border);
-        border-radius:var(--radius-lg);padding:1.4rem 1.6rem;
-        transition:border-color .2s;
-    }
-    .stat-card:hover{border-color:var(--accent);}
-    .stat-num {
-        font-family:'DM Serif Display',serif;font-size:2.4rem;
-        color:var(--accent);line-height:1;margin-bottom:.25rem;
-    }
-    .stat-txt{font-size:.78rem;color:var(--ink-muted);font-weight:500;}
+/* ââ SKILLS ââ */
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 1.5rem; }
+.skill-group h4 {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem;
+}
+.skill-list { list-style: none; }
+.skill-list li {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; color: var(--text-soft);
+  transition: var(--transition);
+}
+.skill-list li:last-child { border-bottom: none; }
+.skill-list li::before { content: ''; width: 4px; height: 4px; min-width: 4px; border-radius: 50%; background: var(--accent); }
 
-    /* ── TRUST BAR ── */
-    .trust-bar {
-        padding:1.6rem 0;border-bottom:1px solid var(--border);
-        display:flex;align-items:center;gap:2rem;overflow-x:auto;
-        scrollbar-width:none;
-    }
-    .trust-bar::-webkit-scrollbar{display:none;}
-    .trust-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap;}
-    .trust-sep{width:1px;height:20px;background:var(--border);flex-shrink:0;}
-    .trust-item{font-size:.8rem;font-weight:600;color:var(--ink-soft);white-space:nowrap;opacity:.75;}
+/* ââ SERVICES ââ */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.2rem; }
+.srv-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.5rem;
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.2s, box-shadow 0.2s, var(--transition);
+}
+.srv-card:hover { border-left-color: var(--accent); box-shadow: 0 4px 20px rgba(26,86,219,0.07); }
+.srv-icon {
+  width: 40px; height: 40px; background: rgba(26,86,219,0.08);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1rem; margin-bottom: 1rem;
+}
+.srv-card h3 { margin-bottom: 0.4rem; font-size: 0.92rem; }
+.srv-card p { font-size: 0.83rem; margin: 0; }
 
-    /* ── ABOUT ── */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-    .highlight-box {
-        background:var(--surface-2);border:1px solid var(--border);
-        border-left:3px solid var(--accent);border-radius:var(--radius-md);
-        padding:1.2rem 1.5rem;margin-top:1.5rem;
-    }
-    .highlight-box p{font-size:.875rem;}
-    .focus-list{display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem;}
-    .focus-item {
-        display:flex;align-items:flex-start;gap:1rem;
-        padding:1rem 1.2rem;background:var(--surface-2);
-        border:1px solid var(--border);border-radius:var(--radius-md);
-        transition:border-color .2s,box-shadow .2s;
-    }
-    .focus-item:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(26,86,219,.06);}
-    .focus-icon{width:36px;height:36px;min-width:36px;background:rgba(26,86,219,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;}
-    .focus-title{font-size:.875rem;font-weight:600;color:var(--ink);}
-    .focus-sub{font-size:.78rem;color:var(--ink-muted);margin-top:.15rem;}
+/* ââ LEAD MAGNET ââ */
+.lead-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 28px; overflow: hidden; transition: var(--transition);
+}
+.lead-left { padding: 2.5rem; border-right: 1px solid var(--border); }
+.lead-right { padding: 2.5rem; }
+.guide-mockup {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 1.5rem;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.08); margin-top: 1.5rem;
+  transition: var(--transition);
+}
+.guide-cover { background: var(--accent); border-radius: 14px; padding: 1.2rem; color: white; margin-bottom: 1rem; }
+.guide-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; margin-bottom: 0.4rem; }
+.guide-title { font-family: 'DM Serif Display', serif; font-size: 1.05rem; line-height: 1.3; }
+.guide-sub { font-size: 0.7rem; opacity: 0.85; margin-top: 0.3rem; }
+.guide-chapters { list-style: none; margin-top: 1rem; }
+.guide-chapters li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.78rem; color: var(--text-soft); margin-bottom: 0.5rem; line-height: 1.5; }
+.guide-chapters li i { color: var(--accent); font-size: 0.7rem; margin-top: 3px; width: 14px; flex-shrink: 0; }
+.lead-form-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--text); margin-bottom: 0.3rem; }
+.lead-form-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.form-field { margin-bottom: 1rem; }
+.form-field label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.form-field input {
+  width: 100%; padding: 0.7rem 1rem; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, var(--transition);
+}
+.form-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
+.consent-row { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 1.5rem; }
+.consent-row input[type=checkbox] { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+.consent-row label { font-size: 0.72rem; color: var(--text-muted); line-height: 1.55; cursor: pointer; }
+#leadMsg { margin-top: 0.75rem; font-size: 0.82rem; font-weight: 600; min-height: 1.2rem; }
+.msg-ok  { color: #16a34a; }
+.msg-err { color: #dc2626; }
 
-    /* ── PROJECTS ── */
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:1.5rem;}
-    .project-card {
-        background:var(--surface-2);border:1px solid var(--border);
-        border-radius:var(--radius-lg);padding:1.8rem;
-        display:flex;flex-direction:column;gap:1rem;
-        transition:all .25s;position:relative;overflow:hidden;
-    }
-    .project-card::before {
-        content:'';position:absolute;top:0;left:0;right:0;height:3px;
-        background:var(--accent);transform:scaleX(0);transform-origin:left;
-        transition:transform .3s;
-    }
-    .project-card:hover{border-color:var(--accent);box-shadow:0 12px 36px rgba(26,86,219,.09);transform:translateY(-2px);}
-    .project-card:hover::before{transform:scaleX(1);}
-    .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
-    .project-icon{width:46px;height:46px;background:rgba(26,86,219,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.15rem;flex-shrink:0;}
-    .project-status {
-        display:inline-flex;align-items:center;gap:5px;
-        font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-        padding:3px 10px;border-radius:40px;
-    }
-    .status-live{background:rgba(34,197,94,.12);color:#16a34a;}
-    .status-beta{background:rgba(234,179,8,.12);color:#ca8a04;}
-    .status-dev{background:rgba(99,102,241,.12);color:#6366f1;}
-    body.dark .status-live{background:rgba(34,197,94,.15);color:#4ade80;}
-    body.dark .status-beta{background:rgba(234,179,8,.15);color:#facc15;}
-    body.dark .status-dev{background:rgba(99,102,241,.15);color:#a5b4fc;}
-    .status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
-    .project-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.25rem;}
-    .project-card p{font-size:.85rem;line-height:1.65;flex:1;}
-    .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
-    .tag {
-        padding:3px 10px;background:var(--surface-3);border:1px solid var(--border);
-        border-radius:5px;font-size:.7rem;font-weight:600;color:var(--ink-muted);
-    }
+/* ââ CONTACT ââ */
+.contact-item {
+  display: flex; align-items: center; gap: 1rem; padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text-soft);
+  transition: color 0.2s;
+}
+.contact-item:hover { color: var(--accent); }
+.contact-item i { width: 20px; color: var(--accent); text-align: center; }
+.contact-item .ci-label { font-size: 0.7rem; color: var(--text-muted); }
+.contact-item .ci-val { font-size: 0.9rem; font-weight: 600; }
+.social-row { display: flex; gap: 0.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.social-link {
+  padding: 5px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  text-decoration: none; font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.social-link:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* ── EXPERIENCE ── */
-    .exp-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
-    .timeline{position:relative;padding-left:1.5rem;}
-    .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:var(--border);}
-    .tl-item{position:relative;padding-bottom:2.2rem;}
-    .tl-item:last-child{padding-bottom:0;}
-    .tl-item::before{content:'';position:absolute;left:-1.5rem;top:6px;width:9px;height:9px;border-radius:50%;background:var(--surface);border:2px solid var(--border);}
-    .tl-item.featured::before{border-color:var(--accent);background:var(--accent);}
-    .tl-meta{font-size:.72rem;color:var(--ink-muted);font-weight:600;letter-spacing:.03em;margin-bottom:.2rem;}
-    .tl-company{font-size:.78rem;color:var(--accent);font-weight:700;margin-bottom:.15rem;}
-    .tl-role{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.3rem;}
-    .tl-desc{font-size:.83rem;color:var(--ink-soft);line-height:1.6;margin:0;}
-    .badge{display:inline-block;padding:1px 8px;border-radius:4px;font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(26,86,219,.1);color:var(--accent);margin-left:.4rem;vertical-align:middle;}
+/* ââ FOOTER ââ */
+footer {
+  text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem;
+  font-size: 0.8rem; color: var(--text-muted);
+  transition: var(--transition);
+}
 
-    .edu-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.3rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;margin-bottom:.9rem;}
-    .edu-icon{width:38px;height:38px;min-width:38px;background:rgba(26,86,219,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;}
-    .edu-school{font-size:.75rem;color:var(--accent);font-weight:700;}
-    .edu-date{font-size:.72rem;color:var(--ink-muted);}
-    .pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
-    .pill{padding:4px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;font-size:.75rem;color:var(--ink-soft);}
+/* ââ WA FLOAT ââ */
+.wa-float {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #22c55e; color: white; padding: 10px 18px;
+  border-radius: 50px; display: flex; align-items: center; gap: 8px;
+  text-decoration: none; font-weight: 700; font-size: 0.85rem; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.35); transition: transform 0.2s;
+}
+.wa-float:hover { transform: translateY(-2px); }
+@media (max-width: 640px) { .wa-float span { display: none; } .wa-float { padding: 11px; border-radius: 50%; } }
 
-    /* ── SKILLS ── */
-    .skills-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1.5rem;}
-    .skill-group h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1rem;}
-    .skill-list{list-style:none;}
-    .skill-list li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--ink-soft);padding:.4rem 0;border-bottom:1px solid var(--border);}
-    .skill-list li:last-child{border-bottom:none;}
-    .skill-list li::before{content:'';width:4px;height:4px;min-width:4px;border-radius:50%;background:var(--accent);}
+/* ââ PDF OVERLAY ââ */
+#pdfOverlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.82); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; flex-direction: column;
+  gap: 1rem; color: white;
+}
+#pdfOverlay.show { display: flex; }
+.spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#pdfOverlay p { font-size: 0.9rem; font-weight: 500; }
 
-    /* ── SERVICES ── */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;margin-top:1.5rem;}
-    .srv-card {
-        background:var(--surface-2);border:1px solid var(--border);
-        border-radius:var(--radius-lg);padding:1.6rem;transition:all .22s;
-        border-left:3px solid transparent;
-    }
-    .srv-card:hover{border-left-color:var(--accent);background:var(--surface-3);transform:translateX(2px);}
-    .srv-icon{width:42px;height:42px;background:rgba(26,86,219,.08);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;margin-bottom:1.1rem;}
-    .srv-card h3{font-size:.9rem;margin-bottom:.45rem;}
-    .srv-card p{font-size:.82rem;margin:0;}
-
-    /* ── LEAD MAGNET ── */
-    #lead {
-        background:linear-gradient(135deg,var(--surface-2) 0%,var(--surface-3) 100%);
-        border:1px solid var(--border);
-        border-radius:28px;
-        overflow:hidden;
-    }
-    .lead-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;}
-    .lead-left{padding:3.5rem 3rem;position:relative;}
-    .lead-left::after{content:'';position:absolute;top:0;right:0;bottom:0;width:1px;background:var(--border);}
-    .lead-right{padding:3.5rem 3rem;}
-    .guide-mockup {
-        background:var(--surface);border:1px solid var(--border);
-        border-radius:var(--radius-lg);padding:1.8rem;
-        box-shadow:0 20px 48px rgba(0,0,0,.08);
-        margin-top:1.5rem;position:relative;
-    }
-    .guide-mockup::before{
-        content:'';position:absolute;top:-10px;left:20px;right:20px;height:10px;
-        background:var(--surface-3);border-radius:12px 12px 0 0;border:1px solid var(--border);border-bottom:none;
-    }
-    .guide-cover{background:var(--accent);border-radius:var(--radius-md);padding:1.5rem 1.2rem;color:#fff;margin-bottom:1rem;}
-    .guide-cover .guide-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:.5rem;}
-    .guide-cover .guide-title{font-family:'DM Serif Display',serif;font-size:1.15rem;line-height:1.25;}
-    .guide-cover .guide-sub{font-size:.75rem;opacity:.8;margin-top:.4rem;}
-    .guide-chapters{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
-    .guide-chapters li{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--ink-soft);}
-    .guide-chapters li i{color:var(--accent);font-size:.7rem;width:14px;}
-
-    /* form */
-    .lead-form-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink);line-height:1.2;margin-bottom:.5rem;}
-    .lead-form-sub{font-size:.85rem;color:var(--ink-muted);margin-bottom:2rem;}
-    .form-field{margin-bottom:1rem;}
-    .form-field label{display:block;font-size:.75rem;font-weight:600;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;}
-    .form-field input[type=text],
-    .form-field input[type=email] {
-        width:100%;padding:.7rem 1rem;border:1px solid var(--border);
-        border-radius:var(--radius-sm);background:var(--surface);
-        color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.9rem;
-        transition:border-color .2s,box-shadow .2s;outline:none;
-    }
-    .form-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,86,219,.1);}
-    body.dark .form-field input{background:var(--surface-3);}
-    .consent-row{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1.5rem;}
-    .consent-row input[type=checkbox]{width:16px;height:16px;min-width:16px;margin-top:2px;accent-color:var(--accent);cursor:pointer;}
-    .consent-row label{font-size:.78rem;color:var(--ink-muted);line-height:1.5;cursor:pointer;}
-    .consent-row a{color:var(--accent);text-decoration:none;}
-    #leadMsg{margin-top:.8rem;font-size:.82rem;font-weight:600;}
-    .msg-ok{color:#16a34a;}
-    .msg-err{color:#dc2626;}
-
-    /* ── CONTACT ── */
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
-    .contact-item{display:flex;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--ink-soft);transition:color .2s;font-size:.9rem;}
-    .contact-item:hover{color:var(--accent);}
-    .contact-item i{width:18px;text-align:center;color:var(--accent);}
-    .social-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.8rem;}
-    .social-link{display:flex;align-items:center;gap:.4rem;text-decoration:none;font-size:.75rem;font-weight:600;color:var(--ink-muted);padding:5px 12px;border:1px solid var(--border);border-radius:6px;transition:all .2s;}
-    .social-link:hover{color:var(--accent);border-color:var(--accent);}
-
-    /* ── WA FLOAT ── */
-    .wa-float{position:fixed;bottom:26px;right:26px;z-index:999;display:flex;align-items:center;gap:.6rem;background:#22c55e;color:#fff;text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(34,197,94,.35);transition:transform .2s;}
-    .wa-float:hover{transform:translateY(-2px);}
-    @media(max-width:640px){.wa-float span{display:none;}.wa-float{padding:.7rem;border-radius:50%;}}
-
-    /* ── FOOTER ── */
-    footer{border-top:1px solid var(--border);padding:2.2rem 2rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-    footer p{font-size:.76rem;color:var(--ink-muted);margin:0;}
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:1024px){
-        #home{grid-template-columns:1fr;gap:3rem;}
-        .hero-aside{flex-direction:row;}
-        .stat-card{flex:1;}
-        .about-grid,.exp-layout,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
-        .skills-cols{grid-template-columns:1fr 1fr;}
-        .lead-inner{grid-template-columns:1fr;}
-        .lead-left::after{display:none;}
-        .lead-left,.lead-right{padding:2.5rem 2rem;}
-        #lead{border-radius:20px;}
-    }
-    @media(max-width:640px){
-        main{padding:62px 1.2rem 0;}
-        #home{padding-top:5rem;}
-        .hero-aside{flex-direction:column;}
-        .skills-cols{grid-template-columns:1fr;}
-        h2{font-size:1.8rem;}
-    }
-
-    /* ── SCROLL ACTIVE ── */
-    .nav-indicator{
-        position:fixed;top:62px;left:0;height:2px;background:var(--accent);
-        width:0%;z-index:999;transition:width .1s linear;
-    }
-
-    /* ── PDF ── */
-    .nav-btn-pdf{color:var(--accent);border-color:rgba(26,86,219,.3);}
-    .nav-btn-pdf:hover{background:rgba(26,86,219,.08);}
-    @media(max-width:900px){.pdf-label{display:none;}}
-
-    /* PDF loading overlay */
-    #pdfOverlay{
-        display:none;position:fixed;inset:0;z-index:9999;
-        background:rgba(12,22,40,.82);backdrop-filter:blur(8px);
-        align-items:center;justify-content:center;flex-direction:column;gap:1.2rem;
-    }
-    #pdfOverlay.show{display:flex;}
-    #pdfOverlay p{color:#fff;font-size:.95rem;font-weight:500;font-family:'DM Sans',sans-serif;}
-    .pdf-spinner{
-        width:44px;height:44px;border:3px solid rgba(255,255,255,.2);
-        border-top-color:#fff;border-radius:50%;
-        animation:spin .8s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    /* Print / PDF styles — hides UI chrome */
-    @media print {
-        .navbar,.wa-float,footer,.nav-indicator,#pdfOverlay{display:none!important;}
-        main{padding-top:0!important;}
-        body{background:#fff!important;color:#0c1628!important;}
-        section{page-break-inside:avoid;}
-    }
-    </style>
+/* ââ RESPONSIVE ââ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: auto 1fr; }
+  .stats { flex-direction: row; grid-column: 1 / -1; }
+  .stat-card { flex: 1; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+  .hero-avatar { margin: 0 auto; }
+  .hero-actions { justify-content: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .stats { flex-direction: row; }
+  .about-grid, .exp-layout { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .lead-inner { grid-template-columns: 1fr; }
+  .lead-left { border-right: none; border-bottom: 1px solid var(--border); }
+}
+@media (max-width: 640px) {
+  main { padding: 72px 1.2rem 2rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .stats { flex-direction: column; }
+  h2 { font-size: 1.6rem; }
+  .hero-name { font-size: 2.4rem; }
+}
+</style>
 </head>
 <body>
 
-<div class="nav-indicator" id="navIndicator"></div>
-
-<!-- PDF loading overlay -->
-<div id="pdfOverlay">
-    <div class="pdf-spinner"></div>
-    <p id="pdfOverlayMsg">Generando PDF...</p>
-</div>
+<div id="scrollBar"></div>
+<div id="pdfOverlay"><div class="spinner"></div><p id="pdfMsg">Generando PDF...</p></div>
 
 <nav class="navbar">
-    <div class="nav-inner">
-        <div class="logo">
-            <span class="logo-prefix" id="logoPrefix">Ing.</span>
-            César Abaunza
-            <span class="logo-suffix" id="logoSuffix">— Ingenieria, IA & Administración</span>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="#home"       data-i18n="nav_home">Inicio</a>
-            <a href="#about"      data-i18n="nav_about">Perfil</a>
-            <a href="#projects"   data-i18n="nav_projects">Proyectos</a>
-            <a href="#experience" data-i18n="nav_exp">Experiencia</a>
-            <a href="#services"   data-i18n="nav_services">Servicios</a>
-            <a href="#lead"       data-i18n="nav_guide">Guía IA</a>
-            <a href="#contact"    data-i18n="nav_contact">Contacto</a>
-        </div>
-        <div class="nav-controls">
-            <button class="nav-btn nav-btn-pdf" id="pdfBtnNav" onclick="downloadPDF()" data-i18n-title="pdf_tooltip" title="Descargar CV en PDF">
-                <i class="fas fa-file-pdf"></i> <span class="pdf-label" data-i18n="pdf_btn">CV PDF</span>
-            </button>
-            <button class="nav-btn" id="langToggle">EN</button>
-            <button class="nav-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
-            <button class="nav-btn menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
-        </div>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-prefix" id="logoPrefix">Ing.</span> CÃ©sar Abaunza <span class="logo-suffix" id="logoSuffix">â IngenierÃ­a, IA & GestiÃ³n Comercial</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home"       data-i18n="nav_home">Inicio</a>
+      <a href="#about"      data-i18n="nav_about">Perfil</a>
+      <a href="#projects"   data-i18n="nav_projects">Proyectos</a>
+      <a href="#experience" data-i18n="nav_exp">Experiencia</a>
+      <a href="#services"   data-i18n="nav_services">Servicios</a>
+      <a href="#lead"       data-i18n="nav_guide">GuÃ­a IA</a>
+      <a href="#contact"    data-i18n="nav_contact">Contacto</a>
     </div>
+    <div class="nav-controls">
+      <button class="nav-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
+      <button class="nav-btn" id="langToggle">EN</button>
+      <button class="nav-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="nav-btn menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
 </nav>
 
 <main>
-
-<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-<section id="home" style="border-bottom:1px solid var(--border);">
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-avatar">
+      <img src="foto.jpg" alt="CÃ©sar Abaunza">
+    </div>
     <div>
-        <!-- Photo + name row -->
-        <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
-            <div style="position:relative;flex-shrink:0;">
-                <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid var(--accent);background:var(--surface-3);flex-shrink:0;">
-                    <img src="foto-perfil.jpg" alt="César Abaunza" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <button onclick="loadProfilePhoto()" style="position:absolute;bottom:0;right:0;width:24px;height:24px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);color:#fff;font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Cambiar foto">
-                    <i class="fas fa-camera"></i>
-                </button>
-            </div>
-            <div>
-                <div class="hero-tag" style="margin-bottom:.6rem;">
-                    <i class="fas fa-map-marker-alt" style="font-size:.65rem;"></i>
-                    <span data-i18n="hero_tag">Bogota, Colombia · Disponible para proyectos Presenciales y remotos</span>
-                </div>
-                <h1 class="hero-name" style="margin-bottom:0;">César Iván<br>Abaunza Martínez</h1>
-            </div>
-        </div>
-        <div class="typed-wrap">
-            <span class="typed-line"><span id="typedText"></span><span class="cursor"></span></span>
-        </div>
-        <p class="hero-desc" data-i18n="hero_desc">
-            Más de 7 años integrando ingeniería civil de alta exigencia con inteligencia artificial, automatización y análisis de datos para optimizar proyectos de construcción e infraestructura.
-        </p>
-        <div class="hero-actions">
-            <a href="#lead"    class="btn btn-primary" data-i18n="btn_guide"><i class="fas fa-download"></i> Descargar Guía IA</a>
-            <a href="#contact" class="btn btn-ghost"   data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
-            <button onclick="downloadPDF()" class="btn btn-ghost" id="pdfBtnHero"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
-        </div>
+      <div class="hero-tag"><i class="fas fa-map-marker-alt"></i> <span data-i18n="hero_tag">BogotÃ¡, Colombia Â· Presencial/Remoto</span></div>
+      <h1 class="hero-name">CÃ©sar IvÃ¡n<br>Abaunza MartÃ­nez</h1>
+      <div class="typed-wrap"><span class="typed-line"><span id="typedText"></span><span class="cursor"></span></span></div>
+      <p class="hero-desc" data-i18n="hero_desc">Ingeniero Civil y Administrador de Empresas con maestrÃ­a en Geotecnia (Finaliza Junio 2026).  MÃ¡s de 7 aÃ±os integrando la optimizacion de procesos en ingenierÃ­a aplicado con IA, automatizaciÃ³n y datos. Perfil hÃ­brido tÃ©cnicoâcomercial: diseÃ±o geotÃ©cnico, gestiÃ³n de proyectos, prospecciÃ³n de negocios y cierre de contratos en infraestructura.</p>
+      <div class="hero-actions">
+        <a href="#lead" class="btn btn-primary" data-i18n="btn_guide"><i class="fas fa-download"></i> Descargar GuÃ­a IA</a>
+        <a href="#contact" class="btn btn-outline" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
+        <button id="pdfBtnHero" class="btn btn-outline"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
+      </div>
     </div>
-    <div class="hero-aside">
-        <div class="stat-card">
-            <div class="stat-num">7+</div>
-            <div class="stat-txt" data-i18n="stat1">Años en ingeniería y gestión de proyectos</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-num">3</div>
-            <div class="stat-txt" data-i18n="stat2">Plataformas SaaS desarrolladas y desplegadas</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-num">40%</div>
-            <div class="stat-txt" data-i18n="stat3">Reducción de costos operativos con automatización</div>
-        </div>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-number">7+</div><div class="stat-label" data-i18n="stat1">AÃ±os en ingenierÃ­a y gestiÃ³n</div></div>
+      <div class="stat-card"><div class="stat-number">6</div><div class="stat-label" data-i18n="stat2">Plataformas SaaS desarrolladas</div></div>
+      <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label" data-i18n="stat3">ReducciÃ³n de costos operativos</div></div>
     </div>
-</section>
+  </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
     <span class="trust-label" data-i18n="trust_label">Experiencia en</span>
+    <span class="trust-item">Ruta del Sol Sector 2 </span>
     <span class="trust-sep"></span>
-    <span class="trust-item">Universidad de Medellín</span>
+    <span class="trust-item">Vias del Nus</span>
     <span class="trust-sep"></span>
-    <span class="trust-item">Consorcio SERVINC-VQM · Vías del Nus 4G</span>
+    <span class="trust-item">Brayden Roofing Specialists</span>
     <span class="trust-sep"></span>
-    <span class="trust-item">Brayden Roofing Specialists · Florida</span>
+    <span class="trust-item">IQ Designs - IQ Insurance LLC</span>
     <span class="trust-sep"></span>
-    <span class="trust-item">IQ Designs</span>
-    <span class="trust-sep"></span>
-    <span class="trust-item">INGYCONS LTDA</span>
+    <span class="trust-item">IngyCons Ltda</span>
     <span class="trust-sep"></span>
     <span class="trust-item">RMRT SaaS</span>
-</div>
+  </div>
 
-<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
-<section id="about">
+  <!-- ABOUT -->
+  <section id="about">
     <div class="label" data-i18n="label_about">Perfil profesional</div>
     <div class="about-grid">
-        <div>
-            <h2 data-i18n="about_h2">Ingeniería de precisión,<br><em>tecnología de vanguardia.</em></h2>
-            <p data-i18n="about_p1">Ingeniero Civil y Administrador de Empresas con formación avanzada en Geotecnia (Maestría en curso, Universidad de Medellín). Mi trayectoria abarca desde la supervisión técnica de proyectos viales de cuarta generación hasta el diseño y desarrollo de plataformas tecnológicas para el mercado Norteamericano y Latino.</p>
-            <p data-i18n="about_p2">Desarrollo sistemas de inteligencia artificial aplicados a construcción, seguros y roofing, combinando rigor técnico con ejecución empresarial. Con base en Bogota, Colombia, ejecuto proyectos activos en EE.UU. y Colombia.</p>
-            <div class="highlight-box">
-                <p data-i18n="about_obj"><strong data-i18n="obj_label">Objetivo:</strong> Contribuir en organizaciones donde la innovación, la eficiencia y la tecnología sean pilares estratégicos, integrando ingeniería tradicional con inteligencia artificial y análisis de datos para la toma de decisiones.</p>
-            </div>
-        </div>
-        <div>
-            <p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1rem;" data-i18n="focus_label">Áreas de enfoque</p>
-            <div class="focus-list">
-                <div class="focus-item">
-                    <div class="focus-icon"><i class="fas fa-hard-hat"></i></div>
-                    <div>
-                        <div class="focus-title" data-i18n="focus1_title">Gestión de Proyectos de Infraestructura</div>
-                        <div class="focus-sub" data-i18n="focus1_sub">PMI · Agile · Control de costos y cronogramas</div>
-                    </div>
-                </div>
-                <div class="focus-item">
-                    <div class="focus-icon"><i class="fas fa-robot"></i></div>
-                    <div>
-                        <div class="focus-title" data-i18n="focus2_title">Ingenieria, IA & Administración</div>
-                        <div class="focus-sub" data-i18n="focus2_sub">Dashboards · Chatbots · Reportes automáticos</div>
-                    </div>
-                </div>
-                <div class="focus-item">
-                    <div class="focus-icon"><i class="fas fa-satellite-dish"></i></div>
-                    <div>
-                        <div class="focus-title" data-i18n="focus3_title">Geotecnia & Fotogrametría UAV</div>
-                        <div class="focus-sub" data-i18n="focus3_sub">Machine Learning aplicado a parámetros de suelos</div>
-                    </div>
-                </div>
-                <div class="focus-item">
-                    <div class="focus-icon"><i class="fas fa-layer-group"></i></div>
-                    <div>
-                        <div class="focus-title" data-i18n="focus4_title">Desarrollo de Plataformas SaaS</div>
-                        <div class="focus-sub" data-i18n="focus4_sub">Construcción · Roofing · Resiliencia climática</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div>
+        <h2 data-i18n="about_h2">IngenierÃ­a de precisiÃ³n,<br><em>visiÃ³n comercial y tecnologÃ­a.</em></h2>
+        <p style="margin-bottom:1rem;" data-i18n="about_p1">Ingeniero Civil y Administrador de Empresas con maestrÃ­a en Geotecnia (En curso con fecha de finalizacion Junio 2026, Universidad de MedellÃ­n). Mi trayectoria combina la supervisiÃ³n tÃ©cnica de proyectos de infraestructura como (VÃ­as del Nus 4G y Ruta del Sol) con el desarrollo de soluciones de inteligencia artificial y automatizaciÃ³n. He liderado Ã¡reas comerciales: prospecciÃ³n nacional e internacional, cierre de contratos y desarrollo de herramientas para licitaciones.</p>
+        <p data-i18n="about_p2">Estoy preparado para roles de <strong>Ingeniero TÃ©cnico Senior en Geotecnia</strong> (diseÃ±o de cimentaciones profundas, estabilizaciÃ³n de taludes, manejo de software especializado y normativas internacionales) y para <strong>Gerente Comercial en IngenierÃ­a</strong> (identificaciÃ³n de oportunidades, negociaciÃ³n de contratos, relaciones con clientes estratÃ©gicos y estructuraciÃ³n de ofertas).</p>
+        <div class="highlight-box" style="margin-top:1rem;"><strong data-i18n="obj_label">Objetivo:</strong> <span data-i18n="about_obj">Contribuir en organizaciones de ingenierÃ­a especializada donde mi doble perfil tÃ©cnicoâcomercial genere valor, impulse la innovaciÃ³n y asegure el crecimiento de los proyectos.</span></div>
+      </div>
+      <div>
+        <p style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:1rem;" data-i18n="focus_label">Competencias clave</p>
+        <div class="focus-list">
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-hard-hat"></i></div><div><strong data-i18n="focus1_title">DiseÃ±o geotÃ©cnico avanzado</strong><br><span data-i18n="focus1_sub">Cimentaciones profundas, muros, estabilizaciÃ³n de taludes, normativas NSRâ10/ASTM</span></div></div>
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-chart-line"></i></div><div><strong data-i18n="focus2_title">GestiÃ³n comercial & prospecciÃ³n</strong><br><span data-i18n="focus2_sub">IdentificaciÃ³n de oportunidades, licitaciones, negociaciÃ³n de contratos, relaciones con clientes B2B</span></div></div>
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-robot"></i></div><div><strong data-i18n="focus3_title">IA & AutomatizaciÃ³n aplicada</strong><br><span data-i18n="focus3_sub">Machine Learning para geotecnia, dashboards predictivos, automatizaciÃ³n de reportes</span></div></div>          
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
-<section id="projects">
+  <!-- PROJECTS â LatinGo removido -->
+  <section id="projects">
     <div class="label" data-i18n="label_projects">Proyectos & Productos</div>
-    <h2 data-i18n="projects_h2">Soluciones que construí<br><em>para la industria.</em></h2>
+    <h2 data-i18n="projects_h2">Soluciones que construÃ­<br><em>para la industria.</em></h2>
     <div class="projects-grid">
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-icon"><i class="fas fa-house-chimney"></i></div>
-                <span class="project-status status-live"><span class="status-dot"></span><span data-i18n="status_live">Live</span></span>
-            </div>
-            <div>
-                <h3>RMRT — Roofing Management & Resilience Tool</h3>
-                <p data-i18n="proj1_desc">Plataforma SaaS bilingüe para la industria del roofing en EE.UU. Gestión de proyectos, cumplimiento OSHA, módulos de resiliencia climática, techos solares y alertas predictivas.</p>
-            </div>
-            <div class="tag-row">
-                <span class="tag">Next.js</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">Vercel</span>
-                <span class="tag">Railway</span>
-                <span class="tag">EN / ES</span>
-            </div>
-            <a href="#contact" class="btn btn-ghost" style="align-self:flex-start;font-size:.8rem;" data-i18n="proj_cta">Solicitar demo</a>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-icon"><i class="fas fa-mountain"></i></div>
-                <span class="project-status status-live"><span class="status-dot"></span><span data-i18n="status_live">Live</span></span>
-            </div>
-            <div>
-                <h3>SRM-Tool — Geotechnical AI Analyzer</h3>
-                <p data-i18n="proj2_desc">Herramienta computacional con aprendizaje automático para estimación de parámetros geotécnicos en mezclas suelo-roca (bimrocks) a partir de fotografías UAV y terrestres. Proyecto de tesis de maestría.</p>
-            </div>
-            <div class="tag-row">
-                <span class="tag">Python</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">Scikit-learn</span>
-                <span class="tag">UAV</span>
-                <span class="tag">ASTM D2487</span>
-            </div>
-            <a href="#contact" class="btn btn-ghost" style="align-self:flex-start;font-size:.8rem;" data-i18n="proj_cta">Solicitar demo</a>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
-                <span class="project-status status-live"><span class="status-dot"></span><span data-i18n="status_live">Live</span></span>
-            </div>
-            <div>
-                <h3>SARAH — Geotechnical 3D Simulator</h3>
-                <p data-i18n="proj3_desc">Simulador geotécnico interactivo con vistas 3D/2D de cilindros, pendientes sintéticas, curvas de distribución granulométrica, clasificación ASTM/USCS y exportación de datos.</p>
-            </div>
-            <div class="tag-row">
-                <span class="tag">React</span>
-                <span class="tag">Vite</span>
-                <span class="tag">Three.js</span>
-                <span class="tag">Vercel</span>
-            </div>
-            <a href="#contact" class="btn btn-ghost" style="align-self:flex-start;font-size:.8rem;" data-i18n="proj_cta">Solicitar demo</a>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-icon"><i class="fas fa-brain"></i></div>
-                <span class="project-status status-dev"><span class="status-dot"></span><span data-i18n="status_dev">En desarrollo</span></span>
-            </div>
-            <div>
-                <h3 data-i18n="proj4_title">Agentes IA</h3>
-                <p data-i18n="proj4_desc">Suite de agentes de inteligencia artificial para automatización de reportes, análisis de presupuestos, monitoreo de obra y soporte operativo 24/7 para empresas constructoras.</p>
-            </div>
-            <div class="tag-row">
-                <span class="tag">LLM</span>
-                <span class="tag">Python</span>
-                <span class="tag">API REST</span>
-                <span class="tag">Power BI</span>
-            </div>
-            <a href="#contact" class="btn btn-ghost" style="align-self:flex-start;font-size:.8rem;" data-i18n="proj_contact">Consultar</a>
-        </div>
-
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-mountain"></i></div><span class="status-live">Live</span></div>
+        <h3>SRM-Tool â Geotechnical AI Analyzer</h3>
+        <p>AplicaciÃ³n con machine learning para estimar parÃ¡metros geotÃ©cnicos (resistencia, Ã¡ngulo de fricciÃ³n) en mezclas sueloâroca a partir de fotografÃ­as UAV. Aplicable a diseÃ±o de cimentaciones profundas, anÃ¡lisis de taludes y optimizaciÃ³n de excavaciones. Tesis de maestrÃ­a.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Scikit-learn</span><span class="tag">UAV</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-house-chimney"></i></div><span class="status-live">Live</span></div>
+        <h3>RMRT â Roofing Management & Resilience Tool</h3>
+        <p>Plataforma SaaS bilingÃ¼e para la industria del roofing en EE.UU. GestiÃ³n de proyectos, cumplimiento OSHA, mÃ³dulos de resiliencia climÃ¡tica, techos y alertas predictivas.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-brain"></i></div><span class="status-live">Live</span></div>
+        <h3>Agentes IA para Ingenieria</h3>
+        <p>Suite de agentes para automatizaciÃ³n de reportes, presupuestos y monitoreo.</p>
+        <div class="tags"><span class="tag">LLM</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-chart-line"></i></div><span class="status-live">Live</span></div>
+        <h3>HPI Intelligence â ProspecciÃ³n Seguros</h3>
+        <p>Sistema de detecciÃ³n hispana, scoring automÃ¡tico, dashboards interactivos y exportaciÃ³n para llamadas.</p>
+        <div class="tags"><span class="tag">Streamlit</span><span class="tag">Pandas</span><span class="tag">Plotly</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-building"></i></div><span class="status-live">Live</span></div>
+        <h3>AMCI Tool â CRM para Agencia de Seguros</h3>
+        <p>Full-stack CRM - Procedimientos Internos, tareas, Certificados, Renovaciones, Chatbot con IA y documentacion interna, team chat tiempo real.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Claude API</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-mountain"></i></div><span class="status-live">Live</span></div>
+        <h3>SARAH Lite â Geotechnical 3D Simulator</h3>
+        <p>Simulador geotÃ©cnico interactivo con vistas 3D/2D de cilindros, pendientes sintÃ©ticas, curvas de distribuciÃ³n granulomÃ©trica, clasificaciÃ³n ASTM/USCS y exportaciÃ³n de datos.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Claude API</span></div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ EXPERIENCE ═══════════════════════════════ -->
-<section id="experience">
+  <!-- EXPERIENCE -->
+  <section id="experience">
     <div class="label" data-i18n="label_exp">Trayectoria profesional</div>
     <div class="exp-layout">
-        <div>
-            <h2 data-i18n="exp_h2">Experiencia<br><em>profesional.</em></h2>
-            <div class="timeline">
-
-                <div class="tl-item featured">
-                    <div class="tl-meta">June 2025 — May 2026</div>
-                    <div class="tl-company">IQ Designs</div>
-                    <div class="tl-role" data-i18n="exp1_role">Desarrollador de Aplicaciones con IA</div>
-                    <p class="tl-desc" data-i18n="exp1_desc">Chatbots y agentes de IA para automatización empresarial. Soluciones de optimización operativa con modelos de lenguaje avanzado integrados en flujos de trabajo de construcción.</p>
-                </div>
-
-                <div class="tl-item featured">
-                    <div class="tl-meta">May 2025 — May 2026</div>
-                    <div class="tl-company">IQ Insurance Group LLC</div>
-                    <div class="tl-role" data-i18n="expIQ_role">Desarrollador de Sistemas de Gestión</div>
-                    <p class="tl-desc" data-i18n="expIQ_desc">Sistema integral de gestión con automatización de reportes y dashboards con IA. Desarrollo de herramientas de marketing digital y modelos operativos para red de franquicias.</p>
-                </div>
-
-                <div class="tl-item featured">
-                    <div class="tl-meta">Nov 2024 — <span data-i18n="present">Presente</span></div>
-                    <div class="tl-company">RMRT <span class="badge">SaaS</span></div>
-                    <div class="tl-role" data-i18n="exp2_role">Founder & Product Developer</div>
-                    <p class="tl-desc" data-i18n="exp2_desc">Plataforma SaaS bilingüe para la industria del roofing en Florida. Módulos de resiliencia climática, OSHA, techos solares y alertas predictivas. Escalable a contratistas y agencias estatales.</p>
-                </div>
-
-                <div class="tl-item">
-                    <div class="tl-meta">Abr 2024 — Abr 2025</div>
-                    <div class="tl-company">Brayden Roofing Specialists LLC — Florida</div>
-                    <div class="tl-role" data-i18n="exp3_role">Project Manager</div>
-                    <p class="tl-desc" data-i18n="exp3_desc">Coordinación de proyectos residenciales, control de presupuestos y supervisión de calidad. Gestión directa de clientes y equipos de campo.</p>
-                </div>
-
-                <div class="tl-item">
-                    <div class="tl-meta">Feb 2023 — Abr 2024</div>
-                    <div class="tl-company">INMADICA ANDINA</div>
-                    <div class="tl-role" data-i18n="exp4_role">Coordinador de Proyectos / Técnico en Alturas</div>
-                    <p class="tl-desc" data-i18n="exp4_desc">Supervisión de obras civiles, gestión de recursos y cumplimiento de normativas de seguridad en altura.</p>
-                </div>
-
-                <div class="tl-item">
-                    <div class="tl-meta">May 2022 — Dic 2022</div>
-                    <div class="tl-company">INGYCONS LTDA</div>
-                    <div class="tl-role" data-i18n="exp5_role">Coordinador de Proyectos</div>
-                    <p class="tl-desc" data-i18n="exp5_desc">Desarrollo de herramienta automatizada de presupuestos conectada con sistema de licitaciones — reducción del 35% en tiempos de propuesta.</p>
-                </div>
-
-                <div class="tl-item">
-                    <div class="tl-meta">Mar 2018 — Mar 2022</div>
-                    <div class="tl-company">Consorcio SERVINC-VQM · Vías del Nus 4G</div>
-                    <div class="tl-role" data-i18n="exp6_role">Ingeniero Residente</div>
-                    <p class="tl-desc" data-i18n="exp6_desc">Supervisión técnica de 157 km de proyecto vial 4G, incluyendo túneles, obras de arte y sistemas electromecánicos.</p>
-                </div>
-
-            </div>
+      <div>
+        <h2 data-i18n="exp_h2">Experiencia<br><em>profesional.</em></h2>
+        <div class="timeline">
+          <div class="tl-item featured">
+            <div class="tl-meta">Jun 2025 â <span data-i18n="present">Presente</span></div>
+            <div class="tl-company">IQ Designs</div>
+            <div class="tl-role" data-i18n="exp1_role">Desarrollador de Aplicaciones con IA</div>
+            <ul class="func-list">
+              <li><i class="fas fa-microchip"></i><span data-i18n="iqd_1">Chatbots y agentes IA con LLM para automatizaciÃ³n empresarial.</span></li>
+              <li><i class="fas fa-chart-line"></i><span data-i18n="iqd_2">CreaciÃ³n de Chatbot para reportes, Consultas internas y KPIs.</span></li>
+              <li><i class="fas fa-code"></i><span data-i18n="iqd_3">APIs con Python/FastAPI para integraciÃ³n con sistemas internos.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item featured">
+            <div class="tl-meta">May 2025 â <span data-i18n="present">Presente</span></div>
+            <div class="tl-company">IQ Insurance Group LLC <span class="badge-license">Licencia 4-40 activa</span></div>
+            <div class="tl-role" data-i18n="expIQ_role">Desarrollador de Sistemas de GestiÃ³n & Operaciones Comerciales</div>
+            <ul class="func-list">
+              <li><i class="fas fa-handshake"></i><span data-i18n="iq_sales_full">ProspecciÃ³n nacional e internacional, cierre de ventas de franquicias y gestiÃ³n documental de contratos (Franchise Agreement, Finance Agreement).</span></li>
+              <li><i class="fas fa-chart-line"></i><span data-i18n="iq_ops">Operaciones: cotizaciones, renovaciones, reconciliaciÃ³n, bonos y administraciÃ³n de regalÃ­as de 2 franquicias.</span></li>
+              <li><i class="fas fa-microchip"></i><span data-i18n="iq_dev">Desarrollo: coding, testing, bots, dashboards IA, guÃ­as de usuario y automatizaciÃ³n de reportes.</span></li>
+              <li><i class="fas fa-hashtag"></i><span data-i18n="iq_mkt">Marketing digital: estrategia de contenido, anÃ¡lisis de mÃ©tricas y generaciÃ³n de leads.</span></li>
+              <li><i class="fas fa-tasks"></i><span data-i18n="iq_mgmt">GestiÃ³n comercial: relaciÃ³n con franquiciados, propiedad intelectual y reportes de desempeÃ±o.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item featured">
+            <div class="tl-meta">Nov 2024 â <span data-i18n="present">Presente</span></div>
+            <div class="tl-company">RMRT (SaaS)</div>
+            <div class="tl-role" data-i18n="exp2_role">Founder & Product Developer</div>
+            <ul class="func-list">
+              <li><i class="fas fa-globe-americas"></i><span data-i18n="rmrt_1">Plataforma bilingÃ¼e para roofing, OSHA, resiliencia climÃ¡tica.</span></li>
+              <li><i class="fas fa-solar-panel"></i><span data-i18n="rmrt_2">MÃ³dulos de techos presupuestos y gestion de proyectos y alertas predictivas.</span></li>
+              <li><i class="fas fa-server"></i><span data-i18n="rmrt_3">Arquitectura con Next.js, Supabase, Railway.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta">Abr 2024 â Abr 2025</div>
+            <div class="tl-company">Brayden Roofing Specialists LLC â Florida</div>
+            <div class="tl-role" data-i18n="exp3_role">Project Manager</div>
+            <ul class="func-list">
+              <li><i class="fas fa-hard-hat"></i><span data-i18n="bray_1">CoordinaciÃ³n de 150+ proyectos de techado residencial.</span></li>
+              <li><i class="fas fa-chart-line"></i><span data-i18n="bray_2">Control de presupuestos, calidad y normativa OSHA.</span></li>
+              <li><i class="fas fa-users"></i><span data-i18n="bray_3">SupervisiÃ³n de equipos de hasta 8 personas.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta">Feb 2023 â Abr 2024</div>
+            <div class="tl-company">INMADICA ANDINA</div>
+            <div class="tl-role" data-i18n="exp4_role">Coordinador de Proyectos / TÃ©cnico en Alturas</div>
+            <ul class="func-list">
+              <li><i class="fas fa-building"></i><span data-i18n="inma_1">SupervisiÃ³n tÃ©cnica de obras civiles, calidad y especificaciones.</span></li>
+              <li><i class="fas fa-people-group"></i><span data-i18n="inma_2">CoordinaciÃ³n de equipos multidisciplinarios y recursos.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta">May 2022 â Dic 2022</div>
+            <div class="tl-company">INGYCONS LTDA</div>
+            <div class="tl-role" data-i18n="exp5_role">Coordinador de Proyectos</div>
+            <ul class="func-list">
+              <li><i class="fas fa-chart-line"></i><strong data-i18n="ingy_achievement">Logro comercial:</strong> <span data-i18n="ingy_1">Desarrollo de herramienta automatizada de presupuestos conectada a sistema de licitaciones â reducciÃ³n del 35% en generacion de presupuestos para convocatorias.</span></li>
+              <li><i class="fas fa-tasks"></i><span data-i18n="ingy_2">Generacion de presupuestos de 8+ proyectos residenciales y comerciales (Hacienda OtoÃ±o, Club House Samaria, Colpatria, etc.).</span></li>
+              <li><i class="fas fa-file-invoice"></i><span data-i18n="ingy_3">RevisiÃ³n de informes, flujo de compras y facturaciÃ³n.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta">Mar 2018 â Mar 2022</div>
+            <div class="tl-company">Consorcio SERVINC-VQM Â· VÃ­as del Nus 4G</div>
+            <div class="tl-role" data-i18n="exp6_role">Ingeniero Residente</div>
+            <ul class="func-list">
+              <li><i class="fas fa-road"></i><span data-i18n="serv_1">SupervisiÃ³n de 157 km: movimientos de tierra, estabilizaciÃ³n de taludes, muros de contenciÃ³n, tÃºneles, puentes, pavimentos.</span></li>
+              <li><i class="fas fa-flask"></i><span data-i18n="serv_2">Control de ensayos de laboratorio (concretos, terraplenes, anclajes) y verificaciÃ³n de memorias de cÃ¡lculo segÃºn NSRâ10.</span></li>
+              <li><i class="fas fa-file-alt"></i><span data-i18n="serv_3">Informes de campo, cantidades de obra y seguimiento a diseÃ±os tÃ©cnicos.</span></li>
+            </ul>
+          </div>
+          <!-- Experiencia Ruta del Sol con claves Ãºnicas para evitar duplicaciÃ³n -->
+          <div class="tl-item">
+            <div class="tl-meta">Diciembre 2016 â Mar 2018</div>
+            <div class="tl-company">Consorcio Proyeccion Vial Puerto Salgar Â· Ruta del Sol Sector 2</div>
+            <div class="tl-role" data-i18n="inspector_role">Inspector tÃ©cnico</div>
+            <ul class="func-list">
+              <li><i class="fas fa-road"></i><span data-i18n="inspector_f1">SupervisiÃ³n de obras viales: movimientos de tierra, estabilizaciÃ³n de taludes, muros de contenciÃ³n, puentes, pavimentos.</span></li>
+              <li><i class="fas fa-flask"></i><span data-i18n="inspector_f2">Control de ensayos de laboratorio (concretos, terraplenes, anclajes) y verificaciÃ³n de memorias de cÃ¡lculo.</span></li>
+              <li><i class="fas fa-file-alt"></i><span data-i18n="inspector_f3">ElaboraciÃ³n de informes de campo, cantidades de obra y seguimiento a diseÃ±os tÃ©cnicos.</span></li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <div>
-            <h2 style="visibility:hidden;user-select:none;" aria-hidden="true">.</h2>
-            <p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1rem;" data-i18n="label_edu">Formación académica</p>
-
-            <div class="edu-card">
-                <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div>
-                    <h3 style="font-size:.9rem;" data-i18n="edu1_title">Maestría en Ingeniería Civil — Geotecnia</h3>
-                    <div class="edu-school">Universidad de Medellín</div>
-                    <div class="edu-date" data-i18n="edu1_date">En curso — Finalización estimada: Abr 2026</div>
-                    <p style="font-size:.8rem;margin-top:.5rem;" data-i18n="edu1_thesis">Tesis: Aplicación computacional con ML para estimación de parámetros geotécnicos en mezclas suelo-roca mediante fotografías UAV.</p>
-                </div>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-icon"><i class="fas fa-university"></i></div>
-                <div>
-                    <h3 style="font-size:.9rem;" data-i18n="edu2_title">Ingeniería Civil</h3>
-                    <div class="edu-school" data-i18n="edu2_school">Colombia — </div>
-                </div>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-icon"><i class="fas fa-briefcase"></i></div>
-                <div>
-                    <h3 style="font-size:.9rem;" data-i18n="edu3_title">Administración de Empresas</h3>
-                    <div class="edu-date" data-i18n="edu3_sub">Gestión empresarial, finanzas y estrategia organizacional</div>
-                </div>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-icon"><i class="fas fa-file-contract"></i></div>
-                <div>
-                    <h3 style="font-size:.9rem;" data-i18n="edu4_title">Licencia 4-40 — Resident Customer Representative</h3>
-                    <div class="edu-school">Florida Dept. of Financial Services</div>
-                    <div class="edu-date" data-i18n="edu4_date">En proceso de obtención · Property & Casualty Insurance</div>
-                    <div style="font-size:.78rem;color:var(--ink-muted);margin-top:.3rem;" data-i18n="edu4_sub">Licencia estatal de Florida para representante de seguros de propiedad y daños bajo supervisión de agente general (2-20).</div>
-                </div>
-            </div>
-
-            <p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin:1.8rem 0 .8rem;" data-i18n="label_tools">Herramientas & stack</p>
-            <div class="pill-row">
-                <span class="pill">Python</span><span class="pill">Next.js</span><span class="pill">React</span>
-                <span class="pill">Supabase</span><span class="pill">Power BI</span><span class="pill">Streamlit</span>
-                <span class="pill">Scikit-learn</span><span class="pill">Primavera P6</span><span class="pill">AutoCAD</span>
-                <span class="pill">MS Project</span><span class="pill">Railway</span><span class="pill">Vercel</span>
-            </div>
+      <!-- RIGHT: EducaciÃ³n + Herramientas -->
+      <div>
+        <div style="margin-bottom:2rem;">
+          <div class="label" data-i18n="label_edu">FormaciÃ³n & Credenciales</div>
+          <div class="edu-card"><i class="fas fa-graduation-cap"></i><div><strong data-i18n="edu1_title">MaestrÃ­a en IngenierÃ­a Civil â Geotecnia</strong><br><span data-i18n="edu1_school">Universidad de MedellÃ­n (2026)</span> Â· <span data-i18n="edu1_thesis">Tesis: ML + UAV para parÃ¡metros geotÃ©cnicos</span></div></div>
+          <div class="edu-card"><i class="fas fa-university"></i><div><strong data-i18n="edu2_title">IngenierÃ­a Civil</strong><br><span data-i18n="edu2_school">Universidad Militar Nueva Granada (2018)</span> Â· <span data-i18n="edu2_license">MatrÃ­cula COPNIA (vigente, sin antecedentes)</span></div></div>
+          <div class="edu-card"><i class="fas fa-briefcase"></i><div><strong data-i18n="edu3_title">AdministraciÃ³n de Empresas</strong><br><span data-i18n="edu3_school">Universidad Militar Nueva Granada (2023)</span></div></div>
+          <div class="edu-card"><i class="fas fa-file-contract"></i><div><strong data-i18n="edu5_title">Logistica Integral - Diplomado</strong><br><span data-i18n="edu5_school">Universidad Militar Nueva Granada</span><br><strong>Noviembre de 2020</strong></div></div>
+          <div class="edu-card"><i class="fas fa-file-contract"></i><div><strong data-i18n="edu4_title">Licencia 4-40 â Resident Customer Representative</strong><br><span data-i18n="edu4_school">Florida Dept. of Financial Services</span><br><strong>Expedida: 12 de mayo de 2026</strong> Â· Property & Casualty Insurance</div></div>
         </div>
+        <div>
+          <div class="label" data-i18n="label_tools">Herramientas & stack</div>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Supabase</span>
+            <span class="tag">PLAXIS 2D</span><span class="tag">GEO5</span><span class="tag">SAP2000 bÃ¡sico</span>
+            <span class="tag">AutoCAD</span><span class="tag">Civil 3D</span><span class="tag">Power BI</span>
+            <span class="tag">Streamlit</span><span class="tag">Primavera P6</span><span class="tag">MS Project</span>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;">
+          <div class="label">Normativas & estÃ¡ndares</div>
+          <div class="tags">
+            <span class="tag">NSRâ10</span><span class="tag">ASTM D2487</span><span class="tag">ACI 318</span>
+            <span class="tag">OSHA</span><span class="tag">FHWA</span>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ SKILLS ═══════════════════════════════ -->
-<section id="skills">
+  <!-- SKILLS -->
+  <section id="skills">
     <div class="label" data-i18n="label_skills">Competencias</div>
-    <h2 data-i18n="skills_h2">Dominio técnico<br><em>y liderazgo estratégico.</em></h2>
-    <div class="skills-cols">
-        <div class="skill-group">
-            <h4 data-i18n="sg1">Ingenieria, IA & Administración</h4>
-            <ul class="skill-list">
-                <li data-i18n="s1">Gestión de proyectos (PMI, Agile)</li>
-                <li data-i18n="s2">Supervisión técnica de obra civil</li>
-                <li data-i18n="s3">Control de costos y cronogramas</li>
-                <li data-i18n="s4">Geotecnia avanzada</li>
-                <li data-i18n="s5">Fotogrametría con UAV / drones</li>
-                <li data-i18n="s6">Normativa OSHA · Resiliencia climática</li>
-            </ul>
-        </div>
-        <div class="skill-group">
-            <h4 data-i18n="sg2">Tecnología & Datos</h4>
-            <ul class="skill-list">
-                <li data-i18n="t1">Machine Learning aplicado</li>
-                <li data-i18n="t2">Desarrollo de chatbots y agentes IA</li>
-                <li data-i18n="t3">Dashboards y visualización (Power BI)</li>
-                <li data-i18n="t4">Automatización de procesos</li>
-                <li data-i18n="t5">Transformación digital empresarial</li>
-                <li data-i18n="t6">Desarrollo full-stack (Next.js, Python)</li>
-            </ul>
-        </div>
-        <div class="skill-group">
-            <h4 data-i18n="sg3">Gestión & Liderazgo</h4>
-            <ul class="skill-list">
-                <li data-i18n="l1">Liderazgo de equipos multidisciplinarios</li>
-                <li data-i18n="l2">Emprendimiento y desarrollo de producto</li>
-                <li data-i18n="l3">Consultoría estratégica</li>
-                <li data-i18n="l4">Modelos de franquicia y escalabilidad</li>
-                <li data-i18n="l5">Mercados EE.UU. y Latinoamérica</li>
-                <li data-i18n="l6">Bilingüe — Español / Inglés</li>
-            </ul>
-        </div>
+    <h2 data-i18n="skills_h2">Dominio tÃ©cnico, comercial<br><em>y liderazgo estratÃ©gico.</em></h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4 data-i18n="sg1">Geotecnia & DiseÃ±o</h4>
+        <ul class="skill-list">
+          <li data-i18n="s1">Cimentaciones profundas (pilotes, muros pantalla)</li>
+          <li data-i18n="s2">EstabilizaciÃ³n de taludes y suelos</li>
+          <li data-i18n="s3">ModelaciÃ³n geotÃ©cnica (PLAXIS, GEO5)</li>
+          <li data-i18n="s4">AnÃ¡lisis de asentamientos y capacidad portante</li>
+          <li data-i18n="s5">FotogrametrÃ­a UAV aplicada</li>
+          <li data-i18n="s6">Normativas NSRâ10, ASTM</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4 data-i18n="sg2">GestiÃ³n Comercial & Proyectos</h4>
+        <ul class="skill-list">
+          <li data-i18n="t1">ProspecciÃ³n de clientes y detecciÃ³n de oportunidades</li>
+          <li data-i18n="t2">Licitaciones y estructuraciÃ³n de ofertas</li>
+          <li data-i18n="t3">NegociaciÃ³n de contratos B2B</li>
+          <li data-i18n="t4">CRM y automatizaciÃ³n comercial</li>
+          <li data-i18n="t5">Project Management (PMI, Agile)</li>
+          <li data-i18n="t6">Control de costos y cronogramas</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4 data-i18n="sg3">TecnologÃ­a & Datos</h4>
+        <ul class="skill-list">
+          <li data-i18n="l1">Machine Learning aplicado a ingenierÃ­a</li>
+          <li data-i18n="l2">Desarrollo de chatbots y agentes IA</li>
+          <li data-i18n="l3">Dashboards predictivos (Power BI)</li>
+          <li data-i18n="l4">AutomatizaciÃ³n de procesos</li>
+          <li data-i18n="l5">TransformaciÃ³n digital empresarial</li>
+          <li data-i18n="l6">Full-stack (Next.js, Python)</li>
+        </ul>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
-<section id="services">
+  <!-- SERVICES -->
+  <section id="services">
     <div class="label" data-i18n="label_services">Servicios</div>
-    <h2 data-i18n="services_h2">Cómo puedo aportar<br><em>a su organización.</em></h2>
+    <h2 data-i18n="services_h2">CÃ³mo puedo aportar<br><em>a su organizaciÃ³n.</em></h2>
     <div class="services-grid">
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-hard-hat"></i></div>
-            <h3 data-i18n="srv1_title">Gestión de Proyectos </h3>
-            <p data-i18n="srv1_desc">Planificación, supervisión técnica, control de costos y cronogramas para infraestructura civil y edificaciones.</p>
-        </div>
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-robot"></i></div>
-            <h3 data-i18n="srv2_title">IA y Automatización Empresarial</h3>
-            <p data-i18n="srv2_desc">Chatbots inteligentes, reportes automáticos y sistemas con IA para optimizar operaciones y reducir costos operativos.</p>
-        </div>
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-chart-bar"></i></div>
-            <h3 data-i18n="srv3_title">Dashboards e Inteligencia de Datos</h3>
-            <p data-i18n="srv3_desc">Visualizaciones predictivas en Power BI y plataformas web para toma de decisiones basada en datos en tiempo real.</p>
-        </div>
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-building"></i></div>
-            <h3 data-i18n="srv4_title">Digitalización de Procesos</h3>
-            <p data-i18n="srv4_desc">Herramientas de control de obra, presupuestos automáticos y modelos de eficiencia operativa.</p>
-        </div>
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-satellite-dish"></i></div>
-            <h3 data-i18n="srv5_title">Geotecnia & Análisis UAV</h3>
-            <p data-i18n="srv5_desc">Caracterización geotécnica con Machine Learning y fotogrametría UAV para estudios de suelo y estabilidad de taludes.</p>
-        </div>
-        <div class="srv-card">
-            <div class="srv-icon"><i class="fas fa-rocket"></i></div>
-            <h3 data-i18n="srv6_title">Desarrollo de Plataformas SaaS</h3>
-            <p data-i18n="srv6_desc">Diseño y desarrollo de software escalable para la industria de la construcción y el roofing.</p>
-        </div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-hard-hat"></i></div><h3 data-i18n="srv1_title">IngenierÃ­a GeotÃ©cnica Senior</h3><p data-i18n="srv1_desc">DiseÃ±o de cimentaciones, estabilizaciÃ³n de taludes, supervisiÃ³n tÃ©cnica y memorias de cÃ¡lculo bajo normativas internacionales.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-handshake"></i></div><h3 data-i18n="srv2_title">Gerencia Comercial en Infraestructura</h3><p data-i18n="srv2_desc">ProspecciÃ³n de proyectos, licitaciones, negociaciÃ³n de contratos y relaciones con clientes estratÃ©gicos.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-robot"></i></div><h3 data-i18n="srv3_title">IA & AutomatizaciÃ³n para Constructoras</h3><p data-i18n="srv3_desc">Chatbots, agentes IA, dashboards predictivos y automatizaciÃ³n de reportes tÃ©cnicos.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-chart-bar"></i></div><h3 data-i18n="srv4_title">TransformaciÃ³n Digital</h3><p data-i18n="srv4_desc">DigitalizaciÃ³n de procesos, herramientas de control de obra y optimizaciÃ³n de presupuestos.</p></div>
     </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ LEAD MAGNET ═══════════════════════════════ -->
-<section id="lead" style="padding:5rem 0;">
-    <div style="max-width:1100px;margin:0 auto;">
-    <div class="lead-inner" style="background:var(--surface-2);border:1px solid var(--border);border-radius:28px;overflow:hidden;">
-
-        <!-- LEFT: guía mockup -->
-        <div class="lead-left">
-            <div class="label" data-i18n="label_guide">Recurso gratuito</div>
-            <h2 style="font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:.6rem;" data-i18n="guide_h2">Guía práctica:<br><em>IA para optimización de proyectos de construcción.</em></h2>
-            <p style="font-size:.85rem;color:var(--ink-muted);margin-bottom:1.5rem;" data-i18n="guide_sub">Estrategias, herramientas y dashboards que uso en proyectos reales para reducir costos y acelerar decisiones.</p>
-
-            <div class="guide-mockup">
-                <div class="guide-cover">
-                    <div class="guide-tag" data-i18n="guide_tag">Guía profesional · 2025</div>
-                    <div class="guide-title" data-i18n="guide_title">IA para Proyectos de ingenieria: De los Datos a la Decisión</div>
-                    <div class="guide-sub">César Abaunza · <span data-i18n="guide_by">Ing. Civil Especialista en IA & Administracion</span></div>
-                </div>
-                <ul class="guide-chapters">
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="ch1">Por qué el 70% de los sobrecostos son prevenibles con datos</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="ch2">Dashboards que realmente usa el equipo de obra</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="ch3">Automatización de reportes: del Excel al agente IA</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="ch4">Caso real: reducción del 35% en tiempos de licitación</span></li>
-                    <li><i class="fas fa-check-circle"></i> <span data-i18n="ch5">Herramientas gratuitas para empezar esta semana</span></li>
-                </ul>
-            </div>
+  <!-- LEAD MAGNET -->
+  <section id="lead">
+    <div class="lead-inner">
+      <div class="lead-left">
+        <div class="label" data-i18n="label_guide">Recurso gratuito</div>
+        <h2 style="font-size:1.8rem;"><span data-i18n="guide_h2">GuÃ­a prÃ¡ctica:</span><br><em data-i18n="guide_em">IA para optimizaciÃ³n de proyectos de construcciÃ³n.</em></h2>
+        <p style="font-size:0.85rem;color:var(--text-muted);" data-i18n="guide_sub">Estrategias, herramientas y dashboards que uso en proyectos reales para reducir costos y acelerar decisiones.</p>
+        <div class="guide-mockup">
+          <div class="guide-cover">
+            <div class="guide-tag" data-i18n="guide_tag">GUÃA PROFESIONAL Â· 2025</div>
+            <div class="guide-title" data-i18n="guide_title">IA para Proyectos de ingenierÃ­a: De los Datos a la DecisiÃ³n</div>
+            <div class="guide-sub" data-i18n="guide_by">CÃ©sar Abaunza Â· Ing. Civil & Especialista en IA</div>
+          </div>
+          <ul class="guide-chapters">
+            <li><i class="fas fa-check-circle"></i><span data-i18n="ch1">Por quÃ© el 70% de los sobrecostos son prevenibles con datos</span></li>
+            <li><i class="fas fa-check-circle"></i><span data-i18n="ch2">Dashboards que realmente usa el equipo de obra</span></li>
+            <li><i class="fas fa-check-circle"></i><span data-i18n="ch3">AutomatizaciÃ³n de reportes: del Excel al agente IA</span></li>
+            <li><i class="fas fa-check-circle"></i><span data-i18n="ch4">Caso real: reducciÃ³n del 35% en tiempos de licitaciÃ³n</span></li>
+            <li><i class="fas fa-check-circle"></i><span data-i18n="ch5">Herramientas gratuitas para empezar esta semana</span></li>
+          </ul>
         </div>
-
-        <!-- RIGHT: form -->
-        <div class="lead-right">
-            <div class="lead-form-title" data-i18n="form_title">Accede al recurso completo.</div>
-            <p class="lead-form-sub" data-i18n="form_sub">Sin costo. Recíbelo directamente en tu correo.</p>
-
-            <form id="leadForm" novalidate>
-                <div class="form-field">
-                    <label for="f_name" data-i18n="field_name">Nombre completo</label>
-                    <input type="text" id="f_name" name="name" placeholder="César Abaunza" autocomplete="name" required>
-                </div>
-                <div class="form-field">
-                    <label for="f_email" data-i18n="field_email">Correo electrónico</label>
-                    <input type="email" id="f_email" name="email" placeholder="correo@empresa.com" autocomplete="email" required>
-                </div>
-                <div class="consent-row">
-                    <input type="checkbox" id="f_consent" name="consent" required>
-                    <label for="f_consent" data-i18n="consent_text">
-                        Acepto recibir la guía y que César Abaunza pueda contactarme para temas relacionados con sus servicios. Sin spam. Puedes darte de baja en cualquier momento.
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="btn_submit">
-                    <i class="fas fa-download"></i> Recibir la guía gratuita
-                </button>
-                <p id="leadMsg" style="margin-top:.9rem;font-size:.82rem;font-weight:600;min-height:1.2rem;"></p>
-            </form>
-
-            <p style="font-size:.72rem;color:var(--ink-muted);margin-top:1.2rem;line-height:1.6;" data-i18n="privacy_note">
-                Tu información está segura. No se comparte con terceros ni se utiliza para fines distintos a los indicados.
-            </p>
-        </div>
-
+      </div>
+      <div class="lead-right">
+        <div class="lead-form-title" data-i18n="form_title">Accede al recurso completo.</div>
+        <p class="lead-form-sub" data-i18n="form_sub">Sin costo. RecÃ­belo directamente en tu correo.</p>
+        <form id="leadForm" novalidate>
+          <div class="form-field">
+            <label for="f_name" data-i18n="field_name_lbl">Nombre completo</label>
+            <input type="text" id="f_name" placeholder="CÃ©sar Abaunza" required>
+          </div>
+          <div class="form-field">
+            <label for="f_email" data-i18n="field_email_lbl">Correo electrÃ³nico</label>
+            <input type="email" id="f_email" placeholder="correo@empresa.com" required>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="f_consent" required>
+            <label for="f_consent" data-i18n="consent_text">Acepto recibir la guÃ­a y que CÃ©sar Abaunza pueda contactarme para temas relacionados con sus servicios. Sin spam. Puedes darte de baja en cualquier momento.</label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="btn_submit">Recibir la guÃ­a gratuita</button>
+          <p id="leadMsg"></p>
+          <p style="font-size:0.7rem;color:var(--text-muted);margin-top:1rem;" data-i18n="privacy_note">Tu informaciÃ³n estÃ¡ segura. No se comparte con terceros ni se utiliza para fines distintos a los indicados.</p>
+        </form>
+      </div>
     </div>
-    </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
-<section id="contact">
+  <!-- CONTACT -->
+  <section id="contact">
     <div class="label" data-i18n="label_contact">Contacto</div>
-    <div class="contact-grid">
-        <div>
-            <h2 data-i18n="contact_h2">Hablemos sobre<br><em>su próximo proyecto.</em></h2>
-            <p data-i18n="contact_desc">Disponible para proyectos de ingeniería, consultoría tecnológica y desarrollo de software en EE.UU. y de forma remota.</p>
-            <p style="font-size:.82rem;color:var(--ink-muted);" data-i18n="contact_loc">Bogota, Colombia · Proyectos presenciales y remotos · </p>
+    <div class="exp-layout" style="grid-template-columns:1fr 1fr;">
+      <div>
+        <h2 data-i18n="contact_h2">Hablemos sobre<br><em>su prÃ³ximo proyecto.</em></h2>
+        <p data-i18n="contact_desc">Disponible para proyectos de ingenierÃ­a geotÃ©cnica, gerencia comercial, consultorÃ­a tecnolÃ³gica y desarrollo de software en Colombia presencial y remoto.</p>
+      </div>
+      <div>
+        <a href="mailto:ing.ivan6@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">ing.ivan6@gmail.com</div></div></a>
+        <a href="tel:+573027119980" class="contact-item"><i class="fas fa-phone"></i><div><div class="ci-label" data-i18n="phone_lbl">TelÃ©fono</div><div class="ci-val">+57 (302) 711-9980</div></div></a>
+        <a href="https://wa.me/573027119980" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i><div><div class="ci-label">WhatsApp</div><div class="ci-val">+57 (302) 711-9980</div></div></a>
+        <div class="social-row">
         </div>
-        <div>
-            <a href="mailto:ing.ivan6@gmail.com" class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <div style="font-size:.72rem;color:var(--ink-muted);">Email</div>
-                    <div style="font-weight:600;">ing.ivan6@gmail.com</div>
-                </div>
-            </a>
-            <a href="tel:+573027119980" class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div>
-                    <div style="font-size:.72rem;color:var(--ink-muted);" data-i18n="phone_lbl">Teléfono</div>
-                    <div style="font-weight:600;">+57 (302) 711-9980</div>
-                </div>
-            </a>
-            <a href="https://wa.me/573027119980" target="_blank" class="contact-item">
-                <i class="fab fa-whatsapp"></i>
-                <div>
-                    <div style="font-size:.72rem;color:var(--ink-muted);">WhatsApp</div>
-                    <div style="font-weight:600;">+57 (302) 711-9980</div>
-                </div>
-            </a>
-            <a href="#" onclick="alert('LinkedIn: linkedin.com/in/cesar-abaunza'); return false;" class="contact-item">
-                <i class="fab fa-linkedin"></i>
-                <div>
-                    <div style="font-size:.72rem;color:var(--ink-muted);">LinkedIn</div>
-                    <div style="font-weight:600;">linkedin.com/in/cesar-abaunza</div>
-                </div>
-            </a>
-            <div class="social-row">
-                <a href="#" class="social-link"><i class="fab fa-github"></i> GitHub</a>
-                <a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i> X</a>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
-
+  </section>
 </main>
 
 <footer>
-    <p>© 2025 César Iván Abaunza Martínez — <span data-i18n="footer_role">Ingeniería Civil & Inteligencia Artificial</span></p>
-    <p data-i18n="footer_sub">Bogota, Colombia · </p>
+  <p>Â© 2025 CÃ©sar IvÃ¡n Abaunza MartÃ­nez â <span data-i18n="footer_role">IngenierÃ­a Civil, Geotecnia & GestiÃ³n Comercial</span></p>
 </footer>
 
-<a href="https://wa.me/573027119980?text=Hola%20César,%20me%20interesa%20conocer%20más%20sobre%20tus%20servicios." class="wa-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-    <span data-i18n="wa_cta">WhatsApp</span>
+<a href="https://wa.me/573027119980" class="wa-float" target="_blank">
+  <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
 </a>
 
 <script>
-// ══════════════════════════════════════════════
-// TRANSLATIONS
-// ══════════════════════════════════════════════
-const T = {
-es:{
-    nav_home:'Inicio', nav_about:'Perfil', nav_projects:'Proyectos', nav_exp:'Experiencia',
-    nav_services:'Servicios', nav_guide:'Guía IA', nav_contact:'Contacto',
-    hero_tag:'Bogota, Colombia · Disponible para proyectos presenciales y remotos',
-    hero_desc:'Más de 7 años integrando ingeniería civil de alta exigencia con inteligencia artificial, automatización y análisis de datos para optimizar proyectos de construcción e infraestructura.',
-    btn_guide:'Descargar Guía IA', btn_contact:'Contactar',
-    stat1:'Años en ingeniería y gestión de proyectos',
-    stat2:'Plataformas SaaS desarrolladas y desplegadas',
-    stat3:'Reducción de costos operativos con automatización',
-    trust_label:'Experiencia en',
-    label_about:'Perfil profesional',
-    about_h2:'Ingeniería de precisión, tecnología de vanguardia.',
-    about_p1:'Ingeniero Civil y Administrador de Empresas con formación avanzada en Geotecnia (Maestría en curso, Universidad de Medellín). Mi trayectoria abarca desde la supervisión técnica de proyectos viales de cuarta generación hasta el diseño y desarrollo de plataformas tecnológicas para el mercado norteamericano y latino.',
-    about_p2:'Desarrollo sistemas de inteligencia artificial aplicados a construcción y roofing, combinando rigor técnico con ejecución empresarial. Con base en Bogota, Colombia, ejecuto proyectos activos en EE.UU. y Colombia.',
-    about_obj:'Objetivo: Contribuir en organizaciones donde la innovación, la eficiencia y la tecnología sean pilares estratégicos, integrando ingeniería tradicional con inteligencia artificial y análisis de datos para la toma de decisiones.',
-    obj_label:'Objetivo:',
-    focus_label:'Áreas de enfoque',
-    focus1_title:'Gestión de Proyectos de Infraestructura', focus1_sub:'PMI · Agile · Control de costos y cronogramas',
-    focus2_title:'IA & Automatización para Construcción',   focus2_sub:'Dashboards · Chatbots · Reportes automáticos',
-    focus3_title:'Geotecnia & Fotogrametría UAV',           focus3_sub:'Machine Learning aplicado a parámetros de suelos',
-    focus4_title:'Desarrollo de Plataformas SaaS',          focus4_sub:'Construcción · Roofing · Resiliencia climática',
-    label_projects:'Proyectos & Productos',
-    projects_h2:'Soluciones que construí para la industria.',
-    status_live:'Live', status_beta:'Beta', status_dev:'En desarrollo',
-    proj1_desc:'Plataforma SaaS bilingüe para la industria del roofing en EE.UU. Gestión de proyectos, cumplimiento OSHA, módulos de resiliencia climática, techos solares y alertas predictivas.',
-    proj2_desc:'Herramienta computacional con aprendizaje automático para estimación de parámetros geotécnicos en mezclas suelo-roca (bimrocks) a partir de fotografías UAV y terrestres. Proyecto de tesis de maestría.',
-    proj3_desc:'Simulador geotécnico interactivo con vistas 3D/2D de cilindros, pendientes sintéticas, curvas de distribución granulométrica, clasificación ASTM/USCS y exportación de datos.',
-    proj4_title:'Agentes IA para Construcción',
-    proj4_desc:'Suite de agentes de inteligencia artificial para automatización de reportes, análisis de presupuestos, monitoreo de obra y soporte operativo 24/7 para empresas constructoras.',
-    proj_cta:'Solicitar demo', proj_contact:'Consultar',
-    label_exp:'Trayectoria profesional', exp_h2:'Experiencia profesional.',
-    present:'Presente',
-    exp1_role:'Desarrollador de Aplicaciones con IA',
-    exp1_desc:'Chatbots y agentes de IA para automatización empresarial. Soluciones de optimización operativa con modelos de lenguaje avanzado integrados en flujos de trabajo de construcción.',
-    expIQ_role:'Desarrollador de Sistemas de Gestión',
-    expIQ_desc:'Sistema integral de gestión con automatización de reportes y dashboards con IA. Desarrollo de herramientas de marketing digital y modelos operativos para red de franquicias.',
-    exp2_role:'Founder & Product Developer',
-    exp2_desc:'Plataforma SaaS bilingüe para la industria del roofing en Florida. Módulos de resiliencia climática, OSHA, techos solares y alertas predictivas. Escalable a contratistas y agencias estatales.',
-    exp3_role:'Project Manager',
-    exp3_desc:'Coordinación de proyectos residenciales, control de presupuestos y supervisión de calidad. Gestión directa de clientes y equipos de campo.',
-    exp4_role:'Coordinador de Proyectos / Técnico en Alturas',
-    exp4_desc:'Supervisión de obras civiles, gestión de recursos y cumplimiento de normativas de seguridad en altura.',
-    exp5_role:'Coordinador de Proyectos',
-    exp5_desc:'Desarrollo de herramienta automatizada de presupuestos conectada con sistema de licitaciones — reducción del 35% en tiempos de propuesta.',
-    exp6_role:'Ingeniero Residente',
-    exp6_desc:'Supervisión técnica de 157 km de proyecto vial 4G, incluyendo túneles, obras de arte y sistemas electromecánicos.',
-    label_edu:'Formación académica',
-    edu1_title:'Maestría en Ingeniería Civil — Geotecnia',
-    edu1_date:'En curso — Finalización estimada: Abr 2026',
-    edu1_thesis:'Tesis: Aplicación computacional con ML para estimación de parámetros geotécnicos en mezclas suelo-roca mediante fotografías UAV.',
-    edu2_title:'Ingeniería Civil', edu2_school:'Colombia — ',
-    edu3_title:'Administración de Empresas', edu3_sub:'Gestión empresarial, finanzas y estrategia organizacional',
-    edu4_title:'Licencia 4-40 — Resident Customer Representative',
-    edu4_date:'En proceso de obtención · Property & Casualty Insurance',
-    edu4_sub:'Licencia estatal de Florida para representante de seguros de propiedad y daños bajo supervisión de agente general (2-20).',
-    label_tools:'Herramientas & stack',
-    label_skills:'Competencias',
-    skills_h2:'Dominio técnico y liderazgo estratégico.',
-    sg1:'Ingeniería & Construcción', sg2:'Tecnología & Datos', sg3:'Gestión & Liderazgo',
-    s1:'Gestión de proyectos (PMI, Agile)', s2:'Supervisión técnica de obra civil', s3:'Control de costos y cronogramas',
-    s4:'Geotecnia avanzada', s5:'Fotogrametría con UAV / drones', s6:'Normativa OSHA · Resiliencia climática',
-    t1:'Machine Learning aplicado', t2:'Desarrollo de chatbots y agentes IA', t3:'Dashboards y visualización (Power BI)',
-    t4:'Automatización de procesos', t5:'Transformación digital empresarial', t6:'Desarrollo full-stack (Next.js, Python)',
-    l1:'Liderazgo de equipos multidisciplinarios', l2:'Emprendimiento y desarrollo de producto',
-    l3:'Consultoría estratégica', l4:'Modelos de franquicia y escalabilidad',
-    l5:'Mercados EE.UU. y Latinoamérica', l6:'Bilingüe — Español / Inglés',
-    label_services:'Servicios', services_h2:'Cómo puedo aportar a su organización.',
-    srv1_title:'Gestión de Proyectos de Construcción', srv1_desc:'Planificación, supervisión técnica, control de costos y cronogramas para infraestructura civil y edificaciones.',
-    srv2_title:'IA y Automatización Empresarial',      srv2_desc:'Chatbots inteligentes, reportes automáticos y sistemas con IA para optimizar operaciones y reducir costos operativos.',
-    srv3_title:'Dashboards e Inteligencia de Datos',   srv3_desc:'Visualizaciones predictivas en Power BI y plataformas web para toma de decisiones basada en datos en tiempo real.',
-    srv4_title:'Digitalización de Constructoras',      srv4_desc:'Herramientas de control de obra, presupuestos automáticos y modelos de eficiencia operativa.',
-    srv5_title:'Geotecnia & Análisis UAV',             srv5_desc:'Caracterización geotécnica con Machine Learning y fotogrametría UAV para estudios de suelo y estabilidad de taludes.',
-    srv6_title:'Desarrollo de Plataformas SaaS',       srv6_desc:'Diseño y desarrollo de software escalable para la industria de la construcción y el roofing.',
-    label_guide:'Recurso gratuito',
-    guide_h2:'Guía práctica: IA para optimización de proyectos de construcción.',
-    guide_sub:'Estrategias, herramientas y dashboards que uso en proyectos reales para reducir costos y acelerar decisiones.',
-    guide_tag:'Guía profesional · 2025',
-    guide_title:'IA para Proyectos de Construcción: De los Datos a la Decisión',
-    guide_by:'Ing. Civil & Especialista en IA',
-    ch1:'Por qué el 70% de los sobrecostos son prevenibles con datos',
-    ch2:'Dashboards que realmente usa el equipo de obra',
-    ch3:'Automatización de reportes: del Excel al agente IA',
-    ch4:'Caso real: reducción del 35% en tiempos de licitación',
-    ch5:'Herramientas gratuitas para empezar esta semana',
-    form_title:'Accede al recurso completo.',
-    form_sub:'Sin costo. Recíbelo directamente en tu correo.',
-    field_name:'Nombre completo', field_email:'Correo electrónico',
-    consent_text:'Acepto recibir la guía y que César Abaunza pueda contactarme para temas relacionados con sus servicios. Sin spam. Puedes darte de baja en cualquier momento.',
-    btn_submit:'Recibir la guía gratuita',
-    privacy_note:'Tu información está segura. No se comparte con terceros ni se utiliza para fines distintos a los indicados.',
-    label_contact:'Contacto',
-    contact_h2:'Hablemos sobre su próximo proyecto.',
-    contact_desc:'Disponible para proyectos de ingeniería, consultoría tecnológica y desarrollo de software en EE.UU. y de forma remota.',
-    contact_loc:'Bogota, Colombia · Proyectos presencial y remoto · ',
-    phone_lbl:'Teléfono', wa_cta:'WhatsApp',
-    footer_role:'Ingeniería Civil, Administracion de Empresas e Inteligencia Artificial',
-    footer_sub:'Bogota, Colombia · ',
-    logo_prefix:'Ing.', logo_suffix:'— IA Ingenieria, administracion de emrpesas ',
-    pdf_btn:'CV PDF', pdf_tooltip:'Descargar currículum en PDF',
-    add_photo:'Agregar foto',
-    msg_ok:'Gracias. Revisa tu correo en los próximos minutos.',
-    msg_err:'Por favor completa todos los campos y acepta las condiciones.',
-    typed:['Ingeniero Civil · Project Manager','Especialista en IA para Construcción','Founder · RMRT — Roofing SaaS Platform','Geotecnia + Machine Learning + UAV','Transformación digital para proyectos']
-},
-en:{
-    nav_home:'Home', nav_about:'Profile', nav_projects:'Projects', nav_exp:'Experience',
-    nav_services:'Services', nav_guide:'AI Guide', nav_contact:'Contact',
-    hero_tag:'Bogota, Colombia · Available for projects and remote work',
-    hero_desc:'Over 7 years integrating high-demand civil engineering with artificial intelligence, automation and data analytics to optimize construction and infrastructure projects.',
-    btn_guide:'Download AI Guide', btn_contact:'Get in touch',
-    stat1:'Years in engineering and project management',
-    stat2:'SaaS platforms built and deployed',
-    stat3:'Operational cost reduction through automation',
-    trust_label:'Experience with',
-    label_about:'Professional profile',
-    about_h2:'Precision engineering, cutting-edge technology.',
-    about_p1:'Civil Engineer and Business Administrator with advanced training in Geotechnics (Master\'s in progress, Universidad de Medellín). My career spans technical supervision of large-scale road projects to building SaaS platforms for the North American market.',
-    about_p2:'I build AI systems applied to construction and roofing, combining engineering rigor with entrepreneurial execution. Based in Bogota, Colombia, with active projects in the U.S. and Colombia.',
-    about_obj:'Objective: Contribute to organizations where innovation, efficiency, and technology are strategic pillars — integrating traditional engineering with AI and data analysis for smarter decisions.',
-    obj_label:'Objective:',
-    focus_label:'Focus areas',
-    focus1_title:'Infrastructure Project Management', focus1_sub:'PMI · Agile · Cost and schedule control',
-    focus2_title:'AI & Automation for Construction',  focus2_sub:'Dashboards · Chatbots · Automated reports',
-    focus3_title:'Geotechnics & UAV Photogrammetry',  focus3_sub:'Machine Learning applied to soil parameters',
-    focus4_title:'SaaS Platform Development',         focus4_sub:'Construction · Roofing · Climate resilience',
-    label_projects:'Projects & Products',
-    projects_h2:'Solutions I built for the industry.',
-    status_live:'Live', status_beta:'Beta', status_dev:'In development',
-    proj1_desc:'Bilingual SaaS platform for the U.S. roofing industry. Project management, OSHA compliance, climate resilience modules, solar roofing and predictive alerts.',
-    proj2_desc:'Computational tool with machine learning for estimating geotechnical parameters in soil-rock mixtures (bimrocks) from UAV and terrestrial photographs. Master\'s thesis project.',
-    proj3_desc:'Interactive geotechnical simulator with 3D/2D cylinder views, synthetic slopes, grain size distribution curves, ASTM/USCS classification and data export.',
-    proj4_title:'AI Agents for Construction',
-    proj4_desc:'Suite of AI agents for report automation, budget analysis, site monitoring and 24/7 operational support for construction companies.',
-    proj_cta:'Request demo', proj_contact:'Inquire',
-    label_exp:'Professional history', exp_h2:'Professional experience.',
-    present:'Present',
-    exp1_role:'AI Application Developer',
-    exp1_desc:'Chatbots and AI agents for enterprise automation. Operational optimization with advanced language models integrated into construction workflows.',
-    expIQ_role:'Management Systems Developer',
-    expIQ_desc:'Comprehensive management system with automated reporting and AI dashboards. Development of digital marketing tools and operational models for a franchise network.',
-    exp2_role:'Founder & Product Developer',
-    exp2_desc:'Bilingual SaaS platform for the roofing industry in Florida. Climate resilience, OSHA compliance, solar roofing and predictive alert modules. Scalable to contractors and state agencies.',
-    exp3_role:'Project Manager',
-    exp3_desc:'Coordination of residential projects, budget and quality control. Field supervision and direct client management.',
-    exp4_role:'Project Coordinator / Heights Technician',
-    exp4_desc:'Civil construction supervision, resource management and height safety compliance.',
-    exp5_role:'Project Coordinator',
-    exp5_desc:'Developed automated budgeting tool connected to the bidding system — 35% reduction in proposal preparation time.',
-    exp6_role:'Resident Engineer',
-    exp6_desc:'Technical supervision of 157 km of fourth-generation road project, including tunnels and electromechanical systems.',
-    label_edu:'Academic background',
-    edu1_title:'Master\'s in Civil Engineering — Geotechnics',
-    edu1_date:'In progress — Expected completion: Apr 2026',
-    edu1_thesis:'Thesis: ML-based computational tool for estimating geotechnical parameters in soil-rock mixtures using UAV photography.',
-    edu2_title:'Civil Engineering', edu2_school:'Colombia — ',
-    edu3_title:'Business Administration', edu3_sub:'Business management, finance and organizational strategy',
-    edu4_title:'License 4-40 — Resident Customer Representative',
-    edu4_date:'In progress · Property & Casualty Insurance',
-    edu4_sub:'Florida state license for property and casualty insurance customer representative, under supervision of a General Lines Agent (2-20).',
-    label_tools:'Tools & stack',
-    label_skills:'Skills',
-    skills_h2:'Technical expertise and strategic leadership.',
-    sg1:'Engineering & Construction', sg2:'Technology & Data', sg3:'Management & Leadership',
-    s1:'Project management (PMI, Agile)', s2:'Civil construction supervision', s3:'Cost and schedule control',
-    s4:'Advanced geotechnics', s5:'UAV / drone photogrammetry', s6:'OSHA standards · Climate resilience',
-    t1:'Applied machine learning', t2:'Chatbot and AI agent development', t3:'Dashboards and visualization (Power BI)',
-    t4:'Process automation', t5:'Enterprise digital transformation', t6:'Full-stack development (Next.js, Python)',
-    l1:'Multidisciplinary team leadership', l2:'Entrepreneurship and product development',
-    l3:'Strategic consulting', l4:'Franchise models and scalability',
-    l5:'U.S. and Latin American markets', l6:'Bilingual — Spanish / English',
-    label_services:'Services', services_h2:'How I can contribute to your organization.',
-    srv1_title:'Construction Project Management', srv1_desc:'Planning, technical supervision, cost and schedule control for civil infrastructure and building projects.',
-    srv2_title:'AI and Business Automation',      srv2_desc:'Intelligent chatbots, automated reports and AI management systems to optimize operations and reduce costs.',
-    srv3_title:'Dashboards and Data Intelligence',srv3_desc:'Predictive visualizations in Power BI and web platforms for real-time data-driven decision making.',
-    srv4_title:'Construction Company Digitization',srv4_desc:'Site control tools, automated budgeting and operational efficiency models for construction companies.',
-    srv5_title:'Geotechnics & UAV Analysis',      srv5_desc:'Geotechnical characterization with Machine Learning and UAV photogrammetry for soil studies and slope stability.',
-    srv6_title:'SaaS Platform Development',        srv6_desc:'Design and development of scalable software for the construction and roofing industries.',
-    label_guide:'Free resource',
-    guide_h2:'Practical guide: AI for construction project optimization.',
-    guide_sub:'Strategies, tools and dashboards I use in real projects to cut costs and accelerate decisions.',
-    guide_tag:'Professional guide · 2025',
-    guide_title:'AI for Construction Projects: From Data to Decision',
-    guide_by:'Civil Eng. & AI Specialist',
-    ch1:'Why 70% of cost overruns are preventable with data',
-    ch2:'Dashboards your site team will actually use',
-    ch3:'Report automation: from Excel to AI agents',
-    ch4:'Real case: 35% reduction in bidding turnaround time',
-    ch5:'Free tools to get started this week',
-    form_title:'Access the full resource.',
-    form_sub:'Free of charge. Delivered directly to your inbox.',
-    field_name:'Full name', field_email:'Email address',
-    consent_text:'I agree to receive the guide and allow César Abaunza to contact me about his services. No spam. You can unsubscribe at any time.',
-    btn_submit:'Get the free guide',
-    privacy_note:'Your information is secure and will not be shared with third parties or used for any other purpose.',
-    label_contact:'Contact',
-    contact_h2:'Let\'s talk about your next project.',
-    contact_desc:'Available for engineering projects, technology consulting and software development in the U.S. and remotely.',
-    contact_loc:'Bogota, Colombia · U.S. and remote projects · ',
-    phone_lbl:'Phone', wa_cta:'WhatsApp',
-    footer_role:'Civil Engineering & Artificial Intelligence',
-    footer_sub:'Bogota, Colombia · ',
-    logo_prefix:'Eng.', logo_suffix:'— AI & Construction',
-    pdf_btn:'CV PDF', pdf_tooltip:'Download résumé as PDF',
-    add_photo:'Add photo',
-    msg_ok:'Thank you. Check your inbox in the next few minutes.',
-    msg_err:'Please complete all fields and accept the terms.',
-    typed:['Civil Engineer · Project Manager','AI Specialist for Construction','Founder · RMRT — Roofing SaaS Platform','Geotechnics + Machine Learning + UAV','Digital transformation for projects']
-}
+// ââ TRANSLATIONS ââââââââââââââââââââââââââââââââââââââââââââââ
+const translations = {
+  es: {
+    nav_home:"Inicio",nav_about:"Perfil",nav_projects:"Proyectos",nav_exp:"Experiencia",
+    nav_services:"Servicios",nav_guide:"GuÃ­a IA",nav_contact:"Contacto   ",pdf_btn:" 	CV PDF",
+    hero_tag:"BogotÃ¡, Colombia Â· Presencial/Remoto",
+    hero_desc:"Ingeniero Civil y Administrador de Empresas con maestrÃ­a en Geotecnia (En Curso con fecha de finalizacion junio 2026). MÃ¡s de 7 aÃ±os integrando la optimizacion de procesos en ingenierÃ­a aplicado con IA, automatizaciÃ³n y datos. Perfil hÃ­brido tÃ©cnicoâcomercial: diseÃ±o geotÃ©cnico, gestiÃ³n de proyectos, prospecciÃ³n de negocios y cierre de contratos en infraestructura.",
+    btn_guide:"Descargar GuÃ­a IA",btn_contact:"Contactar",
+    stat1:"AÃ±os en ingenierÃ­a y gestiÃ³n",stat2:"Plataformas SaaS desarrolladas",stat3:"ReducciÃ³n de costos operativos",
+    trust_label:"Experiencia en",
+    label_about:"Perfil profesional",
+    about_h2:"IngenierÃ­a de precisiÃ³n,<br><em>visiÃ³n comercial y tecnologÃ­a.</em>",
+    about_p1:"Ingeniero Civil y Administrador de Empresas con maestrÃ­a en Geotecnia (En curso finaliza Junio 2026, Universidad de MedellÃ­n). Mi trayectoria combina la supervisiÃ³n tÃ©cnica de proyectos viales de gran escala (VÃ­as del Nus 4G) con el desarrollo de soluciones de inteligencia artificial y automatizaciÃ³n. He liderado Ã¡reas comerciales: prospecciÃ³n nacional e internacional, cierre de contratos de franquicias y desarrollo de herramientas para licitaciones.",
+    about_p2:"Estoy preparado para roles de Ingeniero TÃ©cnico Senior en Geotecnia (diseÃ±o de cimentaciones profundas, estabilizaciÃ³n de taludes, manejo de software especializado y normativas internacionales) y para Gerente Comercial en IngenierÃ­a (identificaciÃ³n de oportunidades, negociaciÃ³n de contratos, relaciones con clientes estratÃ©gicos y estructuraciÃ³n de ofertas).",
+    obj_label:"Objetivo:",about_obj:"Contribuir en organizaciones de ingenierÃ­a especializada donde mi doble perfil tÃ©cnicoâcomercial genere valor, impulse la innovaciÃ³n y asegure el crecimiento de los proyectos.",
+    focus_label:"Competencias clave",
+    focus1_title:"DiseÃ±o geotÃ©cnico avanzado",focus1_sub:"Cimentaciones profundas, muros, estabilizaciÃ³n de taludes, normativas NSRâ10/ASTM",
+    focus2_title:"GestiÃ³n comercial & prospecciÃ³n",focus2_sub:"IdentificaciÃ³n de oportunidades, licitaciones, negociaciÃ³n de contratos, relaciones con clientes B2B",
+    focus3_title:"IA & AutomatizaciÃ³n aplicada",focus3_sub:"Machine Learning para geotecnia, dashboards predictivos, automatizaciÃ³n de reportes",
+    focus4_title:"BilingÃ¼e tÃ©cnico-comercial",focus4_sub:"EspaÃ±ol nativo, inglÃ©s B2/C1 tÃ©cnico para reportes, reuniones y negociaciones internacionales",
+    label_projects:"Proyectos & Productos",projects_h2:"Soluciones que construÃ­<br><em>para la industria.</em>",
+    label_exp:"Trayectoria profesional",exp_h2:"Experiencia<br><em>profesional.</em>",present:"Presente",
+    exp1_role:"Desarrollador de Aplicaciones con IA",
+    iqd_1:"Chatbots y agentes IA con LLM para automatizaciÃ³n empresarial.",iqd_2:"CreaciÃ³n de agentes para reportes, presupuestos y KPIs.",iqd_3:"APIs con Python/FastAPI para integraciÃ³n con sistemas clientes.",
+    expIQ_role:"Desarrollador de Sistemas de GestiÃ³n & Operaciones Comerciales",
+    iq_sales_full:"ProspecciÃ³n nacional e internacional, cierre de ventas de franquicias y gestiÃ³n documental de contratos (Franchise Agreement, Finance Agreement).",
+    iq_ops:"Operaciones: cotizaciones, renovaciones, reconciliaciÃ³n, bonos y administraciÃ³n de regalÃ­as de 2 franquicias.",
+    iq_dev:"Desarrollo: coding, testing, bots, dashboards IA, guÃ­as de usuario y automatizaciÃ³n de reportes.",
+    iq_mkt:"Marketing digital: estrategia de contenido, anÃ¡lisis de mÃ©tricas y generaciÃ³n de leads.",
+    iq_mgmt:"GestiÃ³n comercial: relaciÃ³n con franquiciados, propiedad intelectual y reportes de desempeÃ±o.",
+    exp2_role:"Founder & Product Developer",
+    rmrt_1:"Plataforma bilingÃ¼e para roofing, OSHA, resiliencia climÃ¡tica.",rmrt_2:"MÃ³dulos de techos y alertas predictivas.",rmrt_3:"Arquitectura con Next.js, Supabase, Railway.",
+    exp3_role:"Project Manager",bray_1:"CoordinaciÃ³n de 150+ proyectos de techado residencial.",bray_2:"Control de presupuestos, calidad y normativa OSHA.",bray_3:"SupervisiÃ³n de equipos de hasta 8 personas.",
+    exp4_role:"Coordinador de Proyectos / TÃ©cnico en Alturas",inma_1:"SupervisiÃ³n tÃ©cnica de proyectos, calidad y especificaciones.",inma_2:"CoordinaciÃ³n de equipos multidisciplinarios y recursos.",
+    exp5_role:"Coordinador de Proyectos",ingy_achievement:"Logro comercial:",
+    ingy_1:"Desarrollo de herramienta automatizada de presupuestos conectada a sistema de licitaciones â reducciÃ³n del 35% en generacion de presupuestos.",
+    ingy_2:"Generacion de presupuestos de 8+ proyectos residenciales y comerciales (Hacienda OtoÃ±o, Club House Samaria, Colpatria, etc.).",ingy_3:"RevisiÃ³n de informes, flujo de compras y facturaciÃ³n.",
+    exp6_role:"Ingeniero Residente",
+    serv_1:"SupervisiÃ³n de 157 km: movimientos de tierra, estabilizaciÃ³n de taludes, muros de contenciÃ³n, tÃºneles, puentes, pavimentos.",
+    serv_2:"Control de ensayos de laboratorio (concretos, terraplenes, anclajes) y verificaciÃ³n de memorias de cÃ¡lculo segÃºn NSRâ10.",
+    serv_3:"Informes de campo, cantidades de obra y seguimiento a diseÃ±os tÃ©cnicos.",
+    // Nuevas claves para Inspector Ruta del Sol
+    inspector_role: "Inspector tÃ©cnico",
+    inspector_f1: "SupervisiÃ³n de obras viales: movimientos de tierra, estabilizaciÃ³n de taludes, muros de contenciÃ³n, puentes, pavimentos.",
+    inspector_f2: "Control de ensayos de laboratorio (concretos, terraplenes, anclajes) y verificaciÃ³n de memorias de cÃ¡lculo.",
+    inspector_f3: "ElaboraciÃ³n de informes de campo, cantidades de obra y seguimiento a diseÃ±os tÃ©cnicos.",
+    label_edu:"FormaciÃ³n & Credenciales",
+    edu1_title:"MaestrÃ­a en IngenierÃ­a Civil â Geotecnia",edu1_school:"Universidad de MedellÃ­n (2026)",edu1_thesis:"Tesis: ML + UAV para parÃ¡metros geotÃ©cnicos",
+    edu2_title:"IngenierÃ­a Civil",edu2_school:"Universidad Militar Nueva Granada (2018)",edu2_license:"MatrÃ­cula COPNIA (vigente, sin antecedentes)",
+    edu3_title:"AdministraciÃ³n de Empresas",edu3_school:"Universidad Militar Nueva Granada (2023)",
+    edu4_title:"Licencia 4-40 â Resident Customer Representative",edu4_school:"Florida Dept. of Financial Services Â· Expedida: 12 de mayo de 2026",
+    label_tools:"Herramientas & stack",
+    label_skills:"Competencias",skills_h2:"Dominio tÃ©cnico, comercial<br><em>y liderazgo estratÃ©gico.</em>",
+    sg1:"Geotecnia & DiseÃ±o",sg2:"GestiÃ³n Comercial & Proyectos",sg3:"TecnologÃ­a & Datos",
+    s1:"Cimentaciones profundas (pilotes, muros pantalla)",s2:"EstabilizaciÃ³n de taludes y suelos",s3:"ModelaciÃ³n geotÃ©cnica (PLAXIS, GEO5)",
+    s4:"AnÃ¡lisis de asentamientos y capacidad portante",s5:"FotogrametrÃ­a UAV aplicada",s6:"Normativas NSRâ10, ASTM",
+    t1:"ProspecciÃ³n de clientes y detecciÃ³n de oportunidades",t2:"Licitaciones y estructuraciÃ³n de ofertas",t3:"NegociaciÃ³n de contratos B2B",
+    t4:"CRM y automatizaciÃ³n comercial",t5:"Project Management (PMI, Agile)",t6:"Control de costos y cronogramas",
+    l1:"Machine Learning aplicado a ingenierÃ­a",l2:"Desarrollo de chatbots y agentes IA",l3:"Dashboards predictivos (Power BI)",
+    l4:"AutomatizaciÃ³n de procesos",l5:"TransformaciÃ³n digital empresarial",l6:"Full-stack (Next.js, Python)",
+    label_services:"Servicios",services_h2:"CÃ³mo puedo aportar<br><em>a su organizaciÃ³n.</em>",
+    srv1_title:"IngenierÃ­a GeotÃ©cnica Senior",srv1_desc:"DiseÃ±o de cimentaciones, estabilizaciÃ³n de taludes, supervisiÃ³n tÃ©cnica y memorias de cÃ¡lculo bajo normativas internacionales.",
+    srv2_title:"Gerencia Comercial en Infraestructura",srv2_desc:"ProspecciÃ³n de proyectos, licitaciones, negociaciÃ³n de contratos y relaciones con clientes estratÃ©gicos.",
+    srv3_title:"IA & AutomatizaciÃ³n para Constructoras",srv3_desc:"Chatbots, agentes IA, dashboards predictivos y automatizaciÃ³n de reportes tÃ©cnicos.",
+    srv4_title:"TransformaciÃ³n Digital",srv4_desc:"DigitalizaciÃ³n de procesos, herramientas de control de obra y optimizaciÃ³n de presupuestos.",
+    label_guide:"Recurso gratuito",guide_h2:"GuÃ­a prÃ¡ctica:",guide_em:"IA para optimizaciÃ³n de proyectos de construcciÃ³n.",
+    guide_sub:"Estrategias, herramientas y dashboards que uso en proyectos reales para reducir costos y acelerar decisiones.",
+    guide_tag:"GUÃA PROFESIONAL Â· 2025",guide_title:"IA para Proyectos de ingenierÃ­a: De los Datos a la DecisiÃ³n",guide_by:"CÃ©sar Abaunza Â· Ing. Civil & Especialista en IA",
+    ch1:"Por quÃ© el 70% de los sobrecostos son prevenibles con datos",ch2:"Dashboards que realmente usa el equipo de obra",
+    ch3:"AutomatizaciÃ³n de reportes: del Excel al agente IA",ch4:"Caso real: reducciÃ³n del 35% en tiempos de licitaciÃ³n",ch5:"Herramientas gratuitas para empezar esta semana",
+    form_title:"Accede al recurso completo.",form_sub:"Sin costo. RecÃ­belo directamente en tu correo.",
+    field_name_lbl:"Nombre completo",field_email_lbl:"Correo electrÃ³nico",
+    consent_text:"Acepto recibir la guÃ­a y que CÃ©sar Abaunza pueda contactarme para temas relacionados con sus servicios. Sin spam. Puedes darte de baja en cualquier momento.",
+    btn_submit:"Recibir la guÃ­a gratuita",privacy_note:"Tu informaciÃ³n estÃ¡ segura. No se comparte con terceros ni se utiliza para fines distintos a los indicados.",
+    label_contact:"Contacto",contact_h2:"Hablemos sobre<br><em>su prÃ³ximo proyecto.</em>",
+    contact_desc:"Disponible para proyectos de ingenierÃ­a geotÃ©cnica, gerencia comercial, consultorÃ­a tecnolÃ³gica y desarrollo de software en Colombia presencial y remoto.",
+    email_lbl:"Email",phone_lbl:"TelÃ©fono",
+    footer_role:"IngenierÃ­a Civil, Geotecnia & GestiÃ³n Comercial",
+    msg_ok:"Gracias. Revisa tu correo en los prÃ³ximos minutos.",msg_err:"Por favor completa todos los campos y acepta las condiciones."
+  },
+  en: {
+    nav_home:"Home",nav_about:"Profile",nav_projects:"Projects",nav_exp:"Experience",
+    nav_services:"Services",nav_guide:"AI Guide",nav_contact:"Contact",pdf_btn:"CV PDF",
+    hero_tag:"BogotÃ¡, Colombia Â· On-site/Remote",
+    hero_desc:"Civil Engineer and Business Administrator with a Master's in Geotechnics (in progress). Over 7 years integrating traditional engineering with AI, automation and data. Hybrid technical-commercial profile: geotechnical design, project management, business development and contract closing in infrastructure and insurance.",
+    btn_guide:"Download AI Guide",btn_contact:"Contact me",
+    stat1:"Years in engineering & management",stat2:"SaaS platforms built",stat3:"Operational cost reduction",
+    trust_label:"Experience with",
+    label_about:"Professional profile",
+    about_h2:"Precision engineering,<br><em>commercial vision & technology.</em>",
+    about_p1:"Civil Engineer and Business Administrator with a Master's in Geotechnics (in progress, Universidad de MedellÃ­n). My career combines technical supervision of large-scale road projects (VÃ­as del Nus 4G) with the development of AI and automation solutions. I have led commercial areas: national and international prospecting, franchise contract closing and bidding tools development.",
+    about_p2:"I am prepared for roles as Senior Geotechnical Engineer (deep foundations design, slope stabilization, specialized software and international standards) and Commercial Manager in Engineering (opportunity identification, contract negotiation, strategic client relationships and bid structuring).",
+    obj_label:"Objective:",about_obj:"Contribute to specialized engineering organizations where my dual technical-commercial profile creates value, drives innovation and ensures project growth.",
+    focus_label:"Key competencies",
+    focus1_title:"Advanced Geotechnical Design",focus1_sub:"Deep foundations, retaining walls, slope stabilization, NSRâ10/ASTM",
+    focus2_title:"Commercial Management & Prospecting",focus2_sub:"Opportunity identification, bidding, contract negotiation, B2B client relationships",
+    focus3_title:"AI & Applied Automation",focus3_sub:"Machine Learning for geotechnics, predictive dashboards, report automation",
+    focus4_title:"Bilingual technical-commercial",focus4_sub:"Native Spanish, B2/C1 technical English for reports, meetings and international negotiations",
+    label_projects:"Projects & Products",projects_h2:"Solutions I built<br><em>for the industry.</em>",
+    label_exp:"Professional history",exp_h2:"Professional<br><em>experience.</em>",present:"Present",
+    exp1_role:"AI Application Developer",
+    iqd_1:"Chatbots and AI agents with LLM for enterprise automation.",iqd_2:"Creation of agents for reports, budgeting and KPI monitoring.",iqd_3:"APIs with Python/FastAPI for integration with client systems.",
+    expIQ_role:"Management Systems & Commercial Operations Developer",
+    iq_sales_full:"National and international prospecting, franchise sales closing and contract document management (Franchise Agreement, Finance Agreement).",
+    iq_ops:"Operations: quotes, renewals, reconciliation, bonuses and royalty management for 2 franchises.",
+    iq_dev:"Development: coding, testing, bots, AI dashboards, user guides and report automation.",
+    iq_mkt:"Digital marketing: content strategy, metrics analysis and lead generation.",
+    iq_mgmt:"Commercial management: franchisee relations, IP protection and performance reports.",
+    exp2_role:"Founder & Product Developer",
+    rmrt_1:"Bilingual platform for roofing, OSHA, climate resilience.",rmrt_2:"Roof modules and predictive weather alerts.",rmrt_3:"Architecture with Next.js, Supabase, Railway.",
+    exp3_role:"Project Manager",bray_1:"Coordination of 150+ residential roofing projects.",bray_2:"Budget, quality and OSHA compliance control.",bray_3:"Field team supervision (up to 8 people).",
+    exp4_role:"Project Coordinator / Heights Technician",inma_1:"Technical supervision of civil works, quality and specifications.",inma_2:"Coordination of multidisciplinary teams and resources.",
+    exp5_role:"Project Coordinator",ingy_achievement:"Commercial achievement:",
+    ingy_1:"Developed automated budgeting tool integrated with bidding system â 35% reduction in proposal turnaround time.",
+    ingy_2:"Management of 8 residential and commercial projects (Hacienda OtoÃ±o, Club House Samaria, Colpatria, etc.).",ingy_3:"Report review, purchasing and cash flow management.",
+    exp6_role:"Resident Engineer",
+    serv_1:"Supervision of 157 km: earthworks, slope stabilization, retaining walls, tunnels, bridges, pavements.",
+    serv_2:"Laboratory testing control (concrete, fills, anchors) and verification of calculation reports according to NSRâ10.",
+    serv_3:"Field reports, work quantities and technical design follow-up.",
+    // New keys for Ruta del Sol Inspector
+    inspector_role: "Technical Inspector",
+    inspector_f1: "Supervision of road works: earthworks, slope stabilization, retaining walls, bridges, pavements.",
+    inspector_f2: "Control of laboratory tests (concrete, fills, anchors) and verification of calculation reports.",
+    inspector_f3: "Preparation of field reports, work quantities and technical design follow-up.",
+    label_edu:"Education & Credentials",
+    edu1_title:"Master's in Civil Engineering â Geotechnics",edu1_school:"Universidad de MedellÃ­n (2026)",edu1_thesis:"Thesis: ML + UAV for geotechnical parameters",
+    edu2_title:"Civil Engineering",edu2_school:"Universidad Militar Nueva Granada (2018)",edu2_license:"COPNIA license (active, no record)",
+    edu3_title:"Business Administration",edu3_school:"Universidad Militar Nueva Granada (2023)",
+    edu4_title:"License 4-40 â Resident Customer Representative",edu4_school:"Florida Dept. of Financial Services Â· Issued: May 12, 2026",
+    label_tools:"Tools & stack",
+    label_skills:"Skills",skills_h2:"Technical, commercial<br><em>and strategic leadership.</em>",
+    sg1:"Geotechnics & Design",sg2:"Commercial & Project Management",sg3:"Technology & Data",
+    s1:"Deep foundations (piles, diaphragm walls)",s2:"Slope and soil stabilization",s3:"Geotechnical modeling (PLAXIS, GEO5)",
+    s4:"Settlement and bearing capacity analysis",s5:"Applied UAV photogrammetry",s6:"NSRâ10, ASTM",
+    t1:"Client prospecting and opportunity detection",t2:"Bidding and bid structuring",t3:"B2B contract negotiation",
+    t4:"CRM and commercial automation",t5:"Project Management (PMI, Agile)",t6:"Cost and schedule control",
+    l1:"Applied Machine Learning in engineering",l2:"Chatbot and AI agent development",l3:"Predictive dashboards (Power BI)",
+    l4:"Process automation",l5:"Enterprise digital transformation",l6:"Full-stack (Next.js, Python)",
+    label_services:"Services",services_h2:"How I can contribute<br><em>to your organization.</em>",
+    srv1_title:"Senior Geotechnical Engineering",srv1_desc:"Foundation design, slope stabilization, technical supervision and calculation reports under international standards.",
+    srv2_title:"Commercial Management in Infrastructure",srv2_desc:"Project prospecting, bidding, contract negotiation and strategic client relationships.",
+    srv3_title:"AI & Automation for Construction Companies",srv3_desc:"Chatbots, AI agents, predictive dashboards and technical report automation.",
+    srv4_title:"Digital Transformation",srv4_desc:"Process digitization, site control tools and budget optimization.",
+    label_guide:"Free resource",guide_h2:"Practical guide:",guide_em:"AI for construction project optimization.",
+    guide_sub:"Strategies, tools and dashboards I use in real projects to cut costs and accelerate decisions.",
+    guide_tag:"PROFESSIONAL GUIDE Â· 2025",guide_title:"AI for Engineering Projects: From Data to Decision",guide_by:"CÃ©sar Abaunza Â· Civil Eng. & AI Specialist",
+    ch1:"Why 70% of cost overruns are preventable with data",ch2:"Dashboards your site team will actually use",
+    ch3:"Report automation: from Excel to AI agents",ch4:"Real case: 35% reduction in bidding turnaround time",ch5:"Free tools to get started this week",
+    form_title:"Access the full resource.",form_sub:"Free of charge. Delivered to your inbox.",
+    field_name_lbl:"Full name",field_email_lbl:"Email address",
+    consent_text:"I agree to receive the guide and allow CÃ©sar Abaunza to contact me about his services. No spam. You can unsubscribe anytime.",
+    btn_submit:"Get the free guide",privacy_note:"Your information is secure. Not shared with third parties.",
+    label_contact:"Contact",contact_h2:"Let's talk about<br><em>your next project.</em>",
+    contact_desc:"Available for geotechnical engineering, commercial management, technology consulting and software development in Colombia on-site and remote.",
+    email_lbl:"Email",phone_lbl:"Phone",
+    footer_role:"Civil Engineering, Geotechnics & Commercial Management",
+    msg_ok:"Thank you. Check your inbox in the next few minutes.",msg_err:"Please complete all fields and accept the terms."
+  }
 };
 
-let lang = 'es';
-
-function applyLang(l) {
-    lang = l;
-    const d = T[l];
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const k = el.getAttribute('data-i18n');
-        if (d[k] !== undefined) el.textContent = d[k];
-    });
-    document.getElementById('logoPrefix').textContent  = d.logo_prefix;
-    document.getElementById('logoSuffix').textContent  = d.logo_suffix;
-    document.getElementById('langToggle').textContent  = l === 'es' ? 'EN' : 'ES';
-    document.documentElement.lang = l;
-    // Reset typed
-    stopTyped = true;
-    setTimeout(() => { ti = 0; ci = 0; ct = ''; stopTyped = false; type(); }, 200);
+// ââ LANGUAGE ââââââââââââââââââââââââââââââââââââââââââââââââââ
+let currentLang = 'es';
+function setLanguage(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (!t[key]) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t[key];
+    else el.innerHTML = t[key];
+  });
+  document.getElementById('logoPrefix').innerHTML  = lang === 'es' ? 'Ing.' : 'Eng.';
+  document.getElementById('logoSuffix').innerHTML  = lang === 'es' ? 'â IngenierÃ­a, IA & GestiÃ³n Comercial' : 'â Engineering, AI & Commercial Management';
+  document.getElementById('langToggle').innerHTML  = lang === 'es' ? 'EN' : 'ES';
+  document.documentElement.lang = lang;
 }
+document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'es' ? 'en' : 'es'));
+setLanguage('es');
 
-document.getElementById('langToggle').addEventListener('click', () => applyLang(lang === 'es' ? 'en' : 'es'));
-
-// ── TYPED ──
-let ti = 0, ci = 0, ct = '', stopTyped = false;
-const tEl = document.getElementById('typedText');
+// ââ TYPED ââââââââââââââââââââââââââââââââââââââââââââââââââââ
+const phrasesTy = ['Especialista en Automatizacion de procesos con IA', 'Civil Engineer Â· AI Specialist', 'Founder Â· RMRT SaaS Platform', 'Engineering + Geotechnics + Machine Learning'];
+let idxTy = 0, ciTy = 0, ctTy = '';
+const typedEl = document.getElementById('typedText');
 function type() {
-    if (stopTyped) return;
-    const phrases = T[lang].typed;
-    if (ci < phrases[ti].length) {
-        ct += phrases[ti][ci++];
-        tEl.textContent = ct;
-        setTimeout(type, 52);
-    } else {
-        setTimeout(() => {
-            if (stopTyped) return;
-            ti = (ti + 1) % phrases.length;
-            ct = ''; ci = 0; type();
-        }, 2800);
-    }
+  if (ciTy < phrasesTy[idxTy].length) { ctTy += phrasesTy[idxTy][ciTy++]; typedEl.textContent = ctTy; setTimeout(type, 55); }
+  else { setTimeout(() => { idxTy = (idxTy + 1) % phrasesTy.length; ctTy = ''; ciTy = 0; type(); }, 2500); }
 }
 type();
 
-// ── DARK MODE ──
-const themeBtn = document.getElementById('themeToggle');
-themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    themeBtn.querySelector('i').classList.toggle('fa-moon');
-    themeBtn.querySelector('i').classList.toggle('fa-sun');
+// ââ DARK MODE ââââââââââââââââââââââââââââââââââââââââââââââââ
+document.getElementById('themeToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const i = document.querySelector('#themeToggle i');
+  i.classList.toggle('fa-moon'); i.classList.toggle('fa-sun');
 });
 
-// ── MOBILE MENU ──
-const menuBtn  = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+// ââ MOBILE MENU ââââââââââââââââââââââââââââââââââââââââââââââ
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
-// ── SMOOTH SCROLL ──
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-        const h = a.getAttribute('href');
-        if (h && h !== '#') {
-            e.preventDefault();
-            const t = document.querySelector(h);
-            if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
-        }
-    });
-});
+// ââ SMOOTH SCROLL ââââââââââââââââââââââââââââââââââââââââââââ
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const h = a.getAttribute('href');
+  if (h && h !== '#') { e.preventDefault(); document.querySelector(h)?.scrollIntoView({ behavior: 'smooth' }); }
+}));
 
-// ── SCROLL PROGRESS + ACTIVE NAV ──
-const indicator = document.getElementById('navIndicator');
-const sections  = document.querySelectorAll('section[id]');
-const navAs     = document.querySelectorAll('.nav-links a');
-
+// ââ SCROLL PROGRESS + ACTIVE NAV âââââââââââââââââââââââââââââ
+const scrollBar  = document.getElementById('scrollBar');
+const sections   = document.querySelectorAll('section[id]');
+const navAs      = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total    = document.body.scrollHeight - window.innerHeight;
-    indicator.style.width = (scrolled / total * 100) + '%';
-
-    let current = '';
-    sections.forEach(sec => {
-        if (scrolled >= sec.offsetTop - 100) current = sec.id;
-    });
-    navAs.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
+  const scrolled = window.scrollY;
+  const total    = document.body.scrollHeight - window.innerHeight;
+  scrollBar.style.width = (total > 0 ? (scrolled / total * 100) : 0) + '%';
+  let current = '';
+  sections.forEach(sec => { if (scrolled >= sec.offsetTop - 80) current = sec.id; });
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
 }, { passive: true });
 
-// ── LEAD FORM ──
+// ââ LEAD FORM ââââââââââââââââââââââââââââââââââââââââââââââââ
 document.getElementById('leadForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const name    = document.getElementById('f_name').value.trim();
-    const email   = document.getElementById('f_email').value.trim();
-    const consent = document.getElementById('f_consent').checked;
-    const msg     = document.getElementById('leadMsg');
-
-    if (!name || !email || !consent) {
-        msg.className = 'msg-err';
-        msg.textContent = T[lang].msg_err;
-        return;
-    }
-    // Here you would POST to your backend / email service
-    msg.className = 'msg-ok';
-    msg.textContent = T[lang].msg_ok;
+  e.preventDefault();
+  const name    = document.getElementById('f_name').value.trim();
+  const email   = document.getElementById('f_email').value.trim();
+  const consent = document.getElementById('f_consent').checked;
+  const msg     = document.getElementById('leadMsg');
+  const t       = translations[currentLang];
+  if (name && email && consent) {
+    msg.className = 'msg-ok'; msg.textContent = t.msg_ok;
     document.getElementById('leadForm').reset();
-    setTimeout(() => msg.textContent = '', 6000);
+    setTimeout(() => msg.textContent = '', 5000);
+  } else {
+    msg.className = 'msg-err'; msg.textContent = t.msg_err;
+  }
 });
-</script>
 
-
-
-<!-- jsPDF + html2canvas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
-
-// ══════════════════════════════════════════════════════════════
-//  PDF GENERATOR — one clean A4 page per section
-// ══════════════════════════════════════════════════════════════
+// ââ PDF â 4 pÃ¡ginas agrupadas âââââââââââââââââââââââââââââââââ
 async function downloadPDF() {
-    const overlay    = document.getElementById('pdfOverlay');
-    const overlayMsg = document.getElementById('pdfOverlayMsg');
-    const es         = lang === 'es';
-    const isDark     = document.body.classList.contains('dark');
+  const overlay = document.getElementById('pdfOverlay');
+  const pdfMsg  = document.getElementById('pdfMsg');
+  const isDark  = document.body.classList.contains('dark');
+  overlay.classList.add('show');
+  pdfMsg.textContent = 'Preparando documento...';
 
-    overlay.classList.add('show');
-    overlayMsg.textContent = es ? 'Preparando documento...' : 'Preparing document...';
+  if (isDark) document.body.classList.remove('dark');
 
-    // Force light mode for rendering
-    if (isDark) document.body.classList.remove('dark');
+  const uiEls = document.querySelectorAll('.navbar,.wa-float,.hero-actions,.trust-bar,#lead,footer,.nav-controls,#scrollBar');
+  uiEls.forEach(el => { el._pdfDisplay = el.style.display; el.style.setProperty('display','none','important'); });
 
-    // ── HIDE WEB-ONLY CHROME ──────────────────────────────────
-    const uiEls = document.querySelectorAll(
-        '.navbar, .wa-float, .nav-indicator, #pdfOverlay, ' +
-        '.hero-actions, #heroAvatarWrap button, .typed-wrap, .hero-tag, ' +
-        '.trust-bar, #lead, footer'
-    );
-    uiEls.forEach(el => el.dataset.pdfHide = el.style.display);
-    uiEls.forEach(el => el.style.setProperty('display','none','important'));
+  const mainEl   = document.querySelector('main');
+  const origPad  = mainEl.style.paddingTop;
+  mainEl.style.paddingTop = '0';
 
-    // Fix main padding (normally offsets fixed navbar)
-    const mainEl = document.querySelector('main');
-    const origPad = mainEl.style.paddingTop;
-    mainEl.style.paddingTop = '0';
+  const styleTag = document.createElement('style');
+  styleTag.id = 'pdf-boost';
+  styleTag.textContent = `
+    body{font-size:1.1rem!important;}
+    .hero-name{font-size:2.8rem!important;}
+    h2{font-size:1.7rem!important;}
+    h3{font-size:1rem!important;}
+    p,.func-list li,.edu-card span,.focus-item span{font-size:0.9rem!important;}
+    .tag,.badge-license,.tl-meta,.label{font-size:0.78rem!important;}
+    .stat-number{font-size:1.8rem!important;}
+  `;
+  document.head.appendChild(styleTag);
+  await new Promise(r => setTimeout(r, 150));
 
-    // Give browser a tick to repaint
-    await new Promise(r => setTimeout(r, 250));
+  try {
+    const { jsPDF } = window.jspdf;
+    const pdf     = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+    const A4W     = 210, A4H = 297, M = 8, HDRH = 9;
+    const imgW    = A4W - M * 2;
+    const avail   = A4H - HDRH - M * 2;
+    const SCALE   = 2.2;
 
-    try {
-        const { jsPDF } = window.jspdf;
+    const groups = [
+      { label: currentLang === 'es' ? 'Perfil & Sobre mÃ­'         : 'Profile & About',           ids: ['home','about']       },
+      { label: currentLang === 'es' ? 'Proyectos & Competencias'   : 'Projects & Skills',         ids: ['projects','skills']  },
+      { label: currentLang === 'es' ? 'Experiencia Profesional'    : 'Professional Experience',   ids: ['experience']         },
+      { label: currentLang === 'es' ? 'Servicios & Contacto'       : 'Services & Contact',        ids: ['services','contact'] },
+    ];
 
-        // A4 dimensions in mm and px ratio
-        const A4_W_MM = 210, A4_H_MM = 297;
-        const SCALE   = 2.5;       // Aumentado de 2 a 2.5 para mejor legibilidad
-        const PX_PER_MM = 3.7795 * SCALE;
-        const A4_W_PX = Math.round(A4_W_MM * PX_PER_MM);
+    for (let gi = 0; gi < groups.length; gi++) {
+      const grp = groups[gi];
+      pdfMsg.textContent = `PÃ¡gina ${gi+1} de ${groups.length}...`;
 
-        const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'background:#fff;padding:0;width:1200px;';
+      for (const sid of grp.ids) {
+        const sec = document.getElementById(sid);
+        if (!sec) continue;
+        const clone = sec.cloneNode(true);
+        clone.style.marginBottom = '2rem';
+        wrapper.appendChild(clone);
+      }
+      document.body.appendChild(wrapper);
 
-        // ── SECTIONS TO CAPTURE ───────────────────────────────
-        const sectionDefs = [
-            { id:'home',       label: es ? '1 — Perfil'       : '1 — Profile' },
-            { id:'about',      label: es ? '2 — Sobre mí'     : '2 — About'   },
-            { id:'projects',   label: es ? '3 — Proyectos'    : '3 — Projects'},
-            { id:'experience', label: es ? '4 — Experiencia'  : '4 — Experience'},
-            { id:'skills',     label: es ? '5 — Competencias' : '5 — Skills'  },
-            { id:'services',   label: es ? '6 — Servicios'    : '6 — Services'},
-            { id:'contact',    label: es ? '7 — Contacto'     : '7 — Contact' },
-        ];
+      const canvas = await html2canvas(wrapper, {
+        scale: SCALE, useCORS: true, allowTaint: true,
+        backgroundColor: '#ffffff', logging: false,
+        width: 1200, windowWidth: 1200,
+      });
+      document.body.removeChild(wrapper);
 
-        const totalPages = sectionDefs.length;
-        let pageIndex = 0;
+      if (gi > 0) pdf.addPage();
 
-        for (const def of sectionDefs) {
-            pageIndex++;
-            overlayMsg.textContent = es
-                ? `Procesando ${def.label} (${pageIndex}/${totalPages})...`
-                : `Processing ${def.label} (${pageIndex}/${totalPages})...`;
+      pdf.setFillColor(26,86,219);
+      pdf.rect(0,0,A4W,HDRH,'F');
+      pdf.setFont('helvetica','bold'); pdf.setFontSize(7); pdf.setTextColor(255,255,255);
+      pdf.text(grp.label, M, 6);
+      pdf.setFont('helvetica','normal'); pdf.setFontSize(6.5); pdf.setTextColor(200,215,245);
+      pdf.text('CÃ©sar IvÃ¡n Abaunza MartÃ­nez', A4W - M, 6, { align:'right' });
 
-            const el = document.getElementById(def.id);
-            if (!el) continue;
+      const naturalH = (canvas.height / canvas.width) * imgW;
+      const finalH   = Math.min(naturalH, avail);
+      const imgData  = canvas.toDataURL('image/jpeg', 0.92);
+      pdf.addImage(imgData, 'JPEG', M, HDRH + M * 0.5, imgW, finalH);
 
-            // Temporarily make section visible and remove its section border
-            el.style.display = 'block';
-
-            // ── INCREASE FONT SIZE FOR PDF ONLY ──────────────
-            const originalStyles = [];
-
-            // Store original styles and apply larger fonts
-            const elementsToEnlarge = el.querySelectorAll('h1, h2, h3, h4, h5, p, li, .tl-desc, .stat-txt, .focus-sub, .srv-card p, .stat-num, .hero-name, .lead-form-title, .guide-title, .timeline, .exp-layout, .about-grid, .projects-grid, .services-grid, .skills-cols, .contact-grid, .hero-desc, .lead-left h2, .lead-right .lead-form-title, .tl-role, .tl-company, .edu-school, .focus-title, .project-card h3, .srv-card h3, .skill-list li, .pill, .tag, .badge, .label, .hero-tag, .contact-item, .social-link, .btn');
-            
-            elementsToEnlarge.forEach(el => {
-                const orig = el.style.fontSize;
-                const origLineHeight = el.style.lineHeight;
-                originalStyles.push({ el, orig, origLineHeight });
-                
-                // Aumentar tamaño de letra significativamente para PDF
-                el.style.fontSize = '1.4rem';
-                el.style.lineHeight = '1.8';
-            });
-
-            // Special treatment for headings
-            el.querySelectorAll('h1, h2').forEach(h => {
-                const orig = h.style.fontSize;
-                originalStyles.push({ el: h, orig, origLineHeight: h.style.lineHeight });
-                h.style.fontSize = '2.6rem';
-                h.style.lineHeight = '1.2';
-            });
-            el.querySelectorAll('h3, h4').forEach(h => {
-                const orig = h.style.fontSize;
-                originalStyles.push({ el: h, orig, origLineHeight: h.style.lineHeight });
-                h.style.fontSize = '1.8rem';
-                h.style.lineHeight = '1.4';
-            });
-            el.querySelectorAll('.stat-num').forEach(h => {
-                const orig = h.style.fontSize;
-                originalStyles.push({ el: h, orig, origLineHeight: h.style.lineHeight });
-                h.style.fontSize = '3.2rem';
-            });
-
-            // ── CAPTURE ────────────────────────────────────────
-            const canvas = await html2canvas(el, {
-                scale: SCALE,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                scrollX: 0,
-                scrollY: -window.scrollY,
-                width: 1200,
-                windowWidth: 1200,
-                logging: false,
-            });
-
-            // ── RESTORE ORIGINAL STYLES ──────────────────────
-            originalStyles.forEach(({ el, orig, origLineHeight }) => {
-                el.style.fontSize = orig;
-                el.style.lineHeight = origLineHeight || '';
-            });
-
-            if (pageIndex > 1) pdf.addPage();
-
-            // ── FIT TO A4 ─────────────────────────────────────
-            const imgW_mm  = A4_W_MM;
-            const imgH_mm  = (canvas.height / canvas.width) * imgW_mm;
-            const MARGIN   = 8;
-            const HEADER_H = 9;
-            const FOOTER_H = 6;
-            const avail_H  = A4_H_MM - MARGIN * 2 - HEADER_H - FOOTER_H;
-            const finalW   = A4_W_MM - MARGIN * 2;
-            const ratio    = Math.min(1, avail_H / imgH_mm);
-            const finalH   = imgH_mm * ratio;
-
-            // ── HEADER STRIP ──────────────────────────────────
-            pdf.setFillColor(26, 86, 219);
-            pdf.rect(0, 0, A4_W_MM, HEADER_H, 'F');
-            pdf.setFont('helvetica', 'bold');
-            pdf.setFontSize(7);
-            pdf.setTextColor(255, 255, 255);
-            pdf.text(def.label, MARGIN, 6);
-            pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(6.5);
-            pdf.setTextColor(200, 215, 245);
-            pdf.text('César Iván Abaunza Martínez', A4_W_MM - MARGIN, 6, { align:'right' });
-
-            // ── CONTENT IMAGE ─────────────────────────────────
-            const imgData = canvas.toDataURL('image/jpeg', 0.93);
-            pdf.addImage(imgData, 'JPEG', MARGIN, HEADER_H + MARGIN * 0.5, finalW, finalH);
-
-            // ── FOOTER ────────────────────────────────────────
-            pdf.setDrawColor(228, 233, 242);
-            pdf.setLineWidth(0.3);
-            pdf.line(MARGIN, A4_H_MM - FOOTER_H, A4_W_MM - MARGIN, A4_H_MM - FOOTER_H);
-            pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(6);
-            pdf.setTextColor(107, 122, 149);
-            pdf.text(
-                `${es ? 'Página' : 'Page'} ${pageIndex} / ${totalPages}  ·    ·  ing.ivan6@gmail.com`,
-                A4_W_MM / 2, A4_H_MM - 3, { align: 'center' }
-            );
-        }
-
-        // ── SAVE ──────────────────────────────────────────────
-        pdf.save(es ? 'CV_Cesar_Abaunza_Ing_IA.pdf' : 'CV_Cesar_Abaunza_Eng_AI.pdf');
-
-    } catch (err) {
-        console.error('PDF error:', err);
-        alert(es ? 'Error al generar el PDF. Intenta de nuevo.' : 'PDF generation error. Please try again.');
-    } finally {
-        // ── RESTORE PAGE ──────────────────────────────────────
-        uiEls.forEach(el => {
-            const orig = el.dataset.pdfHide;
-            el.style.removeProperty('display');
-            if (orig !== undefined && orig !== '') el.style.display = orig;
-            delete el.dataset.pdfHide;
-        });
-        mainEl.style.paddingTop = origPad;
-        if (isDark) document.body.classList.add('dark');
-        overlay.classList.remove('show');
+      pdf.setDrawColor(228,233,242); pdf.setLineWidth(0.3);
+      pdf.line(M, A4H-7, A4W-M, A4H-7);
+      pdf.setFont('helvetica','normal'); pdf.setFontSize(6); pdf.setTextColor(107,122,149);
+      pdf.text(`${currentLang==='es'?'PÃ¡gina':'Page'} ${gi+1} / ${groups.length}  Â·  ing.ivan6@gmail.com  Â·  +57 (302) 711-9980`,
+        A4W/2, A4H-3.5, { align:'center' });
     }
+
+    pdf.save(currentLang==='es' ? 'CV_Cesar_Abaunza_Ing_IA.pdf' : 'CV_Cesar_Abaunza_Eng_AI.pdf');
+
+  } catch(err) {
+    console.error(err);
+    alert(currentLang==='es' ? 'Error al generar PDF.' : 'PDF generation error.');
+  } finally {
+    document.getElementById('pdf-boost')?.remove();
+    uiEls.forEach(el => { el.style.removeProperty('display'); if (el._pdfDisplay) el.style.display = el._pdfDisplay; delete el._pdfDisplay; });
+    mainEl.style.paddingTop = origPad;
+    if (isDark) document.body.classList.add('dark');
+    overlay.classList.remove('show');
+  }
 }
+
+document.getElementById('pdfBtn').addEventListener('click', downloadPDF);
+document.getElementById('pdfBtnHero').addEventListener('click', downloadPDF);
+</script>
+<script>
+(function() {
+  function initTimelineAnimation() {
+    const timeline = document.querySelector('.timeline');
+    const items = document.querySelectorAll('.tl-item');
+    if (!timeline || items.length === 0) return;
+
+    let style = document.getElementById('timeline-animation-style');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'timeline-animation-style';
+      style.textContent = `
+        .timeline {
+          --line-height: 0%;
+        }
+        .timeline::before {
+          height: var(--line-height) !important;
+          transition: height 0.4s ease-out !important;
+        }
+        .tl-item.in-view::before {
+          background: var(--accent) !important;
+          box-shadow: 0 0 0 3px rgba(26,86,219,0.3) !important;
+          transform: scale(1.3) !important;
+          transition: all 0.3s ease !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    function updateTimeline() {
+      const winHeight = window.innerHeight;
+      let maxVisibleIndex = -1;
+      
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const isVisible = rect.top < winHeight - 80 && rect.bottom > 80;
+        if (isVisible) {
+          item.classList.add('in-view');
+          if (index > maxVisibleIndex) maxVisibleIndex = index;
+        }
+      });
+      
+      if (maxVisibleIndex >= 0) {
+        const progress = (maxVisibleIndex + 1) / items.length;
+        timeline.style.setProperty('--line-height', `${progress * 100}%`);
+      }
+    }
+
+    window.addEventListener('scroll', updateTimeline);
+    window.addEventListener('resize', updateTimeline);
+    updateTimeline();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTimelineAnimation);
+  } else {
+    initTimelineAnimation();
+  }
+})();
 </script>
 </body>
 </html>
