@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="César Iván Abaunza Martínez — Ingeniero Civil, Maestría en Geotecnia. Diez años de experiencia en ingeniería y proyectos de infraestructura, Magíster en Geotecnia: taludes, muros de contención, terraplenes, PLAXIS, GEO5 y Python.">
+<meta name="description" content="César Iván Abaunza Martínez — Ingeniero Civil, Maestría en Geotecnia. Diez años de experiencia en ingeniería y proyectos de infraestructura, Magíster en Geotecnia: taludes, muros de contención, terraplenes, PLAXIS, GEO5, Python y plataformas web para empresas de ingeniería (CimaSteel, SecopRadar, gestión de calidad).">
 <title>César Abaunza · Ingeniero Civil · Geotecnia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 <meta property="og:description" content="Ingeniero Civil con diez años de experiencia y Maestría en Geotecnia. Taludes, muros de contención, terraplenes, modelación en PLAXIS y GEO5.">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#1f4e79">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"César Iván Abaunza Martínez","jobTitle":"Ingeniero Civil · Geotecnia","email":"mailto:ing.ivan.abaunza@gmail.com","telephone":"+573027119980","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Universidad de Medellín"},{"@type":"CollegeOrUniversity","name":"Universidad Militar Nueva Granada"}],"knowsAbout":["Geotecnia","Estabilización de taludes","Muros de contención","Terraplenes","Fotogrametría UAV","NSR-10"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"César Iván Abaunza Martínez","jobTitle":"Ingeniero Civil · Geotecnia","email":"mailto:ing.ivan.abaunza@gmail.com","telephone":"+573027119980","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Universidad de Medellín"},{"@type":"CollegeOrUniversity","name":"Universidad Militar Nueva Granada"}],"knowsAbout":["Geotecnia","Estabilización de taludes","Muros de contención","Terraplenes","Fotogrametría UAV","NSR-10","Diseño de estructuras metálicas","Licitaciones públicas SECOP II","Digitalización de control de calidad","Next.js","Supabase","Python"]}</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
@@ -228,11 +228,25 @@ p{color:var(--ink-soft);}
 .proj-kind{font-family:'IBM Plex Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);border:1px solid var(--line);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 .proj h3{margin-bottom:.35rem;font-size:.95rem;}
 .proj p{font-size:.83rem;line-height:1.62;margin-bottom:.8rem;}
-.pl{display:grid;grid-template-columns:78px 1fr;gap:.5rem .7rem;margin-bottom:.85rem;}
+.pl{display:grid;grid-template-columns:108px 1fr;gap:.5rem .7rem;margin-bottom:.85rem;}
 .pl dt{font-family:'IBM Plex Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);padding-top:.15rem;}
 .pl dd{font-size:.82rem;color:var(--ink-soft);line-height:1.55;}
+.proj-grid.cols2{grid-template-columns:repeat(2,1fr);}
+.proj-sub{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--ink-mute);letter-spacing:.02em;margin:-.15rem 0 .8rem;line-height:1.45;}
+.grp-lbl{margin-top:2.2rem;}
+.grp-lbl:first-of-type{margin-top:1.4rem;}
 .other{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-top:1.2rem;transition:var(--tr);}
 .other p{font-size:.82rem;margin-bottom:.7rem;}
+
+/* ── APORTE ── */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.2rem;}
+.svc{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius);padding:1.1rem 1.15rem;transition:var(--tr),border-color .2s;}
+.svc:hover{border-color:var(--accent);}
+.svc .core-ic{margin-bottom:.7rem;}
+.svc strong{display:block;font-size:.88rem;margin-bottom:.35rem;line-height:1.35;}
+.svc p{font-size:.8rem;line-height:1.55;margin-bottom:.6rem;}
+.svc-proof{font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:var(--accent);line-height:1.45;}
+.svc-note{margin-top:1.1rem;font-size:.88rem;}
 
 /* ── COMPETENCIAS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;margin-top:1.2rem;}
@@ -261,6 +275,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
 @media (max-width:1000px){
   .about-grid,.exp-layout{grid-template-columns:1fr;gap:2.2rem;}
   .skills-grid{grid-template-columns:1fr 1fr;}
+  .svc-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:760px){
   .hero{grid-template-columns:1fr;gap:1.4rem;}
@@ -273,6 +288,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
   .tgrp{grid-template-columns:1fr;gap:.2rem;}
   main{padding:80px 1.2rem 2rem;}
   .skills-grid{grid-template-columns:1fr;}
+  .proj-grid.cols2,.svc-grid{grid-template-columns:1fr;}
   h2{font-size:1.5rem;}
   .hero-loc,.hero-title{font-size:.72rem;line-height:1.6;}
   .strata{padding-left:1.9rem;}
@@ -284,7 +300,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
   @page{size:A4;margin:11mm 11mm 12mm;}
   :root,body.dark{--paper:#fff;--surface:#fff;--surface-2:#f3f3ef;--surface-3:#e8e8e1;--ink:#14181f;--ink-soft:#3a424f;--ink-mute:#58606d;--line:#d9d7cf;--accent:#1f4e79;--accent-2:#1f4e79;--accent-wash:rgba(31,78,121,.09);--s1:#c69a5a;--s2:#a87f4c;--s3:#7d6a4e;--s4:#5b5647;--s5:#3b3d38;}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact;transition:none!important;animation:none!important;}
-  html{font-size:12.6px;}
+  html{font-size:12.3px;}
   body{background:#fff;line-height:1.45;}
   .navbar,#scrollBar,#pdfOverlay,.hero-actions,#fitEditBtn,#fitEditor,#fitTrigger,.fit-top .btn,footer{display:none!important;}
   main{max-width:none;padding:0;}
@@ -303,8 +319,11 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
   .about-grid,.exp-layout{grid-template-columns:1.2fr 1fr;gap:1.8rem;}
   .skills-grid{grid-template-columns:repeat(3,1fr);gap:1.4rem;}
   h2{font-size:1.5rem;margin-bottom:.9rem;}
-  .proj-grid{grid-template-columns:1fr 1fr;gap:.9rem;}
-  .proj,.core,.edu,.other,.seek,.fit,.fact,.layer,.sk li,.duties li,.ct,.hero{break-inside:avoid;page-break-inside:avoid;}
+  .proj-grid,.proj-grid.cols2{grid-template-columns:1fr 1fr;gap:.9rem;}
+  .svc-grid{grid-template-columns:1fr 1fr;gap:.8rem;}
+  .svc{padding:.85rem .95rem;}
+  .grp-lbl{margin-top:1.1rem;}
+  .svc,.proj,.core,.edu,.other,.seek,.fit,.fact,.layer,.sk li,.duties li,.ct,.hero{break-inside:avoid;page-break-inside:avoid;}
   h2,.eyebrow,.block-lbl,.sk h4{break-after:avoid;page-break-after:avoid;}
   .proj:hover,.core:hover,.edu:hover{transform:none;}
   .eyebrow{display:flex;}
@@ -319,13 +338,30 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
   .ct{padding:.4rem 0;}
   .layer{padding-bottom:1.2rem;}
   #experience .exp-layout{align-items:start;}
-  #experience .exp-layout>div:last-child{break-inside:avoid;page-break-inside:avoid;}
   .duties li{margin-bottom:.2rem;}
   .edu{margin-bottom:.5rem;padding:.7rem .9rem;}
   .tgrp{margin-bottom:.35rem;}
   .sk li{padding:.1rem 0;}
   #skills,#projects{margin-bottom:.8rem;}
+  .grp-lbl{break-after:avoid;page-break-after:avoid;}
+  #projects .pl dd{font-size:.86rem;line-height:1.62;}
+  #skills{margin-top:0;}
   a{text-decoration:none;}
+  /* experiencia a lo ancho; formación y software en dos columnas debajo */
+  #experience .exp-layout{grid-template-columns:1fr;gap:1rem;}
+  #experience .exp-layout>div:last-child{display:grid;grid-template-columns:1.15fr 1fr;gap:1.6rem;align-items:start;}
+  #experience .exp-layout>div:last-child>div{margin-bottom:0!important;}
+  .strata::before{bottom:5px;}
+  .svc-note,.proj-intro{break-before:avoid;}
+  h2{break-inside:avoid;page-break-inside:avoid;}
+  #experience{break-before:page;page-break-before:always;}
+  #projects .proj{padding:1.15rem 1.2rem;}
+  #projects .proj h3{font-size:1.02rem;}
+  #projects .proj p,#projects .pl dd{font-size:.86rem;line-height:1.62;}
+  #projects .pl{gap:.55rem .7rem;margin-bottom:.8rem;}
+  #projects .proj-sub{margin-bottom:.75rem;font-size:.7rem;}
+  #projects .proj-top{margin-bottom:.6rem;}
+  #projects .grp-lbl{margin-top:1.3rem;margin-bottom:.9rem;}
 }
 </style>
 </head>
@@ -340,7 +376,8 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
       <a href="#home" data-i18n="nav_home">Inicio</a>
       <a href="#about" data-i18n="nav_about">Perfil</a>
       <a href="#experience" data-i18n="nav_exp">Experiencia</a>
-      <a href="#projects" data-i18n="nav_proj">Proyectos</a>
+      <a href="#projects" data-i18n="nav_proj">Desarrollos</a>
+      <a href="#value" data-i18n="nav_val">Aporte</a>
       <a href="#skills" data-i18n="nav_skills">Competencias</a>
       <a href="#contact" data-i18n="nav_contact">Contacto</a>
     </div>
@@ -361,7 +398,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
       <div class="hero-loc"><i class="fas fa-location-dot"></i><span data-i18n="hero_loc">Bogotá, Colombia · Disponible para campo y viaje</span></div>
       <h1 class="hero-name">César Iván<br>Abaunza Martínez</h1>
       <div class="hero-title" data-i18n="hero_title">Ingeniero Civil · Magíster en Ingeniería Civil, énfasis Geotecnia</div>
-      <p class="hero-desc" data-i18n="hero_desc">Diez años de experiencia en ingeniería y gestión de proyectos, cinco de ellos en infraestructura vial como inspector técnico e ingeniero residente: taludes, muros de contención, terraplenes y control de laboratorio. Magíster en Geotecnia, con modelación en GEO5 y PLAXIS 2D y herramientas propias en Python. Busco consultoría y proyectos geotécnicos.</p>
+      <p class="hero-desc" data-i18n="hero_desc">Ingeniero Civil con diez años de experiencia en ingeniería y gestión de proyectos, cinco de ellos en infraestructura vial (inspección técnica y residencia de obra): estabilización de taludes, muros de contención, terraplenes y control de calidad de laboratorio. Magíster en Ingeniería Civil con énfasis en Geotecnia. Modelación en GEO5 y PLAXIS 2D. Desarrollo de plataformas tecnológicas para ingeniería: diseño estructural preliminar, licitaciones públicas, control de calidad e informes técnicos.</p>
       <div class="hero-actions">
         <button id="pdfBtnHero" class="btn btn-primary"><i class="fas fa-file-arrow-down"></i> <span data-i18n="pdf_btn_hero">Descargar CV (PDF)</span></button>
         <a href="#contact" class="btn btn-outline" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
@@ -381,7 +418,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
     <div class="fact"><div class="fact-n">157 km</div><div class="fact-l" data-i18n="win1">Corredor vial supervisado<br>Vías del Nus 4G</div></div>
     <div class="fact"><div class="fact-n">−35 %</div><div class="fact-l" data-i18n="win2">Tiempo en preparar ofertas<br>con herramienta propia</div></div>
     <div class="fact"><div class="fact-n">+8</div><div class="fact-l" data-i18n="win3">Proyectos presupuestados<br>residenciales y comerciales</div></div>
-    <div class="fact"><div class="fact-n">6</div><div class="fact-l" data-i18n="win4">Plataformas de software<br>desarrolladas (RMRT en producción)</div></div>
+    <div class="fact"><div class="fact-n">8</div><div class="fact-l" data-i18n="win4">Plataformas de software propias<br>4 de ellas en producción</div></div>
   </div>
 
   <div class="worksbar">
@@ -395,16 +432,16 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
 
   <!-- PERFIL -->
   <section id="about">
-    <div class="eyebrow" data-i18n="eb_about">Perfil</div>
+    <div class="eyebrow" data-i18n="eb_about">Perfil profesional</div>
     <div class="about-grid">
       <div>
         <h2 data-i18n="about_h2">Experiencia de obra,<br><em>especialización en geotecnia.</em></h2>
-        <p data-i18n="about_p1">De inspector técnico en Ruta del Sol Sector 2 a ingeniero residente en Vías del Nus 4G, con responsabilidad sobre 157 km de corredor. El trabajo diario fue geotecnia aplicada: cortes y taludes, muros de contención, terraplenes, anclajes, control de compactación y verificación de ensayos y memorias de cálculo contra NSR‑10 e INVÍAS.</p>
-        <p data-i18n="about_p2">Magíster en Ingeniería Civil con énfasis en Geotecnia, Universidad de Medellín (2026). Tesis: estimación de parámetros de resistencia en mezclas suelo‑roca (bimrocks) a partir de imágenes UAV.</p>
-        <p data-i18n="about_p3">Cuento además con formación en Administración de Empresas y en programación: he desarrollado seis plataformas de software propias que aplico dentro de equipos de ingeniería en presupuestos, análisis de datos y automatización de reportes técnicos.</p>
+        <p data-i18n="about_p1">Experiencia en proyectos viales de gran escala como inspector técnico (Ruta del Sol Sector 2) e ingeniero residente (Vías del Nus 4G, 157 km de corredor). Responsable de actividades de geotecnia aplicada: cortes y taludes, muros de contención, terraplenes, anclajes, control de compactación y verificación de ensayos y memorias de cálculo conforme a NSR‑10 y especificaciones INVÍAS.</p>
+        <p data-i18n="about_p2">Magíster en Ingeniería Civil, énfasis en Geotecnia, Universidad de Medellín (2026). Tesis: estimación de parámetros de resistencia en mezclas suelo‑roca (bimrocks) a partir de imágenes UAV y aprendizaje automático.</p>
+        <p data-i18n="about_p3">Formación complementaria en Administración de Empresas y desarrollo de software. Autor de ocho plataformas tecnológicas, cuatro de ellas en producción —entre otras, CimaSteel, SecopRadar y un sistema de gestión técnica y de calidad—, orientadas a presupuestos, licitaciones, control de calidad y automatización de informes técnicos.</p>
         <div class="seek">
-          <strong data-i18n="seek_lbl">Lo que busco</strong>
-          <p data-i18n="seek_txt">Incorporarme a proyectos de consultoría geotécnica, interventoría o construcción con área de suelos, donde pueda aportar mi experiencia de obra y consolidar una línea profesional especializada en geotecnia. Disponible para campo, laboratorio y comisión a proyecto.</p>
+          <strong data-i18n="seek_lbl">Objetivo profesional</strong>
+          <p data-i18n="seek_txt">Vinculación a firmas de consultoría geotécnica, interventoría o construcción con área de suelos, con aporte de experiencia de obra, capacidad de modelación y desarrollo de herramientas digitales. Disponibilidad para trabajo de campo, laboratorio y comisión a proyecto.</p>
         </div>
 
         <!-- TARJETA DIRIGIDA A LA EMPRESA -->
@@ -457,14 +494,30 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
         <h2 data-i18n="exp_h2">Experiencia<br><em>profesional.</em></h2>
         <div class="strata" id="strata">
 
+          <div class="layer key">
+            <div class="layer-date" data-i18n="ph_date">Jun 2026 — actualidad</div>
+            <div class="layer-org">P&amp;H Company Services</div>
+            <div class="layer-role" data-i18n="ph_role">Líder Técnico en Desarrollo Tecnológico</div>
+            <div class="layer-note" data-i18n="ph_note">Digitalización de ensayos, control de calidad e informes técnicos; flujo de trabajo aplicable a laboratorios y consultorías geotécnicas.</div>
+            <ul class="duties">
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_1">Diseño y administración del sistema digital de gestión técnica y de calidad: trazabilidad desde la orden de producción hasta el informe final, con roles y permisos por usuario.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_2">Digitalización de formatos de inspección y prueba con datos vinculados a la orden: inspección dimensional, pruebas hidrostática y neumática, registro de torque y certificados de calidad.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_3">Implementación de cálculos automáticos con criterios de aceptación.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_4">Desarrollo del registro fotográfico por fase y componente con compresión y procesamiento en paralelo.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_5">Estandarización de rótulo, código, versión, firmas y aprobaciones para control documental.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ph_6">Diseño y desarrollo del sitio web corporativo bilingüe (ES/EN) pyhcompany.com: 16 secciones, posicionamiento SEO, analítica con Google Analytics 4, videoteca técnica, formularios de solicitud e integración con el portal de clientes y trabajadores, con administración de fotografías desde el sistema interno.</span></li>
+            </ul>
+          </div>
+
           <div class="layer">
             <div class="layer-date">2024 — 2026 · Florida, EE. UU.</div>
             <div class="layer-org" data-i18n="us_org">Experiencia internacional</div>
             <div class="layer-role" data-i18n="us_role">Gestión de proyectos, operaciones y sistemas internos</div>
             <ul class="duties">
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="us_1">Project Manager en proyectos de cubiertas residenciales: control de presupuesto y calidad, normativa OSHA y supervisión de cuadrillas (Brayden Roofing Specialists).</span></li>
-              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="us_3">Fundador y desarrollador de producto de RMRT, plataforma SaaS en producción para gestión de cubiertas y resiliencia climática (desde nov. 2024).</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="us_3">Fundador y desarrollador de RMRT, plataforma SaaS en producción para gestión de proyectos de cubiertas y resiliencia climática (desde nov. 2024).</span></li>
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="us_2">Operación administrativa y desarrollo de herramientas internas de gestión y reportes (IQ Group).</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="us_4">Desarrollo de agentes con modelos de lenguaje y APIs en Python/FastAPI para automatización de reportes, presupuestos y procesos (IQ Designs).</span></li>
             </ul>
           </div>
 
@@ -473,7 +526,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
             <div class="layer-org">INMADICA Andina</div>
             <div class="layer-role" data-i18n="inma_role">Coordinador de Proyectos · Técnico en trabajo en alturas</div>
             <ul class="duties">
-              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="inma_1">Supervisión técnica de obras civiles: control de calidad y cumplimiento de especificaciones.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="inma_1">Supervisión técnica: control de calidad y cumplimiento de especificaciones.</span></li>
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="inma_2">Coordinación de equipos multidisciplinarios y programación de recursos.</span></li>
             </ul>
           </div>
@@ -484,7 +537,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
             <div class="layer-role" data-i18n="ingy_role">Coordinador de Proyectos</div>
             <ul class="duties">
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ingy_1">Elaboración de presupuestos y cantidades para más de 8 proyectos residenciales y comerciales (Hacienda Otoño, Club House Samaria, Colpatria).</span></li>
-              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ingy_2">Desarrollo de una herramienta automatizada de presupuestos conectada al sistema de licitaciones: 35% menos tiempo en la preparación de ofertas.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ingy_2">Desarrollo de herramienta automatizada de presupuestos integrada al sistema de licitaciones: reducción del 35 % en el tiempo de preparación de ofertas.</span></li>
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="ingy_3">Revisión de informes de obra, flujo de compras y facturación.</span></li>
             </ul>
           </div>
@@ -509,6 +562,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="rds_1">Inspección de obras viales: movimientos de tierra, estabilización de taludes, muros de contención, puentes y pavimentos.</span></li>
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="rds_2">Control de ensayos de laboratorio y verificación de memorias de cálculo.</span></li>
               <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="rds_3">Elaboración de informes de campo y cantidades de obra.</span></li>
+              <li><i class="fas fa-square" aria-hidden="true"></i><span data-i18n="rds_4">Apoyo a la liquidación del consorcio: elaboración de herramienta de cálculo y liquidación por ejecución de obra.</span></li>
             </ul>
           </div>
 
@@ -528,7 +582,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
           <div class="tgrp"><b data-i18n="tg1">Geotecnia</b><div class="tags"><span class="tag">GEO5</span><span class="tag">PLAXIS 2D</span></div></div>
           <div class="tgrp"><b data-i18n="tg2">Estructuras y diseño</b><div class="tags"><span class="tag">SAP2000</span><span class="tag">AutoCAD</span><span class="tag">Civil 3D</span></div></div>
           <div class="tgrp"><b data-i18n="tg3">Gestión y datos</b><div class="tags"><span class="tag">Primavera P6</span><span class="tag">MS Project</span><span class="tag">Power BI</span></div></div>
-          <div class="tgrp"><b data-i18n="tg4">Programación</b><div class="tags"><span class="tag">Python</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Streamlit</span></div></div>
+          <div class="tgrp"><b data-i18n="tg4">Programación</b><div class="tags"><span class="tag">Python</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Vercel</span><span class="tag">Streamlit</span><span class="tag">OpenCV</span><span class="tag">scikit-learn</span></div></div>
           <div class="tgrp"><b data-i18n="norm_lbl">Normativa</b><div class="tags"><span class="tag">NSR‑10 (Título H)</span><span class="tag">INVÍAS</span><span class="tag">ASTM D2487</span>
             <span class="tag">ACI 318</span><span class="tag">OSHA</span></div></div>
         </div>
@@ -537,36 +591,105 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
     </div>
   </section>
 
-  <!-- PROYECTOS -->
+  <!-- DESARROLLOS -->
   <section id="projects">
-    <div class="eyebrow" data-i18n="eb_proj">Trabajo técnico en geotecnia</div>
-    <h2 data-i18n="proj_h2">Investigación aplicada y herramientas<br><em>desarrolladas durante el posgrado.</em></h2>
-    <div class="proj-grid">
+    <div class="eyebrow" data-i18n="eb_proj">Desarrollos tecnológicos</div>
+    <h2 data-i18n="proj_h2">Herramientas tecnológicas<br><em>aplicadas a la ingeniería.</em></h2>
+    <p data-i18n="proj_intro" style="font-size:.93rem;max-width:760px;">Plataformas desarrolladas a partir de necesidades de obra, laboratorio y oficina técnica, con control de acceso por usuario y adaptables a los procesos de cada organización. Demostración disponible a solicitud.</p>
+
+    <!-- Grupo 1: geotecnia -->
+    <div class="block-lbl grp-lbl" data-i18n="grp1">Geotecnia · investigación de maestría</div>
+    <div class="proj-grid cols2">
       <div class="proj">
         <div class="proj-top"><div class="proj-ic"><i class="fas fa-mountain-sun"></i></div><span class="proj-kind" data-i18n="kind_thesis">Tesis de maestría</span></div>
         <h3>SRM‑Tool</h3>
+        <div class="proj-sub" data-i18n="p1_sub">Parámetros de resistencia de bimrocks desde imágenes UAV</div>
         <dl class="pl">
-          <dt data-i18n="lbl_prob">Problema</dt><dd data-i18n="p1_prob">En mezclas suelo‑roca (bimrocks) el ensayo convencional no representa la resistencia del conjunto: la gobierna la proporción volumétrica de bloques, difícil de medir en campo.</dd>
-          <dt data-i18n="lbl_met">Método</dt><dd data-i18n="p1_met">Fotografía UAV del talud, segmentación de bloques por procesamiento de imagen y cálculo de la proporción volumétrica.</dd>
-          <dt data-i18n="lbl_res">Resultado</dt><dd data-i18n="p1_res">Estimación de cohesión y ángulo de fricción mediante correlaciones publicadas para bimrocks, aplicable a análisis de estabilidad de taludes.</dd>
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p1_prob">Estimar parámetros de resistencia en mezclas suelo‑roca (bimrocks), cuyo comportamiento depende de la proporción volumétrica de bloques y no se representa con ensayos convencionales.</dd>
+          <dt data-i18n="lbl_met">Metodología</dt><dd data-i18n="p1_met">Fotogrametría UAV, segmentación de bloques por procesamiento de imagen (CLAHE, Otsu multinivel, watershed), cálculo de la proporción volumétrica y calibración del GSD.</dd>
+          <dt data-i18n="lbl_res">Resultados</dt><dd data-i18n="p1_res">Estimación de cohesión y ángulo de fricción mediante aprendizaje automático y correlaciones publicadas (Medley‑Sönmez, Barton‑Kjaernsli): R² ≥ 0,85 en cohesión y RMSE < 15 % en los tres parámetros.</dd>
         </dl>
-        <div class="tags"><span class="tag">Python</span><span class="tag">Visión por computador</span><span class="tag">Fotogrametría UAV</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag" data-i18n="tag_ml">Machine learning</span><span class="tag" data-i18n="tag_uav">Fotogrametría UAV</span></div>
       </div>
       <div class="proj">
         <div class="proj-top"><div class="proj-ic"><i class="fas fa-cubes"></i></div><span class="proj-kind" data-i18n="kind_val">Validación de tesis</span></div>
         <h3>SARAH</h3>
+        <div class="proj-sub" data-i18n="p2_sub">Generador de bimrocks sintéticos para validación</div>
         <dl class="pl">
-          <dt data-i18n="lbl_prob">Problema</dt><dd data-i18n="p2_prob">No existen casos de campo con proporción de bloques conocida contra los cuales verificar la estimación.</dd>
-          <dt data-i18n="lbl_met">Método</dt><dd data-i18n="p2_met">Generación de imágenes sintéticas de bimrocks con proporción, granulometría y distribución controladas.</dd>
-          <dt data-i18n="lbl_res">Resultado</dt><dd data-i18n="p2_res">Validación del SRM‑Tool contra proporciones conocidas, con clasificación ASTM/USCS y exportación de curvas granulométricas.</dd>
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p2_prob">Validar el SRM‑Tool ante la ausencia de casos de campo con proporción de bloques conocida.</dd>
+          <dt data-i18n="lbl_met">Metodología</dt><dd data-i18n="p2_met">Generación de imágenes sintéticas de bimrocks con proporción, granulometría y distribución espacial controladas.</dd>
+          <dt data-i18n="lbl_res">Resultados</dt><dd data-i18n="p2_res">Validación cruzada contra proporciones conocidas, clasificación ASTM D2487 (USCS) y exportación de curvas granulométricas.</dd>
         </dl>
-        <div class="tags"><span class="tag">Python</span><span class="tag">Simulación</span><span class="tag">ASTM D2487</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag" data-i18n="tag_sim">Simulación</span><span class="tag">ASTM D2487</span></div>
       </div>
     </div>
-    <div class="other">
-      <p data-i18n="other_p"><strong>Otros desarrollos.</strong> Fuera de la geotecnia he construido herramientas de gestión para clientes y proyectos propios: RMRT (SaaS en producción para gestión de proyectos de cubiertas y resiliencia climática en EE. UU.), un CRM para agencia de seguros, un sistema de inteligencia de mercado para mantenimiento de equipos rotativos y varias automatizaciones de reportes. Explican mi manejo de datos, que hoy aplico a problemas de ingeniería y geotecnia.</p>
-      <div class="tags"><span class="tag sec">RMRT</span><span class="tag sec">CRM seguros</span><span class="tag sec">Inteligencia de mercado MRO</span><span class="tag sec">Automatización de reportes</span></div>
+
+    <!-- Grupo 2: herramientas para empresas de ingeniería -->
+    <div class="block-lbl grp-lbl" data-i18n="grp2">Plataformas para empresas de ingeniería</div>
+    <div class="proj-grid cols2">
+      <div class="proj">
+        <div class="proj-top"><div class="proj-ic"><i class="fas fa-industry"></i></div><span class="proj-kind" data-i18n="kind_prod">Plataforma web · en producción</span></div>
+        <h3>CimaSteel</h3>
+        <div class="proj-sub" data-i18n="p3_sub">Diseño preliminar y presupuesto de estructuras metálicas</div>
+        <dl class="pl">
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p3_prob">Integrar predimensionamiento y presupuesto de estructuras metálicas (pórticos y naves) en una sola herramienta.</dd>
+          <dt data-i18n="lbl_func">Funcionalidades</dt><dd data-i18n="p3_sol">Modelado tipo CAD, solver lineal propio o ingreso manual de fuerzas, verificación preliminar NSR‑10 (Títulos A, B y F), planos en PDF con rótulo y presupuesto con AIU y transporte a obra.</dd>
+          <dt data-i18n="lbl_app">Aplicación</dt><dd data-i18n="p3_val">Estructuración de ofertas y comparación de alternativas en etapa preliminar, previa al diseño estructural definitivo.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">NSR‑10 (A, B, F)</span><span class="tag" data-i18n="tag_pdf">Planos PDF</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-ic"><i class="fas fa-satellite-dish"></i></div><span class="proj-kind" data-i18n="kind_prod">Plataforma web · en producción</span></div>
+        <h3>SecopRadar</h3>
+        <div class="proj-sub" data-i18n="p4_sub">Radar de procesos de contratación pública en SECOP II</div>
+        <dl class="pl">
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p4_prob">Identificar oportunamente procesos de contratación pública de interventoría y consultoría en ingeniería civil.</dd>
+          <dt data-i18n="lbl_func">Funcionalidades</dt><dd data-i18n="p4_sol">Consulta de procesos de SECOP II con filtros por modalidad (mínima cuantía por defecto), departamento y palabras clave técnicas; acceso restringido a usuarios habilitados.</dd>
+          <dt data-i18n="lbl_app">Aplicación</dt><dd data-i18n="p4_val">Áreas comerciales y de licitaciones de firmas de ingeniería: seguimiento de procesos por región y tipo de servicio.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">SECOP II</span><span class="tag" data-i18n="tag_inter">Interventoría · consultoría</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-ic"><i class="fas fa-clipboard-check"></i></div><span class="proj-kind" data-i18n="kind_ent">Sistema empresarial · en producción</span></div>
+        <h3 data-i18n="p5_t">Sistema de gestión técnica y de calidad</h3>
+        <div class="proj-sub" data-i18n="p5_sub">P&amp;H Company Services · mantenimiento y reparación overhaul</div>
+        <dl class="pl">
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p5_prob">Digitalizar el ciclo documental técnico: informes de overhaul, formatos de inspección y certificados.</dd>
+          <dt data-i18n="lbl_func">Funcionalidades</dt><dd data-i18n="p5_sol">Portal con roles y permisos; informes por las 8 fases del proceso; registro fotográfico por componente y fase; formatos de inspección y prueba; certificados de calidad y calibración con dictamen automático; documentos con código, versión y aprobaciones.</dd>
+          <dt data-i18n="lbl_app">Aplicación</dt><dd data-i18n="p5_val">Modelo replicable en laboratorios de suelos e interventorías: registro de ensayos, criterios de aceptación, registro fotográfico e informe final con trazabilidad.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag" data-i18n="tag_qc">Control de calidad</span><span class="tag" data-i18n="tag_trace">Trazabilidad documental</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-ic"><i class="fas fa-chart-line"></i></div><span class="proj-kind" data-i18n="kind_engine">Motor de datos · servicio</span></div>
+        <h3 data-i18n="p6_t">Motor de inteligencia de mercado</h3>
+        <div class="proj-sub" data-i18n="p6_sub">Detección automática de oportunidades comerciales B2B</div>
+        <dl class="pl">
+          <dt data-i18n="lbl_prob">Objetivo</dt><dd data-i18n="p6_prob">Detectar y priorizar oportunidades comerciales B2B: contratos, proyectos de infraestructura, emergencias y convocatorias.</dd>
+          <dt data-i18n="lbl_func">Funcionalidades</dt><dd data-i18n="p6_sol">Recolección automatizada semanal (Google News, SECOP II, ANH, ANM), clasificación por palabras clave y modelo de lenguaje (Claude API), base de datos con deduplicación y reportes ejecutivos.</dd>
+          <dt data-i18n="lbl_app">Aplicación</dt><dd data-i18n="p6_val">Motor configurable por perfil de negocio; implementado para mantenimiento industrial de equipos rotativos y servicios de ingeniería con drones.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Claude API</span><span class="tag" data-i18n="tag_auto">Automatización</span></div>
+      </div>
     </div>
+
+    <div class="other">
+      <p data-i18n="other_p"><strong>Otros desarrollos.</strong> RMRT: plataforma SaaS en producción (EE. UU.) para gestión de proyectos de cubiertas, con portal de subcontratistas y facturación en PDF · Cotizador para trámite de licencias de construcción con generación de presupuesto · Herramienta de presupuestos integrada a licitaciones (INGYCONS) · CRM para agencia de seguros · Sitio web corporativo bilingüe de P&amp;H.</p>
+      <div class="tags"><span class="tag sec">RMRT</span><span class="tag sec" data-i18n="ot_lic">Cotizador de licencias de construcción</span><span class="tag sec" data-i18n="ot_bud">Presupuestos conectados a licitaciones</span><span class="tag sec" data-i18n="ot_crm">CRM seguros</span><span class="tag sec" data-i18n="ot_web">Sitio corporativo bilingüe</span></div>
+    </div>
+  </section>
+
+  <!-- APORTE -->
+  <section id="value">
+    <div class="eyebrow" data-i18n="eb_val">Áreas de aporte</div>
+    <h2 data-i18n="val_h2">Perfil técnico<br><em>con desarrollo tecnológico propio.</em></h2>
+    <div class="svc-grid">
+      <div class="svc"><div class="core-ic"><i class="fas fa-mountain"></i></div><strong data-i18n="v1_t">Geotecnia de obra y supervisión</strong><p data-i18n="v1_p">Residencia e inspección técnica de obra; control de taludes, muros de contención, terraplenes y anclajes; verificación de ensayos y memorias de cálculo (NSR‑10, INVÍAS).</p><div class="svc-proof" data-i18n="v1_pr">Ruta del Sol 2 · Vías del Nus 4G · 157 km</div></div>
+      <div class="svc"><div class="core-ic"><i class="fas fa-flask-vial"></i></div><strong data-i18n="v2_t">Digitalización de laboratorio y calidad</strong><p data-i18n="v2_p">Formatos digitales de ensayo e inspección, criterios de aceptación con dictamen automático, registro fotográfico e informes técnicos con trazabilidad.</p><div class="svc-proof" data-i18n="v2_pr">Sistema de gestión técnica P&amp;H</div></div>
+      <div class="svc"><div class="core-ic"><i class="fas fa-calculator"></i></div><strong data-i18n="v3_t">Cálculo y presupuesto a la medida</strong><p data-i18n="v3_p">Herramientas de predimensionamiento, cantidades y presupuestos adaptadas a los procesos de la organización.</p><div class="svc-proof" data-i18n="v3_pr">CimaSteel · −35 % en ofertas (INGYCONS)</div></div>
+      <div class="svc"><div class="core-ic"><i class="fas fa-file-contract"></i></div><strong data-i18n="v4_t">Licitaciones e inteligencia comercial</strong><p data-i18n="v4_p">Seguimiento de procesos en SECOP II, estructuración de ofertas y detección temprana de oportunidades.</p><div class="svc-proof" data-i18n="v4_pr">SecopRadar · motor de oportunidades</div></div>
+    </div>
+    <p class="svc-note" data-i18n="val_note">Perfil que combina el ejercicio técnico de la ingeniería con el desarrollo de herramientas digitales internas, sin dependencia de proveedores externos de software.</p>
   </section>
 
   <!-- COMPETENCIAS -->
@@ -594,6 +717,7 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
           <li data-i18n="sk2_4">Control de costos y programación (P6, MS Project)</li>
           <li data-i18n="sk2_5">Coordinación con interventoría, laboratorio y topografía</li>
           <li data-i18n="sk2_6">Seguridad en obra y trabajo en alturas</li>
+          <li data-i18n="sk2_7">Seguimiento de licitaciones públicas en SECOP II</li>
         </ul>
       </div>
       <div class="sk">
@@ -603,7 +727,8 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
           <li data-i18n="sk3_2">Procesamiento de imagen aplicado a caracterización de suelos</li>
           <li data-i18n="sk3_3">Automatización de informes técnicos y presupuestos</li>
           <li data-i18n="sk3_4">Tableros de seguimiento de obra (Power BI)</li>
-          <li data-i18n="sk3_5">Desarrollo de aplicaciones internas de apoyo</li>
+          <li data-i18n="sk3_5">Plataformas web con roles y permisos (Next.js + Supabase)</li>
+          <li data-i18n="sk3_7">Integración de modelos de lenguaje (IA) en flujos de trabajo</li>
           <li data-i18n="sk3_6">Español nativo · Inglés técnico (lectura, reportes, reuniones)</li>
         </ul>
       </div>
@@ -615,8 +740,8 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
     <div class="eyebrow" data-i18n="eb_contact">Contacto</div>
     <div class="exp-layout">
       <div>
-        <h2 data-i18n="contact_h2">Disponible para<br><em>vincularme a su equipo.</em></h2>
-        <p data-i18n="contact_p" style="font-size:.93rem;">Radicado en Bogotá, con disponibilidad para trabajo de campo, comisiones y desplazamiento a proyecto. Puedo enviar el certificado de matrícula COPNIA, certificaciones laborales y soportes académicos cuando se requieran.</p>
+        <h2 data-i18n="contact_h2">Información<br><em>de contacto.</em></h2>
+        <p data-i18n="contact_p" style="font-size:.93rem;">Residencia en Bogotá. Disponibilidad para trabajo de campo, comisiones y desplazamiento a proyecto. Certificado de matrícula COPNIA, certificaciones laborales y soportes académicos disponibles a solicitud.</p>
       </div>
       <div>
         <a href="mailto:ing.ivan.abaunza@gmail.com?subject=Postulaci%C3%B3n%20%E2%80%93%20Ingeniero%20Civil%20(Geotecnia)" class="ct"><i class="fas fa-envelope"></i><div><div class="ct-l" data-i18n="ct_mail">Correo</div><div class="ct-v">ing.ivan.abaunza@gmail.com</div></div></a>
@@ -637,33 +762,17 @@ footer{text-align:center;padding:1.8rem;border-top:1px solid var(--line);margin-
 /* ─────────────── TRADUCCIONES ─────────────── */
 const translations = {
   es:{
-    nav_home:"Inicio",nav_about:"Perfil",nav_exp:"Experiencia",nav_proj:"Proyectos",nav_skills:"Competencias",nav_contact:"Contacto",
+    nav_home:"Inicio",nav_about:"Perfil",nav_exp:"Experiencia",nav_skills:"Competencias",nav_contact:"Contacto",
     pdf_btn:"CV PDF",pdf_btn_hero:"Descargar CV (PDF)",btn_contact:"Contactar",
     hero_loc:"Bogotá, Colombia · Disponible para campo y viaje",
     hero_title:"Ingeniero Civil · Magíster en Ingeniería Civil, énfasis Geotecnia",
-    hero_desc:"Diez años de experiencia en ingeniería y gestión de proyectos, cinco de ellos en infraestructura vial como inspector técnico e ingeniero residente: taludes, muros de contención, terraplenes y control de laboratorio. Magíster en Geotecnia, con modelación en GEO5 y PLAXIS 2D y herramientas propias en Python. Busco consultoría y proyectos geotécnicos.",
     doc_title:"César Abaunza · Ingeniero Civil · Geotecnia",
     fit_trigger:"Dirigir esta postulación a una empresa",
-    lbl_prob:"Problema",lbl_met:"Método",lbl_res:"Resultado",
-    p1_prob:"En mezclas suelo‑roca (bimrocks) el ensayo convencional no representa la resistencia del conjunto: la gobierna la proporción volumétrica de bloques, difícil de medir en campo.",
-    p1_met:"Fotografía UAV del talud, segmentación de bloques por procesamiento de imagen y cálculo de la proporción volumétrica.",
-    p1_res:"Estimación de cohesión y ángulo de fricción mediante correlaciones publicadas para bimrocks, aplicable a análisis de estabilidad de taludes.",
-    p2_prob:"No existen casos de campo con proporción de bloques conocida contra los cuales verificar la estimación.",
-    p2_met:"Generación de imágenes sintéticas de bimrocks con proporción, granulometría y distribución controladas.",
-    p2_res:"Validación del SRM‑Tool contra proporciones conocidas, con clasificación ASTM/USCS y exportación de curvas granulométricas.",
     us_1:"Project Manager en proyectos de cubiertas residenciales: control de presupuesto y calidad, normativa OSHA y supervisión de cuadrillas (Brayden Roofing Specialists).",
-    us_3:"Fundador y desarrollador de producto de RMRT, plataforma SaaS en producción para gestión de cubiertas y resiliencia climática (desde nov. 2024).",
-    us_2:"Operación administrativa y desarrollo de herramientas internas de gestión y reportes (IQ Group).",
+    ph_date:"Jun 2026 — actualidad",ph_role:"Líder Técnico en Desarrollo Tecnológico",us_2:"Operación administrativa y desarrollo de herramientas internas de gestión y reportes (IQ Group).",
     fact1:"De experiencia profesional<br>desde diciembre de 2016",fact1n:"años",fact2:"Ingeniería Civil, Geotecnia<br>Universidad de Medellín",fact3:"Modelación geotécnica<br>y Python para análisis",fact4:"Matrícula profesional vigente<br>sin antecedentes",
-    win1:"Corredor vial supervisado<br>Vías del Nus 4G",win2:"Tiempo en preparar ofertas<br>con herramienta propia",win3:"Proyectos presupuestados<br>residenciales y comerciales",win4:"Plataformas de software<br>desarrolladas (RMRT en producción)",
-    works_label:"Obras y organizaciones",
-    eb_about:"Perfil",
+    win1:"Corredor vial supervisado<br>Vías del Nus 4G",win2:"Tiempo en preparar ofertas<br>con herramienta propia",win3:"Proyectos presupuestados<br>residenciales y comerciales",works_label:"Obras y organizaciones",
     about_h2:"Experiencia de obra,<br><em>especialización en geotecnia.</em>",
-    about_p1:"De inspector técnico en Ruta del Sol Sector 2 a ingeniero residente en Vías del Nus 4G, con responsabilidad sobre 157 km de corredor. El trabajo diario fue geotecnia aplicada: cortes y taludes, muros de contención, terraplenes, anclajes, control de compactación y verificación de ensayos y memorias de cálculo contra NSR‑10 e INVÍAS.",
-    about_p2:"Magíster en Ingeniería Civil con énfasis en Geotecnia, Universidad de Medellín (2026). Tesis: estimación de parámetros de resistencia en mezclas suelo‑roca (bimrocks) a partir de imágenes UAV.",
-    about_p3:"Cuento además con formación en Administración de Empresas y en programación: he desarrollado seis plataformas de software propias que aplico dentro de equipos de ingeniería en presupuestos, análisis de datos y automatización de reportes técnicos.",
-    seek_lbl:"Lo que busco",
-    seek_txt:"Incorporarme a proyectos de consultoría geotécnica, interventoría o construcción con área de suelos, donde pueda aportar mi experiencia de obra y consolidar una línea profesional especializada en geotecnia. Disponible para campo, laboratorio y comisión a proyecto.",
     fit_to:"Postulación dirigida a",fit_co_default:"Su organización",
     fit_note_default:"Este perfil se puede dirigir a una empresa específica. Al enviarlo, esta tarjeta indica a qué firma va la postulación y por qué.",
     fit_edit:'<i class="fas fa-pen"></i> Personalizar',fit_f1:"Nombre de la empresa",fit_f2:"Por qué esa empresa (2 o 3 líneas)",
@@ -677,11 +786,9 @@ const translations = {
     eb_exp:"Trayectoria",exp_h2:"Experiencia<br><em>profesional.</em>",
     us_org:"Experiencia internacional",us_role:"Gestión de proyectos, operaciones y sistemas internos",
     inma_role:"Coordinador de Proyectos · Técnico en trabajo en alturas",
-    inma_1:"Supervisión técnica de obras civiles: control de calidad y cumplimiento de especificaciones.",
     inma_2:"Coordinación de equipos multidisciplinarios y programación de recursos.",
     ingy_role:"Coordinador de Proyectos",
     ingy_1:"Elaboración de presupuestos y cantidades para más de 8 proyectos residenciales y comerciales (Hacienda Otoño, Club House Samaria, Colpatria).",
-    ingy_2:"Desarrollo de una herramienta automatizada de presupuestos conectada al sistema de licitaciones: 35% menos tiempo en la preparación de ofertas.",
     ingy_3:"Revisión de informes de obra, flujo de compras y facturación.",
     nus_role:"Ingeniero Residente",
     nus_1:"Supervisión de 157 km de corredor: movimientos de tierra, estabilización de taludes, muros de contención, túneles, puentes y pavimentos.",
@@ -699,10 +806,7 @@ const translations = {
     edu3_t:"Administración de Empresas",edu3_s:"Universidad Militar Nueva Granada (2023)",
     edu4_t:"Otras credenciales",edu4_s:"Diplomado en Logística Integral (UMNG, 2020) · Trabajo seguro en alturas · Licencia 4‑40 Property &amp; Casualty (Florida DFS)",
     tools_lbl:"Software técnico",tg1:"Geotecnia",tg2:"Estructuras y diseño",tg3:"Gestión y datos",tg4:"Programación",norm_lbl:"Normativa",
-    eb_proj:"Trabajo técnico en geotecnia",
-    proj_h2:"Investigación aplicada y herramientas<br><em>desarrolladas durante el posgrado.</em>",
     kind_thesis:"Tesis de maestría",kind_val:"Validación de tesis",
-    other_p:"<strong>Otros desarrollos.</strong> Fuera de la geotecnia he construido herramientas de gestión para clientes y proyectos propios: RMRT (SaaS en producción para gestión de proyectos de cubiertas y resiliencia climática en EE. UU.), un CRM para agencia de seguros, un sistema de inteligencia de mercado para mantenimiento de equipos rotativos y varias automatizaciones de reportes. Explican mi manejo de datos, que hoy aplico a problemas de ingeniería y geotecnia.",
     eb_skills:"Competencias",
     sk1:"Geotecnia y suelos",
     sk1_1:"Estabilización de taludes y control de cortes",sk1_2:"Muros de contención, anclajes y estructuras de estabilización",
@@ -716,43 +820,119 @@ const translations = {
     sk3:"Datos aplicados a ingeniería",
     sk3_1:"Python para cálculo y procesamiento de datos geotécnicos",sk3_2:"Procesamiento de imagen aplicado a caracterización de suelos",
     sk3_3:"Automatización de informes técnicos y presupuestos",sk3_4:"Tableros de seguimiento de obra (Power BI)",
-    sk3_5:"Desarrollo de aplicaciones internas de apoyo",sk3_6:"Español nativo · Inglés técnico (lectura, reportes, reuniones)",
-    eb_contact:"Contacto",contact_h2:"Disponible para<br><em>vincularme a su equipo.</em>",
-    contact_p:"Radicado en Bogotá, con disponibilidad para trabajo de campo, comisiones y desplazamiento a proyecto. Puedo enviar el certificado de matrícula COPNIA, certificaciones laborales y soportes académicos cuando se requieran.",
-    ct_mail:"Correo",ct_tel:"Teléfono",ct_loc:"Ubicación",ct_loc_v:"Bogotá D.C., Colombia",
+    sk3_6:"Español nativo · Inglés técnico (lectura, reportes, reuniones)",
+    eb_contact:"Contacto",ct_mail:"Correo",ct_tel:"Teléfono",ct_loc:"Ubicación",ct_loc_v:"Bogotá D.C., Colombia",
     footer_r:"Ingeniería Civil — Geotecnia",
     pdf_doc:"Hoja de vida",
     pdf_prep:"Preparando documento…",pdf_page:"Página",pdf_err:"No se pudo generar el PDF. Intente de nuevo.",
-    copied:"Enlace copiado",copyfail:"Seleccione el enlace y cópielo manualmente."
+    copied:"Enlace copiado",copyfail:"Seleccione el enlace y cópielo manualmente.",
+    nav_proj:"Desarrollos",
+    nav_val:"Aporte",
+    win4:"Plataformas de software propias<br>4 de ellas en producción",
+    eb_proj:"Desarrollos tecnológicos",
+    grp1:"Geotecnia · investigación de maestría",
+    grp2:"Plataformas para empresas de ingeniería",
+    p1_sub:"Parámetros de resistencia de bimrocks desde imágenes UAV",
+    p2_sub:"Generador de bimrocks sintéticos para validación",
+    kind_prod:"Plataforma web · en producción",
+    kind_ent:"Sistema empresarial · en producción",
+    kind_engine:"Motor de datos · servicio",
+    p3_sub:"Diseño preliminar y presupuesto de estructuras metálicas",
+    p4_sub:"Radar de procesos de contratación pública en SECOP II",
+    p5_t:"Sistema de gestión técnica y de calidad",
+    p5_sub:"P&amp;H Company Services · mantenimiento y reparación overhaul",
+    p6_t:"Motor de inteligencia de mercado",
+    p6_sub:"Detección automática de oportunidades comerciales B2B",
+    tag_ml:"Machine learning",
+    tag_uav:"Fotogrametría UAV",
+    tag_sim:"Simulación",
+    tag_pdf:"Planos PDF",
+    tag_inter:"Interventoría · consultoría",
+    tag_qc:"Control de calidad",
+    tag_trace:"Trazabilidad documental",
+    tag_auto:"Automatización",
+    ot_lic:"Cotizador de licencias de construcción",
+    ot_bud:"Presupuestos conectados a licitaciones",
+    ot_crm:"CRM seguros",
+    ot_web:"Sitio corporativo bilingüe",
+    v1_t:"Geotecnia de obra y supervisión",
+    v1_pr:"Ruta del Sol 2 · Vías del Nus 4G · 157 km",
+    v2_t:"Digitalización de laboratorio y calidad",
+    v2_pr:"Sistema de gestión técnica P&amp;H",
+    v3_t:"Cálculo y presupuesto a la medida",
+    v3_pr:"CimaSteel · −35 % en ofertas (INGYCONS)",
+    v4_t:"Licitaciones e inteligencia comercial",
+    v4_pr:"SecopRadar · motor de oportunidades",
+    sk2_7:"Seguimiento de licitaciones públicas en SECOP II",
+    sk3_5:"Plataformas web con roles y permisos (Next.js + Supabase)",
+    sk3_7:"Integración de modelos de lenguaje (IA) en flujos de trabajo",
+    hero_desc:"Ingeniero Civil con diez años de experiencia en ingeniería y gestión de proyectos, cinco de ellos en infraestructura vial (inspección técnica y residencia de obra): estabilización de taludes, muros de contención, terraplenes y control de calidad de laboratorio. Magíster en Ingeniería Civil con énfasis en Geotecnia. Modelación en GEO5 y PLAXIS 2D. Desarrollo de plataformas tecnológicas para ingeniería: diseño estructural preliminar, licitaciones públicas, control de calidad e informes técnicos.",
+    eb_about:"Perfil profesional",
+    about_p1:"Experiencia en proyectos viales de gran escala como inspector técnico (Ruta del Sol Sector 2) e ingeniero residente (Vías del Nus 4G, 157 km de corredor). Responsable de actividades de geotecnia aplicada: cortes y taludes, muros de contención, terraplenes, anclajes, control de compactación y verificación de ensayos y memorias de cálculo conforme a NSR‑10 y especificaciones INVÍAS.",
+    about_p2:"Magíster en Ingeniería Civil, énfasis en Geotecnia, Universidad de Medellín (2026). Tesis: estimación de parámetros de resistencia en mezclas suelo‑roca (bimrocks) a partir de imágenes UAV y aprendizaje automático.",
+    about_p3:"Formación complementaria en Administración de Empresas y desarrollo de software. Autor de ocho plataformas tecnológicas, cuatro de ellas en producción —entre otras, CimaSteel, SecopRadar y un sistema de gestión técnica y de calidad—, orientadas a presupuestos, licitaciones, control de calidad y automatización de informes técnicos.",
+    seek_lbl:"Objetivo profesional",
+    seek_txt:"Vinculación a firmas de consultoría geotécnica, interventoría o construcción con área de suelos, con aporte de experiencia de obra, capacidad de modelación y desarrollo de herramientas digitales. Disponibilidad para trabajo de campo, laboratorio y comisión a proyecto.",
+    ph_note:"Digitalización de ensayos, control de calidad e informes técnicos; flujo de trabajo aplicable a laboratorios y consultorías geotécnicas.",
+    ph_2:"Digitalización de formatos de inspección y prueba con datos vinculados a la orden: inspección dimensional, pruebas hidrostática y neumática, registro de torque y certificados de calidad.",
+    ph_5:"Estandarización de rótulo, código, versión, firmas y aprobaciones para control documental.",
+    us_3:"Fundador y desarrollador de RMRT, plataforma SaaS en producción para gestión de proyectos de cubiertas y resiliencia climática (desde nov. 2024).",
+    us_4:"Desarrollo de agentes con modelos de lenguaje y APIs en Python/FastAPI para automatización de reportes, presupuestos y procesos (IQ Designs).",
+    ingy_2:"Desarrollo de herramienta automatizada de presupuestos integrada al sistema de licitaciones: reducción del 35 % en el tiempo de preparación de ofertas.",
+    proj_h2:"Herramientas tecnológicas<br><em>aplicadas a la ingeniería.</em>",
+    proj_intro:"Plataformas desarrolladas a partir de necesidades de obra, laboratorio y oficina técnica, con control de acceso por usuario y adaptables a los procesos de cada organización. Demostración disponible a solicitud.",
+    lbl_prob:"Objetivo",
+    lbl_met:"Metodología",
+    lbl_res:"Resultados",
+    lbl_func:"Funcionalidades",
+    lbl_app:"Aplicación",
+    p1_prob:"Estimar parámetros de resistencia en mezclas suelo‑roca (bimrocks), cuyo comportamiento depende de la proporción volumétrica de bloques y no se representa con ensayos convencionales.",
+    p1_met:"Fotogrametría UAV, segmentación de bloques por procesamiento de imagen (CLAHE, Otsu multinivel, watershed), cálculo de la proporción volumétrica y calibración del GSD.",
+    p1_res:"Estimación de cohesión y ángulo de fricción mediante aprendizaje automático y correlaciones publicadas (Medley‑Sönmez, Barton‑Kjaernsli): R² ≥ 0,85 en cohesión y RMSE < 15 % en los tres parámetros.",
+    p2_prob:"Validar el SRM‑Tool ante la ausencia de casos de campo con proporción de bloques conocida.",
+    p2_met:"Generación de imágenes sintéticas de bimrocks con proporción, granulometría y distribución espacial controladas.",
+    p2_res:"Validación cruzada contra proporciones conocidas, clasificación ASTM D2487 (USCS) y exportación de curvas granulométricas.",
+    p3_prob:"Integrar predimensionamiento y presupuesto de estructuras metálicas (pórticos y naves) en una sola herramienta.",
+    p3_sol:"Modelado tipo CAD, solver lineal propio o ingreso manual de fuerzas, verificación preliminar NSR‑10 (Títulos A, B y F), planos en PDF con rótulo y presupuesto con AIU y transporte a obra.",
+    p3_val:"Estructuración de ofertas y comparación de alternativas en etapa preliminar, previa al diseño estructural definitivo.",
+    p4_prob:"Identificar oportunamente procesos de contratación pública de interventoría y consultoría en ingeniería civil.",
+    p4_sol:"Consulta de procesos de SECOP II con filtros por modalidad (mínima cuantía por defecto), departamento y palabras clave técnicas; acceso restringido a usuarios habilitados.",
+    p4_val:"Áreas comerciales y de licitaciones de firmas de ingeniería: seguimiento de procesos por región y tipo de servicio.",
+    p5_prob:"Digitalizar el ciclo documental técnico: informes de overhaul, formatos de inspección y certificados.",
+    p5_val:"Modelo replicable en laboratorios de suelos e interventorías: registro de ensayos, criterios de aceptación, registro fotográfico e informe final con trazabilidad.",
+    p6_prob:"Detectar y priorizar oportunidades comerciales B2B: contratos, proyectos de infraestructura, emergencias y convocatorias.",
+    p6_sol:"Recolección automatizada semanal (Google News, SECOP II, ANH, ANM), clasificación por palabras clave y modelo de lenguaje (Claude API), base de datos con deduplicación y reportes ejecutivos.",
+    p6_val:"Motor configurable por perfil de negocio; implementado para mantenimiento industrial de equipos rotativos y servicios de ingeniería con drones.",
+    other_p:"<strong>Otros desarrollos.</strong> RMRT: plataforma SaaS en producción (EE. UU.) para gestión de proyectos de cubiertas, con portal de subcontratistas y facturación en PDF · Cotizador para trámite de licencias de construcción con generación de presupuesto · Herramienta de presupuestos integrada a licitaciones (INGYCONS) · CRM para agencia de seguros · Sitio web corporativo bilingüe de P&amp;H.",
+    eb_val:"Áreas de aporte",
+    val_h2:"Perfil técnico<br><em>con desarrollo tecnológico propio.</em>",
+    v1_p:"Residencia e inspección técnica de obra; control de taludes, muros de contención, terraplenes y anclajes; verificación de ensayos y memorias de cálculo (NSR‑10, INVÍAS).",
+    v3_p:"Herramientas de predimensionamiento, cantidades y presupuestos adaptadas a los procesos de la organización.",
+    v4_p:"Seguimiento de procesos en SECOP II, estructuración de ofertas y detección temprana de oportunidades.",
+    val_note:"Perfil que combina el ejercicio técnico de la ingeniería con el desarrollo de herramientas digitales internas, sin dependencia de proveedores externos de software.",
+    contact_h2:"Información<br><em>de contacto.</em>",
+    contact_p:"Residencia en Bogotá. Disponibilidad para trabajo de campo, comisiones y desplazamiento a proyecto. Certificado de matrícula COPNIA, certificaciones laborales y soportes académicos disponibles a solicitud.",
+    ph_1:"Diseño y administración del sistema digital de gestión técnica y de calidad: trazabilidad desde la orden de producción hasta el informe final, con roles y permisos por usuario.",
+    ph_3:"Implementación de cálculos automáticos con criterios de aceptación.",
+    ph_4:"Desarrollo del registro fotográfico por fase y componente con compresión y procesamiento en paralelo.",
+    ph_6:"Diseño y desarrollo del sitio web corporativo bilingüe (ES/EN) pyhcompany.com: 16 secciones, posicionamiento SEO, analítica con Google Analytics 4, videoteca técnica, formularios de solicitud e integración con el portal de clientes y trabajadores, con administración de fotografías desde el sistema interno.",
+    rds_4:"Apoyo a la liquidación del consorcio: elaboración de herramienta de cálculo y liquidación por ejecución de obra.",
+    inma_1:"Supervisión técnica: control de calidad y cumplimiento de especificaciones.",
+    p5_sol:"Portal con roles y permisos; informes por las 8 fases del proceso; registro fotográfico por componente y fase; formatos de inspección y prueba; certificados de calidad y calibración con dictamen automático; documentos con código, versión y aprobaciones.",
+    v2_p:"Formatos digitales de ensayo e inspección, criterios de aceptación con dictamen automático, registro fotográfico e informes técnicos con trazabilidad."
   },
   en:{
-    nav_home:"Home",nav_about:"Profile",nav_exp:"Experience",nav_proj:"Projects",nav_skills:"Skills",nav_contact:"Contact",
+    nav_home:"Home",nav_about:"Profile",nav_exp:"Experience",nav_skills:"Skills",nav_contact:"Contact",
     pdf_btn:"CV PDF",pdf_btn_hero:"Download CV (PDF)",btn_contact:"Get in touch",
     hero_loc:"Bogotá, Colombia · Available for field work and travel",
     hero_title:"Civil Engineer · MSc in Civil Engineering, Geotechnics",
-    hero_desc:"Ten years of experience in engineering and project management, five of them in road infrastructure as technical inspector and resident engineer: slopes, retaining walls, embankments and laboratory control. MSc in Geotechnics, with GEO5 and PLAXIS 2D modelling and in-house Python tools. Seeking geotechnical consulting and projects.",
     doc_title:"César Abaunza · Civil Engineer · Geotechnics",
     fit_trigger:"Address this application to a company",
-    lbl_prob:"Problem",lbl_met:"Method",lbl_res:"Result",
-    p1_prob:"In soil‑rock mixtures (bimrocks) conventional testing does not represent the strength of the mass: it is governed by volumetric block proportion, hard to measure in the field.",
-    p1_met:"UAV photography of the slope, image-processing segmentation of blocks and computation of volumetric block proportion.",
-    p1_res:"Estimation of cohesion and friction angle through published bimrock correlations, applicable to slope stability analysis.",
-    p2_prob:"No field cases exist with known block proportion against which to verify the estimation.",
-    p2_met:"Generation of synthetic bimrock images with controlled proportion, grain size and distribution.",
-    p2_res:"Validation of SRM‑Tool against known proportions, with ASTM/USCS classification and grain size curve export.",
     us_1:"Project Manager on residential roofing projects: budget and quality control, OSHA compliance and crew supervision (Brayden Roofing Specialists).",
-    us_3:"Founder and product developer of RMRT, a SaaS platform in production for roofing project management and climate resilience (since Nov 2024).",
-    us_2:"Administrative operations and development of internal management and reporting tools (IQ Group).",
+    ph_date:"Jun 2026 — present",ph_role:"Technical Lead, Technology Development",us_2:"Administrative operations and development of internal management and reporting tools (IQ Group).",
     fact1:"Of professional experience<br>since December 2016",fact1n:"years",fact2:"Civil Engineering, Geotechnics<br>Universidad de Medellín",fact3:"Geotechnical modelling<br>and Python for analysis",fact4:"Colombian professional licence<br>active, no disciplinary record",
-    win1:"Road corridor supervised<br>Vías del Nus 4G",win2:"Time to prepare bids<br>with an in-house tool",win3:"Projects estimated<br>residential and commercial",win4:"Software platforms built<br>(RMRT in production)",
-    works_label:"Projects and organizations",
-    eb_about:"Profile",
+    win1:"Road corridor supervised<br>Vías del Nus 4G",win2:"Time to prepare bids<br>with an in-house tool",win3:"Projects estimated<br>residential and commercial",works_label:"Projects and organizations",
     about_h2:"Site experience,<br><em>specialization in geotechnics.</em>",
-    about_p1:"From technical inspector on Ruta del Sol Sector 2 to resident engineer on Vías del Nus 4G, responsible for 157 km of corridor. The daily work was applied geotechnics: cuts and slopes, retaining walls, embankments, anchors, compaction control and verification of tests and design calculations against NSR‑10 and INVÍAS.",
-    about_p2:"MSc in Civil Engineering with a Geotechnics focus, Universidad de Medellín (2026). Thesis: estimation of strength parameters in soil‑rock mixtures (bimrocks) from UAV imagery.",
-    about_p3:"I also hold a business administration degree and programming skills: I have built six software platforms of my own, applied within engineering teams to cost estimating, data analysis and technical report automation.",
-    seek_lbl:"What I am looking for",
-    seek_txt:"To join geotechnical consulting, construction supervision or contracting projects with a soils department, contributing my site experience while consolidating a specialized professional track in geotechnics. Available for field, laboratory and site postings.",
     fit_to:"Application addressed to",fit_co_default:"Your organization",
     fit_note_default:"This profile can be addressed to a specific company. When sent, this card states which firm the application is for and why.",
     fit_edit:'<i class="fas fa-pen"></i> Personalize',fit_f1:"Company name",fit_f2:"Why that company (2–3 lines)",
@@ -766,11 +946,9 @@ const translations = {
     eb_exp:"Track record",exp_h2:"Professional<br><em>experience.</em>",
     us_org:"International experience",us_role:"Project management, operations and internal systems",
     inma_role:"Project Coordinator · Certified for work at height",
-    inma_1:"Technical supervision of civil works: quality control and specification compliance.",
     inma_2:"Coordination of multidisciplinary teams and resource scheduling.",
     ingy_role:"Project Coordinator",
     ingy_1:"Budgets and quantity take-offs for 8+ residential and commercial projects (Hacienda Otoño, Club House Samaria, Colpatria).",
-    ingy_2:"Built an automated estimating tool connected to the tender system: 35% less time preparing bids.",
     ingy_3:"Review of site reports, procurement flow and invoicing.",
     nus_role:"Resident Engineer",
     nus_1:"Supervision of 157 km of corridor: earthworks, slope stabilization, retaining walls, tunnels, bridges and pavements.",
@@ -788,10 +966,7 @@ const translations = {
     edu3_t:"Business Administration",edu3_s:"Universidad Militar Nueva Granada (2023)",
     edu4_t:"Other credentials",edu4_s:"Diploma in Integrated Logistics (UMNG, 2020) · Safe work at height · Florida 4‑40 Property &amp; Casualty licence",
     tools_lbl:"Technical software",tg1:"Geotechnics",tg2:"Structures and design",tg3:"Management and data",tg4:"Programming",norm_lbl:"Codes and standards",
-    eb_proj:"Technical work in geotechnics",
-    proj_h2:"Applied research and tools<br><em>developed during the graduate degree.</em>",
     kind_thesis:"MSc thesis",kind_val:"Thesis validation",
-    other_p:"<strong>Other development work.</strong> Outside geotechnics I have built management tools for clients and my own projects: RMRT (a SaaS in production for roofing project management and climate resilience in the US), a CRM for an insurance agency, a market intelligence system for rotating equipment maintenance and several report automations. They explain my data skills, which I now apply to engineering and geotechnical problems.",
     eb_skills:"Skills",
     sk1:"Geotechnics and soils",
     sk1_1:"Slope stabilization and cut control",sk1_2:"Retaining walls, anchors and stabilization structures",
@@ -805,14 +980,106 @@ const translations = {
     sk3:"Data applied to engineering",
     sk3_1:"Python for geotechnical computation and data processing",sk3_2:"Image processing applied to soil characterization",
     sk3_3:"Automation of technical reports and cost estimates",sk3_4:"Site tracking dashboards (Power BI)",
-    sk3_5:"Development of internal support applications",sk3_6:"Native Spanish · Technical English (reading, reporting, meetings)",
-    eb_contact:"Contact",contact_h2:"Available to<br><em>join your team.</em>",
-    contact_p:"Based in Bogotá, available for field work, site postings and travel to project locations. Professional licence certificate, employment references and academic records available on request.",
-    ct_mail:"Email",ct_tel:"Phone",ct_loc:"Location",ct_loc_v:"Bogotá D.C., Colombia",
+    sk3_6:"Native Spanish · Technical English (reading, reporting, meetings)",
+    eb_contact:"Contact",ct_mail:"Email",ct_tel:"Phone",ct_loc:"Location",ct_loc_v:"Bogotá D.C., Colombia",
     footer_r:"Civil Engineering — Geotechnics",
     pdf_doc:"Curriculum vitae",
     pdf_prep:"Preparing document…",pdf_page:"Page",pdf_err:"Could not generate the PDF. Please try again.",
-    copied:"Link copied",copyfail:"Select the link and copy it manually."
+    copied:"Link copied",copyfail:"Select the link and copy it manually.",
+    nav_proj:"Developments",
+    nav_val:"Value",
+    win4:"In-house software platforms<br>4 of them in production",
+    eb_proj:"Technology development",
+    grp1:"Geotechnics · MSc research",
+    grp2:"Platforms for engineering firms",
+    p1_sub:"Bimrock strength parameters from UAV imagery",
+    p2_sub:"Synthetic bimrock generator for validation",
+    kind_prod:"Web platform · in production",
+    kind_ent:"Enterprise system · in production",
+    kind_engine:"Data engine · service",
+    p3_sub:"Preliminary design and cost estimate of steel structures",
+    p4_sub:"Public procurement radar for SECOP II",
+    p5_t:"Technical and quality management system",
+    p5_sub:"P&amp;H Company Services · overhaul maintenance and repair",
+    p6_t:"Market intelligence engine",
+    p6_sub:"Automatic detection of B2B business opportunities",
+    tag_ml:"Machine learning",
+    tag_uav:"UAV photogrammetry",
+    tag_sim:"Simulation",
+    tag_pdf:"PDF drawings",
+    tag_inter:"Supervision · consulting",
+    tag_qc:"Quality control",
+    tag_trace:"Document traceability",
+    tag_auto:"Automation",
+    ot_lic:"Building-permit quoting tool",
+    ot_bud:"Estimates linked to tenders",
+    ot_crm:"Insurance CRM",
+    ot_web:"Bilingual corporate website",
+    v1_t:"Field geotechnics and supervision",
+    v1_pr:"Ruta del Sol 2 · Vías del Nus 4G · 157 km",
+    v2_t:"Laboratory and quality digitization",
+    v2_pr:"P&amp;H technical management system",
+    v3_t:"Custom calculation and estimating",
+    v3_pr:"CimaSteel · −35 % bid time (INGYCONS)",
+    v4_t:"Tenders and business intelligence",
+    v4_pr:"SecopRadar · opportunity engine",
+    sk2_7:"Public tender tracking in SECOP II",
+    sk3_5:"Web platforms with roles and permissions (Next.js + Supabase)",
+    sk3_7:"Integrating language models (AI) into workflows",
+    hero_desc:"Civil Engineer with ten years of experience in engineering and project management, five of them in road infrastructure (technical inspection and site residency): slope stabilization, retaining walls, embankments and laboratory quality control. MSc in Civil Engineering, Geotechnics. Modelling in GEO5 and PLAXIS 2D. Development of technology platforms for engineering: preliminary structural design, public tenders, quality control and technical reporting.",
+    eb_about:"Professional profile",
+    about_p1:"Experience on large-scale road projects as technical inspector (Ruta del Sol Sector 2) and resident engineer (Vías del Nus 4G, 157 km corridor). Responsible for applied geotechnical activities: cuts and slopes, retaining walls, embankments, anchors, compaction control, and verification of tests and design calculations under NSR‑10 and INVÍAS specifications.",
+    about_p2:"MSc in Civil Engineering, Geotechnics, Universidad de Medellín (2026). Thesis: estimation of strength parameters in soil‑rock mixtures (bimrocks) from UAV imagery and machine learning.",
+    about_p3:"Complementary background in Business Administration and software development. Author of eight technology platforms, four of them in production —including CimaSteel, SecopRadar and a technical and quality management system—, focused on cost estimating, tenders, quality control and technical report automation.",
+    seek_lbl:"Career objective",
+    seek_txt:"Position with geotechnical consulting, construction supervision or contracting firms with a soils department, contributing site experience, modelling skills and development of digital tools. Available for field work, laboratory work and site postings.",
+    ph_note:"Digitization of testing, quality control and technical reporting; workflow applicable to geotechnical laboratories and consultancies.",
+    ph_2:"Digitization of inspection and test forms linked to order data: dimensional inspection, hydrostatic and pneumatic testing, torque records and quality certificates.",
+    ph_5:"Standardization of document header, code, version, signatures and approvals for document control.",
+    us_3:"Founder and developer of RMRT, a SaaS platform in production for roofing project management and climate resilience (since Nov 2024).",
+    us_4:"Development of language-model agents and Python/FastAPI APIs for automation of reporting, estimating and business processes (IQ Designs).",
+    ingy_2:"Development of an automated estimating tool integrated with the tender system: 35 % reduction in bid preparation time.",
+    proj_h2:"Technology tools<br><em>applied to engineering.</em>",
+    proj_intro:"Platforms developed from site, laboratory and technical-office needs, with per-user access control and adaptable to each organization's processes. Demo available on request.",
+    lbl_prob:"Objective",
+    lbl_met:"Methodology",
+    lbl_res:"Results",
+    lbl_func:"Features",
+    lbl_app:"Application",
+    p1_prob:"Estimate strength parameters of soil‑rock mixtures (bimrocks), whose behaviour depends on volumetric block proportion and is not captured by conventional testing.",
+    p1_met:"UAV photogrammetry, block segmentation by image processing (CLAHE, multi-level Otsu, watershed), volumetric block proportion and GSD calibration.",
+    p1_res:"Estimation of cohesion and friction angle using machine learning and published correlations (Medley‑Sönmez, Barton‑Kjaernsli): R² ≥ 0.85 for cohesion and RMSE < 15 % for all three parameters.",
+    p2_prob:"Validate SRM‑Tool in the absence of field cases with known block proportion.",
+    p2_met:"Generation of synthetic bimrock images with controlled proportion, grain size and spatial distribution.",
+    p2_res:"Cross-validation against known proportions, ASTM D2487 (USCS) classification and grain size curve export.",
+    p3_prob:"Integrate preliminary sizing and cost estimating of steel structures (frames and sheds) in a single tool.",
+    p3_sol:"CAD-style modelling, in-house linear solver or manual force input, preliminary NSR‑10 checks (Titles A, B and F), PDF drawings with title block, and cost estimate including overheads, contingencies, profit and transport to site.",
+    p3_val:"Bid structuring and comparison of alternatives at preliminary stage, prior to final structural design.",
+    p4_prob:"Timely identification of public procurement processes for civil engineering supervision and consulting.",
+    p4_sol:"Query of SECOP II (Colombian public procurement portal) processes with filters by procurement type (small-value by default), department and technical keywords; access restricted to enabled users.",
+    p4_val:"Sales and bidding departments of engineering firms: process tracking by region and type of service.",
+    p5_prob:"Digitize the technical document cycle: overhaul reports, inspection forms and certificates.",
+    p5_val:"Model replicable in soils laboratories and supervision firms: test records, acceptance criteria, photo log and traceable final report.",
+    p6_prob:"Detect and prioritize B2B business opportunities: contracts, infrastructure projects, emergencies and calls for proposals.",
+    p6_sol:"Weekly automated collection (Google News, SECOP II, ANH, ANM), classification by keywords and language model (Claude API), deduplicated database and executive reports.",
+    p6_val:"Engine configurable by business profile; implemented for industrial maintenance of rotating equipment and drone engineering services.",
+    other_p:"<strong>Other development work.</strong> RMRT: SaaS platform in production (US) for roofing project management, with subcontractor portal and PDF invoicing · Quoting tool for building-permit services with estimate generation · Estimating tool integrated with tenders (INGYCONS) · CRM for an insurance agency · P&amp;H bilingual corporate website.",
+    eb_val:"Areas of contribution",
+    val_h2:"Technical profile<br><em>with in-house technology development.</em>",
+    v1_p:"Site residency and technical inspection; control of slopes, retaining walls, embankments and anchors; verification of tests and design calculations (NSR‑10, INVÍAS).",
+    v3_p:"Preliminary sizing, quantity and estimating tools adapted to the organization's processes.",
+    v4_p:"SECOP II process tracking, bid structuring and early detection of opportunities.",
+    val_note:"Profile combining technical engineering practice with the development of internal digital tools, without reliance on external software vendors.",
+    contact_h2:"Contact<br><em>information.</em>",
+    contact_p:"Based in Bogotá. Available for field work, site postings and travel to project locations. Professional licence certificate, employment references and academic records available on request.",
+    ph_1:"Design and administration of the digital technical and quality management system: traceability from production order to final report, with per-user roles and permissions.",
+    ph_3:"Implementation of automatic calculations with acceptance criteria.",
+    ph_4:"Development of a photo log by phase and component with compression and parallel processing.",
+    ph_6:"Design and development of the bilingual (ES/EN) corporate website pyhcompany.com: 16 sections, SEO, Google Analytics 4, technical video library, request forms and integration with the client and staff portal, with photo management from the internal system.",
+    rds_4:"Support to the consortium's contract close-out: development of a calculation and settlement tool based on executed works.",
+    inma_1:"Technical supervision: quality control and specification compliance.",
+    p5_sol:"Portal with roles and permissions; reports across the 8 process phases; photo log by component and phase; inspection and test forms; quality and calibration certificates with automatic verdicts; documents with code, version and approvals.",
+    v2_p:"Digital test and inspection forms, acceptance criteria with automatic verdicts, photo logs and traceable technical reports."
   }
 };
 
